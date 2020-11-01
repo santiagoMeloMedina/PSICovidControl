@@ -15,8 +15,8 @@
                 <input type="text" formControlName="password" placeholder="Contraseña">
             </form>
             <div class="actions">
-                <div class="btn"><span>Inicia Sesión</span></div>
-                <div class="btn" (click)="routing.routeTo('register')"><span>Registro</span></div>
+                <button class="btn" [disabled]="!(getLoginForm().valid)"><span>Inicia Sesión</span></button>
+                <button class="btn" (click)="routing.routeTo('register')"><span>Registro</span></button>
             </div>
         </div>
     </div>

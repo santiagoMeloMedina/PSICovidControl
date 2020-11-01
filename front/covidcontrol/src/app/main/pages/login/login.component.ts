@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingService } from 'src/app/service/routing/routing.service';
 
 @Component({
@@ -11,10 +11,11 @@ export class LoginComponent implements OnInit {
 
   private loginForm: FormGroup;
 
-  constructor(public routing: RoutingService) {
-    this.loginForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+  constructor(public routing: RoutingService, 
+              private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

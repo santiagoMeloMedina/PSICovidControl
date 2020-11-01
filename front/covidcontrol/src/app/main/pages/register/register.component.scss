@@ -105,6 +105,8 @@
     height: 35px;
     background-color: #17202F;
     border-radius: 5px;
+    outline: none;
+    border: none;
 }
 
 .actions .btn:hover {
@@ -115,10 +117,12 @@
     background-color: #17354e;
 }
 
+.actions .btn:disabled {
+    background-color: gray;
+}
+
 .actions .btn span {
-    position: absolute;
-    transform: translate(0, -50%);
-    top: 50%;
+    position: relative;
     width: 100%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
