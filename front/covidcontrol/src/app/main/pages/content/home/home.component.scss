@@ -57,7 +57,7 @@
     height: 10%;
 }
 
-.title span {
+.logo .title span {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -107,4 +107,10 @@
     font-size: 15px;
     font-weight: 800;
     color: white;
+}
+
+@media (max-width: 480px) {
+    .logo .title span {
+        font-size: 25px;
+    }    
 }
