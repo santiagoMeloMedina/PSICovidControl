@@ -1,0 +1,28 @@
+
+general:
+    Mision
+    Contacto
+    Inicio
+
+authenticacion:
+    Login
+    Registro
+
+funcional:
+    portal principal
+    modificar datos
+
+funcionalidades: (pagina por cada funcion)
+    - Parasmetrizar datos
+    - historial ingresos
+    - historial examenes
+    - crear cuentas administrador
+    - habilitacion cuentas
+    - autorizacion cuentas
+    - registro entrada
+    - registro examen
+    
+
+
+
+
