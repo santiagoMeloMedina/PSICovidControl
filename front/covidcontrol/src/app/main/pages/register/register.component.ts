@@ -3,18 +3,19 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { RoutingService } from 'src/app/service/routing/routing.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  private loginForm: FormGroup;
+  private registerForm: FormGroup;
 
   constructor(public routing: RoutingService) {
-    this.loginForm = new FormGroup({
+    this.registerForm = new FormGroup({
       username: new FormControl(),
-      password: new FormControl()
+      password: new FormControl(),
+      confirm_password: new FormControl()
     });
   }
 
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   public getLoginForm(): FormGroup {
-    return this.loginForm;
+    return this.registerForm;
   }
 
 }

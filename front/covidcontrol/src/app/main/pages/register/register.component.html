@@ -13,10 +13,11 @@
             <form [formGroup]="getLoginForm()" class="fields">
                 <input type="text" formControlName="username" placeholder="Usuario">
                 <input type="text" formControlName="password" placeholder="Contraseña">
+                <input type="text" formControlName="confirm_password" placeholder="Confirmar Contraseña">
             </form>
             <div class="actions">
-                <div class="btn"><span>Inicia Sesión</span></div>
-                <div class="btn" (click)="routing.routeTo('register')"><span>Registro</span></div>
+                <div class="btn"><span>Registrar</span></div>
+                <div class="btn" (click)="routing.routeTo('login')"><span>Inicia Sesión</span></div>
             </div>
         </div>
     </div>

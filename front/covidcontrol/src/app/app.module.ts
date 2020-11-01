@@ -10,6 +10,7 @@ import { MisionComponent } from 'src/app/main/pages/content/mision/mision.compon
 import { MainComponent } from 'src/app/main/main.component';
 import { ContactComponent } from './main/pages/content/contact/contact.component';
 import { HomeComponent } from './main/pages/content/home/home.component';
+import { RegisterComponent } from './main/pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './main/pages/content/home/home.component';
     MisionComponent,
     MainComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
