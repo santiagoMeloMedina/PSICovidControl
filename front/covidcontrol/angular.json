@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "covidcontrol"
+    }
+  },
+  "defaultProject": "covidcontrol",
+  "cli": {
+    "analytics": "d2fc663a-b9bb-435e-9989-62f43aeaa437"
+  }
 }
