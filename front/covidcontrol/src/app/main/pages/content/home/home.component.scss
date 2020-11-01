@@ -1,0 +1,116 @@
+
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #F2F4F4;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    min-height: 550px;
+    max-height: 600px;
+    top: 10%;
+    overflow: hidden;
+}
+
+.logo {
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 20px;
+    left: 50%;
+    width: 50%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.logo .brand {
+    position: relative;
+    height: 90%;
+}
+
+.logo .brand .cellphone {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    min-width: 400px;
+    max-width: 500px;
+    max-height: 470px;
+}
+
+.logo .brand .virus {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 20%;
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.logo .title {
+    position: relative;
+    height: 10%;
+}
+
+.logo .title span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #232F3E;
+}
+
+.actions {
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 450px;
+    left: 50%;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 300px;
+    grid-row-gap: 10px;
+}
+
+.actions .btn {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    background-color: #17202F;
+    border-radius: 5px;
+}
+
+.actions .btn:hover {
+    background-color: #17204e;
+}
+
+.actions .btn:active {
+    background-color: #17354e;
+}
+
+.actions .btn span {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .logo .title span {
+        font-size: 25px;
+    }    
+}

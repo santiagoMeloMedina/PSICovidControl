@@ -1,9 +1,9 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+
+import { CONSTANTS as MENU } from 'src/app/constant/menu.constant';
 
 export const environment = {
-  production: false
+  production: false,
+  MENU: MENU
 };
 
 /*
