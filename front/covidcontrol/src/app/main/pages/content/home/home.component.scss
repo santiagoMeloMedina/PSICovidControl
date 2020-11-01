@@ -10,20 +10,28 @@
     position: absolute;
     width: 100%;
     height: 80%;
+    min-height: 550px;
+    max-height: 600px;
     top: 10%;
+    overflow: hidden;
 }
 
 .logo {
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 35%;
+    transform: translate(-50%, 0);
+    top: 20px;
     left: 50%;
     width: 50%;
-    height: 70%;
+    height: 400px;
     overflow: hidden;
 }
 
-.logo .cellphone {
+.logo .brand {
+    position: relative;
+    height: 90%;
+}
+
+.logo .brand .cellphone {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -31,9 +39,10 @@
     width: 100%;
     min-width: 400px;
     max-width: 500px;
+    max-height: 470px;
 }
 
-.logo .virus {
+.logo .brand .virus {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -43,25 +52,28 @@
     max-width: 120px;
 }
 
-.title {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 70%;
-    left: 50%;
+.logo .title {
+    position: relative;
+    height: 10%;
 }
 
 .title span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
     text-align: center;
-    font-family: Ubuntu;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 800;
     color: #232F3E;
 }
 
 .actions {
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 85%;
+    transform: translate(-50%, 0);
+    top: 450px;
     left: 50%;
     display: inline-grid;
     grid-template-columns: repeat(1, 1fr);
@@ -91,8 +103,8 @@
     top: 50%;
     width: 100%;
     text-align: center;
-    font-family: Ubuntu;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 800;
     color: white;
 }
