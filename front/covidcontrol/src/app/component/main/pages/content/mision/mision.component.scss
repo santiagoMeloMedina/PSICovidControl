@@ -14,36 +14,40 @@
     max-height: 600px;
     top: 10%;
     overflow: hidden;
-    //background-color: blue;
 }
 
-.text {
- position: absolute;
- transform: translate(-50%, 200%);
-top: 50%;
-left: 50%;
-width: 100%;
-text-align: center;
-font-family: 'Ubuntu', sans-serif;
-font-size: 15px;
-font-weight: 800;
-color: #232F3E;
-//background-color: greenyellow;
-}
-
-.logo {
-    position: absolute;
+.image {
+    position: relative;
     transform: translate(-50%, 0);
-    top: 20px;
     left: 50%;
     width: 50%;
     height: 600px;
+    min-width: 300px;
+    max-width: 400px;
     overflow: hidden;
-    //background-color: brown;
 }
 
-.logo .brand {
+.image img {
     position: absolute;
-    transform: translate(0%,-40%);
-    height: 90%;
+    width: 100%;
+}
+
+.text {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 80%;
+    height: 50px;
+    top: 440px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #232F3E;
+}
+
+@media (max-width: 600px) {
+    .text {
+        top: 350px;
+    }
 }
