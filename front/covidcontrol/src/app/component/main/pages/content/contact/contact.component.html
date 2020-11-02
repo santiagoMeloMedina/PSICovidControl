@@ -1,26 +1,20 @@
 <div class = "noselect">
     <div class = "box">
         <div class = "content">
-            <div class="logo">
-                <div class="brand">
-                    <img src="assets/contacto.png" class="cellphone" draggable="false">
-                </div>
-                
+            <div class="image">
+                <img src="assets/contacto.png" class="cellphone" draggable="false">
             </div>
-            <form [formGroup]="getContactForm()">
-                <div class = "fields">
-                    <input type="text" formControlName="email" placeholder="Correo">
-                    <input type="text" formControlName="subject" placeholder="Asunto">
+            <div class="data">
+                <form [formGroup]="getContactForm()">
+                    <div class = "fields">
+                        <input type="text" formControlName="email" placeholder="Correo">
+                        <input type="text" formControlName="subject" placeholder="Asunto">
+                    </div>
+                    <textarea formControlName="text" placeholder="Texto"></textarea>
+                </form>
+                <div class = "actions">
+                    <button class="btn" [disabled]="!(getContactForm().valid)"><span>Enviar</span></button>
                 </div>
-                
-            
-            <div class = "largeFields">
-                <textarea rows="14" cols = "44" formControlName="text" placeholder="Texto"></textarea>
-            </div>
-        </form>
-            <div class = "actions">
-                <button class="btn" [disabled]="!(getContactForm().valid)"><span>Enviar</span></button>
-                
             </div>
         </div>
     </div>

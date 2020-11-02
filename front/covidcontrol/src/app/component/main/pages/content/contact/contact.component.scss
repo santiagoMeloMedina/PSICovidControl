@@ -7,64 +7,85 @@
 
 .content {
     position: absolute;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
     height: 90%;
     min-height: 550px;
     max-height: 600px;
     top: 10%;
     overflow: hidden;
-   //background-color: greenyellow;
 }
 
-.logo {
-    position: absolute;
-    transform: translate(-105%, -30%);
-    top: 20px;
+.image {
+    position: relative;
+    transform: translate(-50%, 0);
     left: 50%;
-    width: 50%;
-    height: 100px;
-    //overflow: hidden;
+    width: 90%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+.image img {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 100%;
+}
+
+.data {
+    position: relative;
+    width: 100%;
+}
+
+form {
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
 }
 
 .fields {
-    position: absolute;
+    position: relative;
     display: inline-grid;
     grid-template-columns: repeat(1, 1fr);
-    transform: translate(69%, 0);
-    top: 370px;
-    left: 50%;
-    width: 350px;
+    width: 100%;
+    height: 70px;
+    margin-top: 40px;
     grid-row-gap: 10px;
 }
 
 .fields input{
     position: relative;
-    transform: translate(-50%, -700%);
+    width: 90%;
+    transform: translate(-50%, 0);
     left: 50%;
-    width: 100%;
-    height: 30px;
+}
+
+
+form textarea {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    height: 30%;
+    margin-top: 20px;
     padding-left: 10px;
+    padding-top: 5px;
+    resize: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
 }
-
-
-.largeFields{
-    position: absolute;
-    transform: translate(78%, -65%);
-    top: 370px;
-    left: 50%;
-    width: 300px;
-}
-
-
 
 .actions {
-    position: absolute;
-    transform: translate(78%, -50%);
-    top: 500px;
+    position: relative;
+    transform: translate(-50%, 0);
+    top: 520px;
     left: 50%;
-    display: inline-grid;
-    grid-template-columns: repeat(1, 1fr);
-    width: 300px;
+    width: 80%;
     grid-row-gap: 10px;
 }
 
@@ -100,8 +121,16 @@
     color: white;
 }
 
-@media (max-width: 480px) {
-    .logo .title span {
-        font-size: 25px;
+@media (max-width: 720px) {
+    .content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    form {
+        top: 130px;
+    }
+
+    .actions {
+        top: 250px;
     }
 }
