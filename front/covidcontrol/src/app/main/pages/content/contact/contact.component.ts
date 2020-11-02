@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RoutingService } from 'src/app/service/routing/routing.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  private contactForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(public routing: RoutingService, 
+              private formBuilder: FormBuilder) {
+    this.contactForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      subject: ['', Validators.required],
+      text: ['', Validators.required]
+    });
+  }
+ ngOnInit(): void {
+  }
+
+  public getContactForm(): FormGroup {
+    return this.contactForm;
   }
 
 }
