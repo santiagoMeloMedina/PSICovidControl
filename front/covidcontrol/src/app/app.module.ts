@@ -12,6 +12,7 @@ import { ContactComponent } from 'src/app/component/main/pages/content/contact/c
 import { HomeComponent } from 'src/app/component/main/pages/content/home/home.component';
 import { RegisterComponent } from 'src/app/component/main/pages/register/register.component';
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
+import { EntryComponent } from './component/dashboard/entry/entry.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DashboardComponent } from 'src/app/component/dashboard/dashboard.compon
     ContactComponent,
     HomeComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
