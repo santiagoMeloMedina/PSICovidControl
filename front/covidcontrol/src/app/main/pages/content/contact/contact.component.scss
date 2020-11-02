@@ -4,3 +4,104 @@
     height: 100%;
     background-color: #F2F4F4;
 }
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    min-height: 550px;
+    max-height: 600px;
+    top: 10%;
+    overflow: hidden;
+   //background-color: greenyellow;
+}
+
+.logo {
+    position: absolute;
+    transform: translate(-105%, -30%);
+    top: 20px;
+    left: 50%;
+    width: 50%;
+    height: 100px;
+    //overflow: hidden;
+}
+
+.fields {
+    position: absolute;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    transform: translate(69%, 0);
+    top: 370px;
+    left: 50%;
+    width: 350px;
+    grid-row-gap: 10px;
+}
+
+.fields input{
+    position: relative;
+    transform: translate(-50%, -700%);
+    left: 50%;
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+}
+
+
+.largeFields{
+    position: absolute;
+    transform: translate(78%, -65%);
+    top: 370px;
+    left: 50%;
+    width: 300px;
+}
+
+
+
+.actions {
+    position: absolute;
+    transform: translate(78%, -50%);
+    top: 500px;
+    left: 50%;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 300px;
+    grid-row-gap: 10px;
+}
+
+.actions .btn {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    background-color: #17202F;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.actions .btn:hover {
+    background-color: #17204e;
+}
+
+.actions .btn:active {
+    background-color: #17354e;
+}
+
+.actions .btn:disabled {
+    background-color: gray;
+}
+
+.actions .btn span {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .logo .title span {
+        font-size: 25px;
+    }
+}

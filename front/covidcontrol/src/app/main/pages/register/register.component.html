@@ -10,14 +10,14 @@
                     <span>PSI Covid Control</span>
                 </div>
             </div>
-            <form [formGroup]="getLoginForm()" class="fields">
+            <form [formGroup]="getRegisterForm()" class="fields">
                 <input type="text" formControlName="username" placeholder="Usuario">
                 <input type="text" formControlName="password" placeholder="Contraseña">
                 <input type="text" formControlName="confirm_password" placeholder="Confirmar Contraseña">
             </form>
             <div class="actions">
-                <div class="btn"><span>Registrar</span></div>
-                <div class="btn" (click)="routing.routeTo('login')"><span>Inicia Sesión</span></div>
+                <button class="btn" [disabled]="!(getRegisterForm().valid)"><span>Registrar</span></button>
+                <button class="btn" (click)="routing.routeTo('login')"><span>Inicia Sesión</span></button>
             </div>
         </div>
     </div>
