@@ -12,7 +12,7 @@
             </div>
             <form [formGroup]="getLoginForm()" class="fields">
                 <input type="text" formControlName="username" placeholder="Usuario">
-                <input type="text" formControlName="password" placeholder="Contraseña">
+                <input type="password" formControlName="password" placeholder="Contraseña">
             </form>
             <div class="actions">
                 <button class="btn" [disabled]="!(getLoginForm().valid)"><span>Inicia Sesión</span></button>

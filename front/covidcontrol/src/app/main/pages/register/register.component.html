@@ -12,8 +12,8 @@
             </div>
             <form [formGroup]="getRegisterForm()" class="fields">
                 <input type="text" formControlName="username" placeholder="Usuario">
-                <input type="text" formControlName="password" placeholder="Contraseña">
-                <input type="text" formControlName="confirm_password" placeholder="Confirmar Contraseña">
+                <input type="password" formControlName="password" placeholder="Contraseña">
+                <input type="password" formControlName="confirm_password" placeholder="Confirmar Contraseña">
             </form>
             <div class="actions">
                 <button class="btn" [disabled]="!(getRegisterForm().valid)"><span>Registrar</span></button>

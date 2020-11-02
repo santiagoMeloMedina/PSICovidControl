@@ -1,9 +1,11 @@
 
 import { CONSTANTS as MENU } from 'src/app/constant/menu.constant';
+import { CONSTANTS as FUNCTION } from 'src/app/constant/function.constant';
 
 export const environment = {
   production: false,
-  MENU: MENU
+  MENU: MENU,
+  FUNCTION: FUNCTION
 };
 
 /*
