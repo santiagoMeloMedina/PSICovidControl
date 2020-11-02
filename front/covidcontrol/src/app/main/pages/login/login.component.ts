@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingService } from 'src/app/service/routing/routing.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',

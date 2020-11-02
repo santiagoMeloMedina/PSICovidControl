@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoutingService } from 'src/app/service/routing/routing.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirm_password: ['', Validators.required]
-    });
+    }, {validator: environment.FUNCTION.MATCH });
   }
 
   ngOnInit(): void {
