@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MisionComponent } from 'src/app/main/pages/content/mision/mision.component';
-import { LoginComponent } from 'src/app/main/pages/login/login.component';
-import { MainComponent } from './main/main.component';
-import { ContactComponent } from './main/pages/content/contact/contact.component';
-import { HomeComponent } from './main/pages/content/home/home.component';
-import { RegisterComponent } from './main/pages/register/register.component';
-import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { MisionComponent } from 'src/app/component/main/pages/content/mision/mision.component';
+import { LoginComponent } from 'src/app/component/main/pages/login/login.component';
+import { MainComponent } from 'src/app/component/main/main.component';
+import { ContactComponent } from 'src/app/component/main/pages/content/contact/contact.component';
+import { HomeComponent } from 'src/app/component/main/pages/content/home/home.component';
+import { RegisterComponent } from 'src/app/component/main/pages/register/register.component';
+import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
