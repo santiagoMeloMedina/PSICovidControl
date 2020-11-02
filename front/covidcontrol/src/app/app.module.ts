@@ -11,6 +11,7 @@ import { MainComponent } from 'src/app/main/main.component';
 import { ContactComponent } from './main/pages/content/contact/contact.component';
 import { HomeComponent } from './main/pages/content/home/home.component';
 import { RegisterComponent } from './main/pages/register/register.component';
+import { DashboardComponent } from './main/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RegisterComponent } from './main/pages/register/register.component';
     MainComponent,
     ContactComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
