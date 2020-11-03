@@ -8,6 +8,7 @@ import { HomeComponent } from 'src/app/component/main/pages/content/home/home.co
 import { RegisterComponent } from 'src/app/component/main/pages/register/register.component';
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
 import { EntryComponent } from '@component/dashboard/entry/entry.component';
+import { ExamComponent } from '@component/dashboard/exam/exam.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path:"entry",
         component: EntryComponent
+      },
+      {
+        path:"exam",
+        component: ExamComponent
       }
     ]
     

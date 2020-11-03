@@ -14,7 +14,7 @@ export class EntryComponent implements OnInit {
   }
   public getCols(): string []{
     return ["ID Ciudadano","ID EP","Fecha","Hora","Temperatura","Tapabocas",
-  "Respuesta","Descripción"];
+  "Respuesta","Descripción"]; /*Faltan columnas */
   }
 
 }
