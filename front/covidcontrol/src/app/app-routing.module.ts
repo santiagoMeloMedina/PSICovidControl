@@ -7,6 +7,7 @@ import { ContactComponent } from 'src/app/component/main/pages/content/contact/c
 import { HomeComponent } from 'src/app/component/main/pages/content/home/home.component';
 import { RegisterComponent } from 'src/app/component/main/pages/register/register.component';
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
+import { ActionComponent } from '@component/dashboard/action/action.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,13 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      {
+        path: "",
+        component: ActionComponent
+      }
+    ]
   }
   
 ];
