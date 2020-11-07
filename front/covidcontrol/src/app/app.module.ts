@@ -19,6 +19,7 @@ import { ExamComponent } from './component/dashboard/exam/exam.component';
 import { CreateAccountComponent } from './component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from './component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from './component/dashboard/authorize/authorize.component';
+import { EntryComponent } from './component/dashboard/entry/entry.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthorizeComponent } from './component/dashboard/authorize/authorize.co
     ActionComponent,
     CreateAccountComponent,
     EnableDisableComponent,
-    AuthorizeComponent
+    AuthorizeComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,

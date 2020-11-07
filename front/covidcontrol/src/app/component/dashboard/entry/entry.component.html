@@ -1,0 +1,41 @@
+<div class = "noselect">
+    <div class = "box">
+        <span class = "title"> Registro de entrada</span>
+        <div class = "content">
+            <div class = "data">
+                <form [formGroup]="getEntryForm()">
+                    <div class = "fields">
+                        
+                        <input type="text" formControlName="docNum" placeholder="Número de documento">
+                        <input type="text" formControlName="temperature" placeholder="Temperatura">
+                        <select type="text" formControlName="maskUse" placeholder="Uso de tapabocas">
+                            <option value="1">
+                                SI
+                            </option>
+                            <option value="2">
+                                NO
+                            </option>
+                        </select>   
+                        <input type="date" formControlName="fecha" placeholder="Fecha">
+                        <input type="time" formControlName="hora" placeholder="Hora">
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                    
+
+                </form>
+                <div class="actions">
+                    <button class="btn" [disabled]="!(getEntryForm().valid)"><span>Registrar</span></button>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -13,6 +13,7 @@ import { ExamComponent } from '@component/dashboard/exam/exam.component';
 import { CreateAccountComponent } from '@component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
+import {EntryComponent} from '@component/dashboard/entry/entry.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path:"authorize",
         component: AuthorizeComponent
+      },
+      {
+        path:"register-entry",
+        component: EntryComponent
       }
     ]
   }
