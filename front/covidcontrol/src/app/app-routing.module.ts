@@ -10,6 +10,9 @@ import { DashboardComponent } from 'src/app/component/dashboard/dashboard.compon
 import { ActionComponent } from '@component/dashboard/action/action.component';
 import { EntryComponent } from '@component/dashboard/entry/entry.component';
 import { ExamComponent } from '@component/dashboard/exam/exam.component';
+import { CreateAccountComponent } from '@component/dashboard/create-account/create-account.component';
+import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
+import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
 
 const routes: Routes = [
   {
@@ -53,6 +56,18 @@ const routes: Routes = [
       {
         path:"exam",
         component: ExamComponent
+      },
+      {
+        path:"create-account",
+        component: CreateAccountComponent
+      },
+      {
+        path:"enable-disable",
+        component:EnableDisableComponent
+      },
+      {
+        path:"authorize",
+        component: AuthorizeComponent
       }
     ]
   }

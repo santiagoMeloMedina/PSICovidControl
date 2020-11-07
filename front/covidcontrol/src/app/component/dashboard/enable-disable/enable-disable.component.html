@@ -1,0 +1,30 @@
+<div class = "noselect">
+    <div class = "box">
+        <span class = "title"> Habilitar/deshabilitar cuenta</span>
+        <div class = "content">
+            <div class = "data">
+                <form [formGroup]="getSearchForm()">
+                    <div class = "fields">
+                        <input type="text" formControlName="search" placeholder="Búsqueda">
+
+                        
+                    </div>
+                    
+
+                </form>
+
+            </div>
+
+
+        </div>
+        <div class = "table">
+            <div class = "columns">
+                <div *ngFor = "let colName of getCols()" class ="column">
+                    {{colName}}
+                </div>
+        </div>
+        </div>
+
+    </div>
+
+</div>

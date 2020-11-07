@@ -1,0 +1,133 @@
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #F2F4F4;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.content {
+    position: absolute;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: 90%;
+    min-height: 550px;
+    max-height: 600px;
+    top: 10%;
+    overflow: hidden;
+}
+
+.image {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+.image img {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 100%;
+}
+
+.data {
+    position: relative;
+    width: 100%;
+}
+
+form {
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    left: 100%;
+    top: 50%;
+}
+
+.fields {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    height: 70px;
+    margin-top: 40px;
+    grid-row-gap: 10px;
+}
+
+.fields input{
+    position: relative;
+    width: 90%;
+    transform: translate(-50%, 0);
+    left: 50%;
+}
+
+
+
+
+.actions {
+    position: relative;
+    transform: translate(-50%, 0);
+    top: 520px;
+    left: 50%;
+    width: 80%;
+    grid-row-gap: 10px;
+}
+
+.actions .btn {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    background-color: #17202F;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.actions .btn:hover {
+    background-color: #17204e;
+}
+
+.actions .btn:active {
+    background-color: #17354e;
+}
+
+.actions .btn:disabled {
+    background-color: gray;
+}
+
+.actions .btn span {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+}
+
+@media (max-width: 720px) {
+    .content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    form {
+        top: 130px;
+    }
+
+    .actions {
+        top: 250px;
+    }
+}
