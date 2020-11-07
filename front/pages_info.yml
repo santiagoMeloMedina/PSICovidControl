@@ -17,12 +17,10 @@ funcionalidades: (pagina por cada funcion)
     - historial ingresos
     - historial examenes
     - crear cuentas administrador
-    - habilitacion cuentas
+    - habilitacion/deshabilitacion cuentas
     - autorizacion cuentas
     - registro entrada
     - registro examen
-    
-
-
+    - formulario tipo cuenta
 
 
