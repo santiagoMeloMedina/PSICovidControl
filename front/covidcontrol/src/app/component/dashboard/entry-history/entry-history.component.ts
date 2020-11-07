@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-entry',
-  templateUrl: './entry.component.html',
-  styleUrls: ['./entry.component.scss']
+  selector: 'app-entry-history',
+  templateUrl: './entry-history.component.html',
+  styleUrls: ['./entry-history.component.scss']
 })
-export class EntryComponent implements OnInit {
+export class EntryHistoryComponent implements OnInit {
 
   constructor() { }
 

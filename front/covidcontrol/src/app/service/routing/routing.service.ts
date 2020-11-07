@@ -12,4 +12,8 @@ export class RoutingService {
     this.router.navigateByUrl(`${this.router.url}/${url}`, {});
   }
 
+  public absoluteRoute(url: string, params?: Object): void {
+    this.router.navigateByUrl(`${url}`, {});
+  }
+
 }

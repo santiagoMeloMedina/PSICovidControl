@@ -14,7 +14,7 @@ import { HomeComponent } from 'src/app/component/main/pages/content/home/home.co
 import { RegisterComponent } from 'src/app/component/main/pages/register/register.component';
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
 import { ActionComponent } from './component/dashboard/action/action.component';
-import { EntryComponent } from './component/dashboard/entry/entry.component';
+import { EntryHistoryComponent } from './component/dashboard/entry-history/entry-history.component';
 import { ExamComponent } from './component/dashboard/exam/exam.component';
 import { CreateAccountComponent } from './component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from './component/dashboard/enable-disable/enable-disable.component';
@@ -31,7 +31,7 @@ import { AuthorizeComponent } from './component/dashboard/authorize/authorize.co
     HomeComponent,
     RegisterComponent,
     DashboardComponent,
-    EntryComponent,
+    EntryHistoryComponent,
     ExamComponent,
     ActionComponent,
     CreateAccountComponent,
