@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RoutingService } from 'src/app/service/routing/routing.service';
+import { environment } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 @Component({
   selector: 'app-action',
@@ -7,84 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionComponent implements OnInit {
 
-  constructor() { }
+  constructor(public routing: RoutingService, 
+              public authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   public getActions(): Object[] {
-    return [
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-      {
-        name: "Parametrizar",
-        description: "Parametrizar",
-        image: "assets/icons/user.png"
-      },
-    ];
+    let user: Object = this.authenticationService.getUser();
+    if (user != null) {
+      let rol: string = user[environment.AUTHENTICATION.ATTR.ROL];
+      return environment.ACTION.ACTIONS.filter(functionality => {
+        return functionality.roles.includes(rol);
+      });
+    } else {
+      return [];
+    }
   }
 
 }
