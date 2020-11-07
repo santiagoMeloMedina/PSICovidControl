@@ -9,7 +9,7 @@ export class RoutingService {
   constructor(private router: Router) { }
 
   public routeTo(url: string, params?: Object): void {
-    this.router.navigateByUrl(`/${url}`, {});
+    this.router.navigateByUrl(`${this.router.url}/${url}`, {});
   }
 
 }
