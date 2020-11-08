@@ -1,0 +1,30 @@
+
+<div class = "noselect">
+    <div class = "box">
+        <span class = "title"> Registro de examen médico</span>
+        <div class = "content">
+            <div class = "data">
+                <form [formGroup]="getExamForm()">
+                    <div class = "fields">
+                        <input type="text" formControlName="names" placeholder="Nombres">
+                        <input type="text" formControlName="lastNames" placeholder="Apellidos">
+                        <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                            <option value="1">
+                                opt1
+                            </option>
+                            <option value="2">
+                                opt2
+                            </option>
+                        </select>
+                        <input type="text" formControlName="docNum" placeholder="Número de documento">
+                        <input type="date" formControlName="dateEn" placeholder="Fecha">
+                        <input type="time" formControlName="timeEn" placeholder="Hora">        
+                    </div>
+                </form>
+                <div class="actions">
+                    <button class="btn" ><span>Registrar</span></button>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>

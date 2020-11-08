@@ -13,14 +13,14 @@ funcional:
     modificar datos
 
 funcionalidades: (pagina por cada funcion)
-    - Parasmetrizar datos
+    - Parasmetrizar datos ++
     - historial ingresos
     - historial examenes
     - crear cuentas administrador
     - habilitacion/deshabilitacion cuentas
     - autorizacion cuentas
     - registro entrada
-    - registro examen
-    - formulario tipo cuenta
+    - registro examen ++
+    - formulario tipo cuenta ++
 
 

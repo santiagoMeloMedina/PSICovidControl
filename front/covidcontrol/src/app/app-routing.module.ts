@@ -16,6 +16,7 @@ import { EnableDisableComponent } from '@component/dashboard/enable-disable/enab
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
 import { EntryComponent } from '@component/dashboard/entry/entry.component';
 import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
+import { ExamComponent } from '@component/dashboard/exam/exam.component';
 
 export const routes: Routes = [
   {
@@ -93,6 +94,10 @@ export const routes: Routes = [
         component: EditInformationComponent,
         canActivate: [AuthGuard],
         data: { name: "EDIT"}
+      },
+      {
+        path:"register-exam",
+        component:ExamComponent
       }
     ]
   }

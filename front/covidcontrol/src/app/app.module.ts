@@ -21,6 +21,7 @@ import { EnableDisableComponent } from './component/dashboard/enable-disable/ena
 import { AuthorizeComponent } from './component/dashboard/authorize/authorize.component';
 import { EntryComponent } from './component/dashboard/entry/entry.component';
 import { EditInformationComponent } from './component/dashboard/edit-information/edit-information.component';
+import { ExamComponent } from './component/dashboard/exam/exam.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EditInformationComponent } from './component/dashboard/edit-information
     EnableDisableComponent,
     AuthorizeComponent,
     EntryComponent,
-    EditInformationComponent
+    EditInformationComponent,
+    ExamComponent
   ],
   imports: [
     BrowserModule,
