@@ -78,6 +78,16 @@ export const CONSTANTS = {
           description: "Cambia la información de tu perfil",
           image: "assets/icons/user.png",
           link: "edit-information"
+        },
+        {
+          id: "R_EXAM",
+          roles: [
+            AUTH.ROLES.ES
+          ],
+          name: "Registrar Examen",
+          description: "Registra el examen clinico de ciudadanos",
+          image: "assets/icons/user.png",
+          link: "register-exam"
         }
       ]
 }

@@ -99,7 +99,9 @@ export const routes: Routes = [
       },
       {
         path:"register-exam",
-        component:ExamComponent
+        component:ExamComponent,
+        canActivate: [ActionGuard],
+        data: { name: "R_EXAM"}
       }
     ]
   }

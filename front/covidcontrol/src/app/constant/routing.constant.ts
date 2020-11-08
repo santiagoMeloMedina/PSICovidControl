@@ -7,6 +7,7 @@ export const CONSTANTS = {
         EXAM: "dashboard",
         C_ACCOUNT: "dashboard",
         ENABLE: "dashboard",
-        AUTORIZE: "dashboard"
+        AUTORIZE: "dashboard",
+        R_EXAM: "dashboard"
     }
 }
