@@ -17,6 +17,9 @@ import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.com
 import { EntryComponent } from '@component/dashboard/entry/entry.component';
 import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
 import { ExamComponent } from '@component/dashboard/exam/exam.component';
+import { RegisterDetailComponent } from 'src/app/component/main/pages/register/register-detail/register-detail.component';
+
+
 
 export const routes: Routes = [
   {
@@ -35,6 +38,10 @@ export const routes: Routes = [
       {
         path: "register",
         component: RegisterComponent
+      },
+      {
+        path: "register-detail",
+        component: RegisterDetailComponent
       },
       {
         path: "mision",
