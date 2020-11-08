@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/app.authguard';
 import { MisionComponent } from 'src/app/component/main/pages/content/mision/mision.component';
 import { LoginComponent } from 'src/app/component/main/pages/login/login.component';
 import { MainComponent } from 'src/app/component/main/main.component';
@@ -13,8 +14,9 @@ import { ExamComponent } from '@component/dashboard/exam/exam.component';
 import { CreateAccountComponent } from '@component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
+import { environment } from 'src/environments/environment';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "",
     component: MainComponent,
@@ -51,23 +53,33 @@ const routes: Routes = [
       },
       {
         path:"entry",
-        component: EntryHistoryComponent
+        component: EntryHistoryComponent,
+        canActivate: [AuthGuard],
+        data: { name: "ENTRY"}
       },
       {
         path:"exam",
-        component: ExamComponent
+        component: ExamComponent,
+        canActivate: [AuthGuard],
+        data: { name: "EXAM"}
       },
       {
         path:"create-account",
-        component: CreateAccountComponent
+        component: CreateAccountComponent,
+        canActivate: [AuthGuard],
+        data: { name: "C_ACCOUNT"}
       },
       {
         path:"enable-disable",
-        component:EnableDisableComponent
+        component:EnableDisableComponent,
+        canActivate: [AuthGuard],
+        data: { name: "ENABLE"}
       },
       {
         path:"authorize",
-        component: AuthorizeComponent
+        component: AuthorizeComponent,
+        canActivate: [AuthGuard],
+        data: { name: "AUTORIZE"}
       }
     ]
   }
