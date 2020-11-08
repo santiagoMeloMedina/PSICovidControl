@@ -3,6 +3,7 @@
     <div class="actions">
         <div class="container">
             <div *ngFor="let action of getActions()" class="action" (click)="routing.routeTo(action['link'])">
+                <div class="bar"></div>
                 <img src="{{ action['image'] }}">
                 <span class="name">{{ action['name'] }}</span>
                 <span class="description">{{ action['description'] }}</span>
