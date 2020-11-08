@@ -3,13 +3,15 @@ import { CONSTANTS as MENU } from 'src/app/constant/menu.constant';
 import { CONSTANTS as FUNCTION } from 'src/app/constant/function.constant';
 import { CONSTANTS as ACTION } from 'src/app/constant/action.constant';
 import { CONSTANTS as AUTHENTICATION } from 'src/app/constant/authentication.constant';
+import { CONSTANTS as ROUTING } from 'src/app/constant/routing.constant';
 
 export const environment = {
   production: false,
   MENU: MENU,
   FUNCTION: FUNCTION,
   ACTION: ACTION,
-  AUTHENTICATION: AUTHENTICATION
+  AUTHENTICATION: AUTHENTICATION,
+  ROUTING: ROUTING
 };
 
 /*
