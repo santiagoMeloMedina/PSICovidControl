@@ -14,7 +14,8 @@ import { ExamComponent } from '@component/dashboard/exam/exam.component';
 import { CreateAccountComponent } from '@component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
-import { environment } from 'src/environments/environment';
+import {EntryComponent} from '@component/dashboard/entry/entry.component';
+import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
 
 export const routes: Routes = [
   {
@@ -80,6 +81,14 @@ export const routes: Routes = [
         component: AuthorizeComponent,
         canActivate: [AuthGuard],
         data: { name: "AUTORIZE"}
+      },
+      {
+        path:"register-entry",
+        component: EntryComponent
+      },
+      {
+        path:"edit-information",
+        component: EditInformationComponent
       }
     ]
   }
