@@ -22,6 +22,7 @@ import { AuthorizeComponent } from './component/dashboard/authorize/authorize.co
 import { EntryComponent } from './component/dashboard/entry/entry.component';
 import { EditInformationComponent } from './component/dashboard/edit-information/edit-information.component';
 import { ExamComponent } from './component/dashboard/exam/exam.component';
+import { RegisterDetailComponent } from './component/main/pages/register/register-detail/register-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ExamComponent } from './component/dashboard/exam/exam.component';
     AuthorizeComponent,
     EntryComponent,
     EditInformationComponent,
-    ExamComponent
+    ExamComponent,
+    RegisterDetailComponent
   ],
   imports: [
     BrowserModule,
