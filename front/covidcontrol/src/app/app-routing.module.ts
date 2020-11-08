@@ -14,6 +14,7 @@ import { CreateAccountComponent } from '@component/dashboard/create-account/crea
 import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
 import {EntryComponent} from '@component/dashboard/entry/entry.component';
+import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
       {
         path:"register-entry",
         component: EntryComponent
+      },
+      {
+        path:"edit-information",
+        component: EditInformationComponent
       }
     ]
   }

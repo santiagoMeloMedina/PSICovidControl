@@ -15,13 +15,13 @@ export class EntryComponent implements OnInit {
 
   constructor(public routing: RoutingService, 
     private formBuilder: FormBuilder) {
-  this.entryForm = this.formBuilder.group({
-  docNum: ['',Validators.required], 
-  temperature:['',Validators.required],
-  maskUse: ['',Validators.required],
-  fecha: ['',Validators.required],
-  hora: ['',Validators.required] 
-  });
+      this.entryForm = this.formBuilder.group({
+        docNum: ['',Validators.required], 
+        temperature:['',Validators.required],
+        maskUse: ['',Validators.required],
+        dateEn: ['',Validators.required],
+        timeEn: ['',Validators.required] 
+      });
   }
 
   ngOnInit(): void {

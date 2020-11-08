@@ -5,7 +5,6 @@
             <div class = "data">
                 <form [formGroup]="getEntryForm()">
                     <div class = "fields">
-                        
                         <input type="text" formControlName="docNum" placeholder="Número de documento">
                         <input type="text" formControlName="temperature" placeholder="Temperatura">
                         <select type="text" formControlName="maskUse" placeholder="Uso de tapabocas">
@@ -16,26 +15,14 @@
                                 NO
                             </option>
                         </select>   
-                        <input type="date" formControlName="fecha" placeholder="Fecha">
-                        <input type="time" formControlName="hora" placeholder="Hora">
-                        
-                        
-                        
-                        
+                        <input type="date" formControlName="dateEn" placeholder="Fecha">
+                        <input type="time" formControlName="timeEn" placeholder="Hora">        
                     </div>
-                    
-                    
-
                 </form>
                 <div class="actions">
                     <button class="btn" [disabled]="!(getEntryForm().valid)"><span>Registrar</span></button>
-                </div>
-                
-
+                </div>    
             </div>
-
         </div>
-
     </div>
-
 </div>
