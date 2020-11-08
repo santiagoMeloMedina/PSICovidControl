@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -8,7 +7,7 @@ import { RoutingService } from './service/routing/routing.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class ActionGuard implements CanActivate {
 
     constructor(private authenticationService: AuthenticationService, 
                 private routing: RoutingService,
@@ -27,6 +26,50 @@ export class AuthGuard implements CanActivate {
         } else {
             result = false;
             this.routing.absoluteRoute(reroute);
+        }
+        return result;
+    }
+
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DashboardGuard implements CanActivate {
+
+    constructor(private authenticationService: AuthenticationService, 
+                private routing: RoutingService,
+                private router: Router) {}
+    
+    canActivate(route: ActivatedRouteSnapshot): boolean {
+        let result: boolean;
+        if (this.authenticationService.isLogged()) {
+            result = true;
+        } else {
+            result = false;
+            this.routing.absoluteRoute(environment.ROUTING.REROUTE.DASHBOARD);
+        }
+        return result;
+    }
+
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MainGuard implements CanActivate {
+
+    constructor(private authenticationService: AuthenticationService, 
+                private routing: RoutingService,
+                private router: Router) {}
+    
+    canActivate(route: ActivatedRouteSnapshot): boolean {
+        let result: boolean;
+        if (!this.authenticationService.isLogged()) {
+            result = true;
+        } else {
+            result = false;
+            this.routing.absoluteRoute(environment.ROUTING.REROUTE.MAIN);
         }
         return result;
     }

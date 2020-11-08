@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'src/app/app.authguard';
+import { ActionGuard, DashboardGuard, MainGuard } from 'src/app/app.authguard';
 import { MisionComponent } from 'src/app/component/main/pages/content/mision/mision.component';
 import { LoginComponent } from 'src/app/component/main/pages/login/login.component';
 import { MainComponent } from 'src/app/component/main/main.component';
@@ -25,6 +25,7 @@ export const routes: Routes = [
   {
     path: "",
     component: MainComponent,
+    canActivate: [MainGuard],
     children: [
       {
         path: "",
@@ -55,6 +56,7 @@ export const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
+    canActivate: [DashboardGuard],
     children: [
       {
         path: "",
@@ -63,43 +65,43 @@ export const routes: Routes = [
       {
         path:"entry",
         component: EntryHistoryComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "ENTRY"}
       },
       {
         path:"exam",
         component: ExamHistoryComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "EXAM"}
       },
       {
         path:"create-account",
         component: CreateAccountComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "C_ACCOUNT"}
       },
       {
         path:"enable-disable",
         component:EnableDisableComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "ENABLE"}
       },
       {
         path:"authorize",
         component: AuthorizeComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "AUTORIZE"}
       },
       {
         path:"register-entry",
         component: EntryComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "R_ENTRY"}
       },
       {
         path:"edit-information",
         component: EditInformationComponent,
-        canActivate: [AuthGuard],
+        canActivate: [ActionGuard],
         data: { name: "EDIT"}
       },
       {

@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit {
 
   public chooseFromDropdown(title: string): void {
     this.closeDropdown();
-    this.routing.routeTo(title);
+    this.routing.absoluteRoute(title);
   }
 
 }
