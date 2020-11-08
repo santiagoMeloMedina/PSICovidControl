@@ -4,7 +4,7 @@
         <img src="assets/logo/virus.png" draggable="false">
     </div>
     <div class="menu">
-        <div *ngFor="let title of ['HOME', 'MISION', 'CONTACT']" class="title" (click)="routing.routeTo(getNav()[title]['LINK'])">
+        <div *ngFor="let title of ['HOME', 'MISION', 'CONTACT']" class="title" (click)="routing.absoluteRoute(getNav()[title]['LINK'])">
             <span>{{ getNav()[title]['NAME'] }}</span>
         </div>
     </div>

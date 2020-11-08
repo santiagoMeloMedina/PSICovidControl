@@ -17,7 +17,7 @@
             </form>
             <div class="actions">
                 <button class="btn" [disabled]="!(getRegisterForm().valid)"><span>Registrar</span></button>
-                <button class="btn" (click)="routing.routeTo('login')"><span>Inicia Sesión</span></button>
+                <button class="btn" (click)="routing.absoluteRoute('login')"><span>Inicia Sesión</span></button>
             </div>
         </div>
     </div>
