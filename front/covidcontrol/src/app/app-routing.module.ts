@@ -84,11 +84,15 @@ export const routes: Routes = [
       },
       {
         path:"register-entry",
-        component: EntryComponent
+        component: EntryComponent,
+        canActivate: [AuthGuard],
+        data: { name: "R_ENTRY"}
       },
       {
         path:"edit-information",
-        component: EditInformationComponent
+        component: EditInformationComponent,
+        canActivate: [AuthGuard],
+        data: { name: "EDIT"}
       }
     ]
   }
