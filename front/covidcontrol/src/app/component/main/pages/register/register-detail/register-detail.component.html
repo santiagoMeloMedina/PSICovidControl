@@ -1,1 +1,132 @@
-<p>register-detail works!</p>
+<div class = "noselect">
+    <div class = "box">
+        <span class = "title"> Detalles registro</span>
+        <div class = "content">
+            <div class = "data">
+               
+                <form [formGroup]="getCitizenForm()">
+                    <input type="text" formControlName="names" placeholder="Nombres">
+                    <input type="text" formControlName="lastNames" placeholder="Apellidos">
+                    <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                        <option value="1">
+                            op1
+                        </option>
+                    </select>
+                    <input type="text" formControlName="docNum" placeholder="Número de documento">
+                    <select type="text" formControlName="department" placeholder="Departamento">
+                        <option value="1">
+                            Valle del cauca
+                        </option>
+                        <option value="2">
+                            Amazonas
+                        </option>
+                    </select>
+                    <select type="text" formControlName="munic" placeholder="Municipio">
+                        <option value="1">
+                            Cali
+                        </option>
+                        <option value="2">
+                            AAA
+                        </option>
+                    </select>
+                    <input type="text" formControlName="address" placeholder="Dirección">
+                    <input type="text" formControlName="neighHood" placeholder="Barrio">
+                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                    <input type="date" formControlName="birthdate" placeholder="Fecha nacimiento">
+                    <select type="text" formControlName="gender" placeholder="Género">
+                        <option value="1">
+                            M
+                        </option>
+                        <option value="2">
+                            F
+                        </option>
+                    </select>
+                   
+                    <input type="text" formControlName="email" placeholder="Correo"><!--ESTOS YA ESTAN EN LA PG ANTERIOR, entonces??-->
+                    <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                    <input type="text" formControlName="password" placeholder="Contraseña">
+                </form>
+                <br><br><br>
+                <form [formGroup]="getHealthEnForm()">   
+                    <input type="text" formControlName="name" placeholder="Nombre">
+                    <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                        <option value="1">
+                            op1
+                        </option>
+                    </select>
+                    <input type="text" formControlName="docNum" placeholder="Número de documento">
+                    <select type="text" formControlName="department" placeholder="Departamento">
+                        <option value="1">
+                            Valle del cauca
+                        </option>
+                        <option value="2">
+                            Amazonas
+                        </option>
+                    </select>
+                    <select type="text" formControlName="munic" placeholder="Municipio">
+                        <option value="1">
+                            Cali
+                        </option>
+                        <option value="2">
+                            AAA
+                        </option>
+                    </select>
+                    <input type="text" formControlName="totalCap" placeholder="Capacidad total">
+                    <input type="text" formControlName="totalBeds" placeholder="Total de camas">
+                    <input type="text" formControlName="totalResp" placeholder="Total de respiradores">
+                    <input type="text" formControlName="totalDocts" placeholder="Total de doctores">
+                    <input type="text" formControlName="address" placeholder="Dirección">
+                    <input type="text" formControlName="neighHood" placeholder="Barrio">
+                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                    <input type="text" formControlName="email" placeholder="Correo"><!--ESTOS YA ESTAN EN LA PG ANTERIOR, entonces??-->
+                    <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                    <input type="text" formControlName="password" placeholder="Contraseña">          
+                </form>
+                <br><br><br>
+                <form [formGroup]="getPublicEsForm()">
+                    <input type="text" formControlName="name" placeholder="Nombre">
+                    <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                        <option value="1">
+                            op1
+                        </option>
+                    </select>
+                    <input type="text" formControlName="docNum" placeholder="Número de documento">
+                    <select type="text" formControlName="department" placeholder="Departamento">
+                        <option value="1">
+                            Valle del cauca
+                        </option>
+                        <option value="2">
+                            Amazonas
+                        </option>
+                    </select>
+                    <select type="text" formControlName="munic" placeholder="Municipio">
+                        <option value="1">
+                            Cali
+                        </option>
+                        <option value="2">
+                            AAA
+                        </option>
+                    </select>
+                    <input type="text" formControlName="totalCap" placeholder="Capacidad total">
+                    <input type="text" formControlName="address" placeholder="Dirección">
+                    <select type="text" formControlName="category" placeholder="Categoria">
+                        <option value="1">
+                            Cine
+                        </option>
+                        <option value="2">
+                            Restaurante
+                        </option>
+                    </select>
+                    <input type="text" formControlName="neighHood" placeholder="Barrio">
+                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                    <input type="text" formControlName="email" placeholder="Correo"><!--ESTOS YA ESTAN EN LA PG ANTERIOR, entonces??-->
+                    <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                    <input type="text" formControlName="password" placeholder="Contraseña"> 
+                </form>
+                <div class="actions">
+                    <button class="btn" ><span>Finalizar registro</span></button>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>

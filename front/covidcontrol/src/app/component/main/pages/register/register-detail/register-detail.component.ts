@@ -36,20 +36,37 @@ export class RegisterDetailComponent implements OnInit {
 
 
     this.healthEnForm = this.formBuilder.group({
-      name: ['',Validators.required],  
-      address: ['', Validators.required],
-      phoneNum: ['', Validators.required],
-      neighHood: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
-    this.publicEsForm = this.formBuilder.group({
-      name: ['',Validators.required],  
+      docType:['',Validators.required],
+      email: ['',Validators.required],
+      username: ['',Validators.required],
+      docNum: ['',Validators.required],
+      name: ['',Validators.required],
+      totalCap:  ['',Validators.required],
+      totalBeds: ['',Validators.required],
+      totalResp: ['',Validators.required],
+      totalDocts: ['',Validators.required],
       address: ['', Validators.required],
       phoneNum: ['', Validators.required],
       neighHood: ['', Validators.required],
       password: ['', Validators.required],
-      category: ['', Validators.required]
+      munic: ['',Validators.required],
+      department: ['',Validators.required]
+    });
+
+    this.publicEsForm = this.formBuilder.group({
+      docType:['',Validators.required],
+      email: ['',Validators.required],
+      username: ['',Validators.required],
+      docNum: ['',Validators.required],
+      name: ['',Validators.required],
+      totalCap:  ['',Validators.required],
+      address: ['', Validators.required],
+      phoneNum: ['', Validators.required],
+      neighHood: ['', Validators.required],
+      password: ['', Validators.required],
+      category: ['', Validators.required],
+      munic: ['',Validators.required],
+      department: ['',Validators.required],
     });
   }
 
