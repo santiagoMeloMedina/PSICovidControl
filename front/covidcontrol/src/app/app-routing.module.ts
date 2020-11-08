@@ -10,11 +10,11 @@ import { RegisterComponent } from 'src/app/component/main/pages/register/registe
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
 import { ActionComponent } from '@component/dashboard/action/action.component';
 import { EntryHistoryComponent } from '@component/dashboard/entry-history/entry-history.component';
-import { ExamComponent } from '@component/dashboard/exam/exam.component';
+import { ExamHistoryComponent } from '@component/dashboard/exam-history/exam-history.component';
 import { CreateAccountComponent } from '@component/dashboard/create-account/create-account.component';
 import { EnableDisableComponent } from '@component/dashboard/enable-disable/enable-disable.component';
 import { AuthorizeComponent } from '@component/dashboard/authorize/authorize.component';
-import {EntryComponent} from '@component/dashboard/entry/entry.component';
+import { EntryComponent } from '@component/dashboard/entry/entry.component';
 import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
 
 export const routes: Routes = [
@@ -60,7 +60,7 @@ export const routes: Routes = [
       },
       {
         path:"exam",
-        component: ExamComponent,
+        component: ExamHistoryComponent,
         canActivate: [AuthGuard],
         data: { name: "EXAM"}
       },
