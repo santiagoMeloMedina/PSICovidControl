@@ -16,6 +16,7 @@
         <div class = "table">
             <div class="rows">
                 <div *ngFor="let user of getRows()" class="row">
+                    <div class="detail"><span>{{ user.getId() }}</span></div>
                     <div class="detail"><span>{{ user.getRol() }}</span></div>
                     <div class="detail"><span>{{ user.getName() }}</span></div>
                     <div class="detail"><span>{{ user.getLastname() }}</span></div>
@@ -24,8 +25,8 @@
                     <div class="detail"><span>{{ user.getCity() }}</span></div>
                     <div class="detail"><span>{{ user.getDepartment() }}</span></div>
                     <div class="action">
-                        <button [disabled]="user.isActive()">Habilitar</button>
-                        <button [disabled]="!user.isActive()">Deshabilitar</button>
+                        <button [disabled]="user.isActive()" (click)="enable(user.getId(), user.getUsername())">Habilitar</button>
+                        <button [disabled]="!user.isActive()" (click)="disable(user.getId(), user.getUsername())">Deshabilitar</button>
                     </div>
                 </div>
             </div>

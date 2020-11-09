@@ -30,5 +30,39 @@ export class UserService {
       resolve([result, result]);
     });
   }
+
+  public getUnauthorizedUser(): Promise<User[]> {
+    return new Promise<User[]>((resolve, reject) => {
+      let result: User = new User().deserealize({
+        "id": 1,
+        "rol": "Citizen",
+        "name": "Crack",
+        "lastname": "Cracked",
+        "state": "Inactivo",
+        "username": "crack",
+        "city": "Cali",
+        "department": "Valle del Cauca"
+      });
+      resolve([result]);
+    });
+  }
+
+  public authorizeUser(id: number, username: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+  public enableUser(id: number, username: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+  public disableUser(id: number, username: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
   
 }
