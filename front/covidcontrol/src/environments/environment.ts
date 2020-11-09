@@ -5,6 +5,7 @@ import { CONSTANTS as ACTION } from 'src/app/constant/action.constant';
 import { CONSTANTS as AUTHENTICATION } from 'src/app/constant/authentication.constant';
 import { CONSTANTS as ROUTING } from 'src/app/constant/routing.constant';
 import { CONSTANTS as VALUE } from 'src/app/constant/value/value.constant';
+import { CONSTANTS as TITLES } from 'src/app/constant/title.constant';
 
 export const environment = {
   production: false,
@@ -13,7 +14,8 @@ export const environment = {
   ACTION: ACTION,
   AUTHENTICATION: AUTHENTICATION,
   ROUTING: ROUTING,
-  VALUE: VALUE
+  VALUE: VALUE,
+  TITLES: TITLES
 };
 
 /*

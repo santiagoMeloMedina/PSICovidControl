@@ -3,7 +3,8 @@
     <header>
         <div class="content">
             <div class="title" (click)="routing.absoluteRoute('dashboard')">
-                <span>Mis Acciones</span>
+                <span [ngClass]="dashboard.getOther() ? 'other':'hide'">{{ dashboard.getTitle() }}</span>
+                <span [ngClass]="dashboard.getOther() ? 'main':'out'">Mis Acciones</span>
             </div>
             <div class="user">
                 <div class="info">
