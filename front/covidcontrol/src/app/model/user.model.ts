@@ -3,7 +3,7 @@ import { Deserealizable } from './deserealize.model';
 
 export class User implements Deserealizable {
 
-    private id: number;
+    private id: string;
     private rol: string;
     private name: string;
     private lastname: string;
@@ -26,7 +26,7 @@ export class User implements Deserealizable {
         return this;
     }
 
-    public getId(): number {
+    public getId(): string {
         return this.id;
     }
 

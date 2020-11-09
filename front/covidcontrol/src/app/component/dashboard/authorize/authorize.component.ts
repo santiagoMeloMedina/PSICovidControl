@@ -46,7 +46,7 @@ export class AuthorizeComponent implements OnInit {
     })
   }
 
-  public authorize(id: number, username: string): void {
+  public authorize(id: string, username: string): void {
     this.userService.authorizeUser(id, username).then(result => {
       console.log(`authorized ${id}-${username}`);
     });

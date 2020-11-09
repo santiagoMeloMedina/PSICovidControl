@@ -45,13 +45,13 @@ export class EnableDisableComponent implements OnInit {
     })
   }
 
-  public enable(id: number, username: string): void {
+  public enable(id: string, username: string): void {
     this.userService.enableUser(id, username).then(result => {
       console.log(`enabled ${id}-${username}`);
     });
   }
   
-  public disable(id: number, username: string): void {
+  public disable(id: string, username: string): void {
     this.userService.disableUser(id, username).then(result => {
       console.log(`disabled ${id}-${username}`);
     });

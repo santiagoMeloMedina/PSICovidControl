@@ -47,19 +47,25 @@ export class UserService {
     });
   }
 
-  public authorizeUser(id: number, username: string): Promise<boolean> {
+  public authorizeUser(id: string, username: string): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       resolve(true);
     });
   }
 
-  public enableUser(id: number, username: string): Promise<boolean> {
+  public enableUser(id: string, username: string): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       resolve(true);
     });
   }
 
-  public disableUser(id: number, username: string): Promise<boolean> {
+  public disableUser(id: string, username: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+  public updateUser(id: string, username: string, data: Object): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       resolve(true);
     });

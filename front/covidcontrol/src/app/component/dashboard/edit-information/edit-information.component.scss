@@ -1,0 +1,84 @@
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.content {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    height: 75%;
+    min-height: 550px;
+    max-height: 600px;
+    top: 30px;
+    overflow: hidden;
+    background-color: #F2F4F4;
+}
+
+form {
+    position: relative;
+    width: 50%;
+    height: 300px;
+    min-width: 300px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 80px;
+}
+
+form input {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    height: 25px;
+}
+
+form select {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    padding-left: 10px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+.actions {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 50%;
+    margin-top: 10px;
+    border: 0;
+    height: 40px;
+    min-width: 350px;
+    background-color: #17202F;
+    color: white;
+}
+
+.actions:hover {
+    background-color: #17204e;
+}
+
+.actions:active {
+    background-color: #17354e;
+}
+
+.actions:disabled {
+    background-color: gray;
+}
+
+@media (max-width: 720px) {
+}
