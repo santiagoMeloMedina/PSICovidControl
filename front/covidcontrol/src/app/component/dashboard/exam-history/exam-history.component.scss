@@ -13,14 +13,26 @@
     left: 50%;
     width: 90%;
     top: 30px;
+    height: 30px;
 }
 
 .filter input {
     position: absolute;
-    transform: translate(-50%, 0);
-    left: 50%;
-    width: 95%;
-    height: 30px;
+    left: 10px;
+    width: 70%;
+    height: 100%;
+    padding-left: 10px;
+    -webkit-appearance: none;
+    border: 1px solid black;
+}
+
+.filter select {
+    position: absolute;
+    right: 10px;
+    width: 20%;
+    height: 100%;
+    -webkit-appearance: none;
+    border: 1px solid black;
 }
 
 .columns {
@@ -107,6 +119,10 @@
     .filter input {
         font-size: 11px;
     }
+
+    .filter select {
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -116,6 +132,10 @@
     }
 
     .filter input {
+        font-size: 9px;
+    }
+
+    .filter select {
         font-size: 9px;
     }
 }

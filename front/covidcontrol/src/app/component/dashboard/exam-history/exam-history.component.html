@@ -2,6 +2,13 @@
     <div class = "box">
         <form [formGroup]="getFilterForm()" class="filter">
             <input type="text" placeholder="Que desea filtrar...">
+            <select type="text">
+                <option value="" disabled selected>Filtrar por</option>
+                <option value="date">Fechas</option>
+                <option value="name">Nombre</option>
+                <option value="id">Documento</option>
+                <option value="result">Resultado</option>
+            </select>
         </form>
         <div class = "columns">
             <div *ngFor = "let col of getCols()" class ="column">
