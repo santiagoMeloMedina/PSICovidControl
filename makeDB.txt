@@ -1,0 +1,8 @@
+use UsersDB
+db
+db.user.insert({'email':'','password':'','username':'','rol':''})
+db.citizen.insert({'docNum':'','username':'','names':'', 'lastNames':'','city':'','docType': '','phoneNum':'','neighHood':'','address':'','gender':'','birthdate':'','state':''})
+db.administrator.insert({'docType':'','docNum':'','username':'',
+    'names':'','lastNames':''})
+db.healthEntity.insert({'docNum':'','username':'','name':'','city':'','docType':'','totalCap':'','totalBeds':'','totalRes':'','totalDocts':'','address':'','neighHood':'','phoneNum':'','state':''})
+db.establishment.insert({'docNum':'','username':'','name':'','city':'','docType':'','totalCap':'', 'address':'','neighHood':'','phoneNum':'','category':'','state':''})
