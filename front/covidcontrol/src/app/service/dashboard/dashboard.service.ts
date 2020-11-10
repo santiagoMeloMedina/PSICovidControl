@@ -16,7 +16,9 @@ export class DashboardService {
 
   constructor(private authenticationService: AuthenticationService, 
               private userService: UserService) {
-                this.setUserName();
+                try {
+                  this.setUserName();
+                } catch{}
               }
 
   public getTitle(): string {

@@ -1,7 +1,6 @@
 <div class = "noselect">
     <div class = "box">
         <div class = "content">
-            <span class = "title"> Modificar datos</span>
             <form [formGroup]="getAdminForm()" [ngClass]="sameRole(getRoleName('ADMIN')) ? '':'hide'">
                 <input type="text" formControlName="name" placeholder="Nombres">
                 <input type="text" formControlName="lastname" placeholder="Apellidos">

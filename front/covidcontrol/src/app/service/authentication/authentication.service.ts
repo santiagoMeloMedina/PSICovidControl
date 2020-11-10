@@ -24,8 +24,12 @@ export class AuthenticationService {
     try {
       if (!this.jwtHelper.isTokenExpired(cookie)) {
         result = true;
+      } else {
+        this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
       }
-    } catch (error) {}
+    } catch (error) {
+      this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
+    }
     return result;
   }
 
