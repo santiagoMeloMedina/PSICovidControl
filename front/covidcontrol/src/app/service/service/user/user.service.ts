@@ -15,6 +15,22 @@ export class UserService {
     });
   }
 
+  public getUser(username: string): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
+      let user: User = new User().deserealize({
+        "id": 1,
+        "rol": "Citizen",
+        "name": "craaack",
+        "lastname": "Cracked",
+        "state": "Activo",
+        "username": "crack",
+        "city": "Cali",
+        "department": "Valle del Cauca"
+      });
+      resolve(user);
+    });
+  }
+
   public getUsers(): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {
       let result: User = new User().deserealize({
