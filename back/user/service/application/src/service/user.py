@@ -12,7 +12,7 @@ def authenticate():
     response = UserRepository.authenticate(username, password)
     if response != None:
         role = UserRepository.getRoleByUsername(username)
-        token = jwt.encode(generatePayload(response, username, role), TOKEN.SECRET_KEY, algorithm="HS256")
+        token = jwt.encode(generatePayload(response, username, role), TOKEN.SECRET_KEY, algorithm="HS256").decode('utf-8')
         result[TOKEN.NAME] = token
     return result
 

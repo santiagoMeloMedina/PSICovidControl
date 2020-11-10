@@ -16,5 +16,5 @@ def authenticate():
         response = UserService.authenticate()
         result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
     except Exception as e:
-        pass
+        print(e)
     return result
