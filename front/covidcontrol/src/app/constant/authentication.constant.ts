@@ -4,7 +4,9 @@ export const CONSTANTS = {
         USER: "user"
     },
     ATTR: {
-        ROL: "rol"
+        ROL: "rol",
+        USERNAME: "username",
+        ID: "id"
     },
     ROLES: {
         ADMIN: "Admin",

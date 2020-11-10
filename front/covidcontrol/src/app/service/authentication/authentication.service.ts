@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +23,12 @@ export class AuthenticationService {
     try {
       if (!this.jwtHelper.isTokenExpired(cookie)) {
         result = true;
+      } else {
+        this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
       }
-    } catch (error) {}
+    } catch (error) {
+      this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
+    }
     return result;
   }
 
