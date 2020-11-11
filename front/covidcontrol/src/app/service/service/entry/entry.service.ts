@@ -24,5 +24,11 @@ export class EntryService {
       resolve([result, result, result])
     });
   }
+
+  public registerEntry(data: Object): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
   
 }

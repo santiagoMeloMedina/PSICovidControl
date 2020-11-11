@@ -17,6 +17,12 @@ export class AuthenticationService {
     this.cookieService.set(environment.AUTHENTICATION.COOKIE.USER, token);
   }
 
+  public register(data: Object): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
   public isLogged(): boolean {
     let result: boolean = false;
     let cookie: string = this.getToken();
