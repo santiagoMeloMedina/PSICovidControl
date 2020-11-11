@@ -18,6 +18,7 @@ import { EntryComponent } from '@component/dashboard/entry/entry.component';
 import { EditInformationComponent } from '@component/dashboard/edit-information/edit-information.component';
 import { ExamComponent } from '@component/dashboard/exam/exam.component';
 import { RegisterDetailComponent } from 'src/app/component/main/pages/register/register-detail/register-detail.component';
+import { ParameterComponent } from '@component/dashboard/parameter/parameter.component';
 
 
 
@@ -109,6 +110,10 @@ export const routes: Routes = [
         component:ExamComponent,
         canActivate: [ActionGuard],
         data: { name: "R_EXAM"}
+      },
+      {
+        path:"parameter",
+        component: ParameterComponent
       }
     ]
   }

@@ -22,4 +22,10 @@ export class ExamService {
       resolve([result, result, result])
     });
   }
+
+  public registerExam(data: Object): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      resolve(true);
+    });
+  }
 }

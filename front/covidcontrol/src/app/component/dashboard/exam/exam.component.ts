@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingService } from 'src/app/service/routing/routing.service';
+import { ExamService } from 'src/app/service/service/exam/exam.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -10,17 +11,19 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./exam.component.scss']
 })
 export class ExamComponent implements OnInit {
+
   private examForm: FormGroup;
 
   constructor(public routing: RoutingService, 
-    private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, 
+              private examService: ExamService) {
       this.examForm = this.formBuilder.group({
-        names: ['',Validators.required], 
-        lastNames:['',Validators.required],
+        name: ['',Validators.required], 
+        lastname:['',Validators.required],
         docType: ['',Validators.required],
         docNum: ['',Validators.required],
-        dateEn: ['',Validators.required],
-        timeEn:['',Validators.required]
+        date: ['',Validators.required],
+        time:['',Validators.required]
       });
   }
 
@@ -31,5 +34,20 @@ export class ExamComponent implements OnInit {
     return this.examForm;
   }
 
+  public getResponses(): string[] {
+    let result: string[] = [];
+    Object.keys(environment.VALUE.ENTRY.OPTIONS).forEach(element => {
+      result.push(environment.VALUE.ENTRY.OPTIONS[element]);
+    });
+    return result;
+  }
+
+  public registerExam(): void {
+    let values: Object = this.examForm.value;
+    this.examForm.reset();
+    this.examService.registerExam(values).then(result => {
+      console.log(values)
+    });
+  }
 
 }
