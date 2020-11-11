@@ -20,3 +20,14 @@ def authenticate():
     except Exception as e:
         print(e)
     return result
+
+@route.route("/{}/register".format(alias), methods=["POST"])
+def register():
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.register()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
