@@ -25,6 +25,9 @@ def checkEmail(email,db):
 
 
 
+def getRole(username,db):
+    return db.user.find_one({'username':username})['rol']
+
 def checkRegistration(username,email,db):
     return checkUsername(username,db) or checkEmail(email,db)
     
