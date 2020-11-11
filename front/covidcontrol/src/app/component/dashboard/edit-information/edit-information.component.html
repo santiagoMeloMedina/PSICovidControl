@@ -1,64 +1,50 @@
 <div class = "noselect">
     <div class = "box">
-        <span class = "title"> Modificar datos</span>
         <div class = "content">
-            <div class = "data">
-                <form [formGroup]="getAdminForm()">
-                    <input type="text" formControlName="names" placeholder="Nombres">
-                    <input type="text" formControlName="lastNames" placeholder="Apellidos">
-                    <input type="text" formControlName="password" placeholder="Contraseña">
-                </form>
-                <form [formGroup]="getCitizenForm()">
-                    <input type="text" formControlName="names" placeholder="Nombres">
-                    <input type="text" formControlName="lastNames" placeholder="Apellidos">
-                    <input type="text" formControlName="address" placeholder="Dirección">
-                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
-                    <select type="text" formControlName="neighHood" placeholder="Barrio">
-                        <option value="1">
-                            Barrio 1
-                        </option>
-                        <option value="2">
-                            Barrio 2
-                        </option>
-                    </select>
-                    
-                    <input type="text" formControlName="password" placeholder="Contraseña">
-                </form>
-                <form [formGroup]="getHealthEnForm()">
-                    <input type="text" formControlName="names" placeholder="Nombre">
-                    <input type="text" formControlName="address" placeholder="Dirección">
-                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
-                    <select type="text" formControlName="neighHood" placeholder="Barrio">
-                        <option value="1">
-                            Barrio 1
-                        </option>
-                        <option value="2">
-                            Barrio 2
-                        </option>
-                    </select>
-                    
-                    <input type="text" formControlName="password" placeholder="Contraseña">
-                </form>
-                <form [formGroup]="getPublicEsForm()">
-                    <input type="text" formControlName="names" placeholder="Nombre">
-                    <input type="text" formControlName="address" placeholder="Dirección">
-                    <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
-                    <select type="text" formControlName="neighHood" placeholder="Barrio">
-                        <option value="1">
-                            Barrio 1
-                        </option>
-                        <option value="2">
-                            Barrio 2
-                        </option>
-                    </select>
-                    
-                    <input type="text" formControlName="password" placeholder="Contraseña">
-                    <input type="text" formControlName="category" placeholder="Categoría">
-                </form>
-                <div class="actions">
-                    <button class="btn" ><span>Aceptar</span></button>
-                </div>    
-            </div>
+            <form [formGroup]="getAdminForm()" [ngClass]="sameRole(getRoleName('ADMIN')) ? '':'hide'">
+                <input type="text" formControlName="name" placeholder="Nombres">
+                <input type="text" formControlName="lastname" placeholder="Apellidos">
+                <input type="password" formControlName="password" placeholder="Contraseña">
+            </form>
+            <form [formGroup]="getCitizenForm()" [ngClass]="sameRole(getRoleName('CITIZEN')) ? '':'hide'">
+                <input type="text" formControlName="name" placeholder="Nombres">
+                <input type="text" formControlName="lastname" placeholder="Apellidos">
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" disabled selected>Seleccionar barrio</option>
+                    <option *ngFor="let neighborhood of getNeighborhood()" value="{{ neighborhood.getId() }}">
+                        {{ neighborhood.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="password" placeholder="Contraseña">
+            </form>
+            <form [formGroup]="getHealthEnForm()" [ngClass]="sameRole(getRoleName('ES')) ? '':'hide'">
+                <input type="text" formControlName="name" placeholder="Nombre">
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" disabled selected>Seleccionar barrio</option>
+                    <option *ngFor="let neighborhood of getNeighborhood()" value="{{ neighborhood.getId() }}">
+                        {{ neighborhood.getName() }}
+                    </option>
+                </select>
+                <input type="password" formControlName="password" placeholder="Contraseña">
+            </form>
+            <form [formGroup]="getPublicEsForm()" [ngClass]="sameRole(getRoleName('EP')) ? '':'hide'">
+                <input type="text" formControlName="name" placeholder="Nombre">
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" disabled selected>Seleccionar barrio</option>
+                    <option *ngFor="let neighborhood of getNeighborhood()" value="{{ neighborhood.getId() }}">
+                        {{ neighborhood.getName() }}
+                    </option>
+                </select>
+                <input type="password" formControlName="password" placeholder="Contraseña">
+                <input type="text" formControlName="category" placeholder="Categoría">
+            </form>
+            <button class="actions" (click)="update()" [disabled]="!getFormAccordingToRole().valid"><span>Actualizar</span></button>
         </div>
     </div>
 </div>

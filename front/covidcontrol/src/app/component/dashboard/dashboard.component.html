@@ -3,11 +3,12 @@
     <header>
         <div class="content">
             <div class="title" (click)="routing.absoluteRoute('dashboard')">
-                <span>Mis Acciones</span>
+                <span [ngClass]="dashboard.getOther() ? 'other':'hide'">{{ dashboard.getTitle() }}</span>
+                <span [ngClass]="dashboard.getOther() ? 'main':'out'">Mis Acciones</span>
             </div>
             <div class="user">
                 <div class="info">
-                    <span class="name">Crack</span>
+                    <span class="name">{{ dashboard.getUserName() }}</span>
                 </div>
                 <div class="image">
                     <img src="assets/icons/user_orange.png" class="orange">
