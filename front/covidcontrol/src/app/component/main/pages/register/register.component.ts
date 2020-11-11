@@ -28,4 +28,6 @@ export class RegisterComponent implements OnInit {
     return this.registerForm;
   }
 
+  /// TODO(Santiago): Need to add parameter data from service
+
 }
