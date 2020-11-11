@@ -14,7 +14,12 @@ def checkUserCred(username,password,db):
 def checkUsername(username,db):
     return True if db.user.find_one({'username':username}) != None else False
 
+def checkEmail(email,db):
+    return True if db.user.find_one({'email':email}) != None else False
 
+def checkRegistration(username,email,db):
+    return checkUsername(username,db) or checkEmail(email,db)
+    
 
 def registerUser(email,password,username,rol,db):
     db.user.insert_one({'email':email,'password':password,'username':username,'rol':rol})
@@ -256,34 +261,34 @@ def main():
     #db.healthEntity.delete_one({'state':'A'})
     #db.establishment.delete_one({'state':'I'})
 
-    if(not checkUsername("admin",db)):
+    if(not checkRegistration("admin","admin@admini.com",db)):
         registerUser("admin@admini.com","admin","admin","Admin",db)
         registerAdmin(0,"424242","admin","angel","lee",db)
 
-    if(not checkUsername("miguel22",db)):
+    if(not checkRegistration("miguel22","m@m.com",db)):
         registerUser("m@m.com","admin","miguel22","Citizen",db)
         registerCitizen("1233","miguel22","miguel","adad","dada",0,"21212121","haei","calle 1","masculino","22/06","A",db)
 
  
-    if(not checkUsername("miguel23",db)):
+    if(not checkRegistration("miguel23","m2@m.com",db)):
         registerUser("m2@m.com","admin","miguel23","Citizen",db)
         registerCitizen("1233","miguel23","miguel2","adad","dada",0,"21111","haei","calle 1","masculino","22/06","A",db)
     
-    if(not checkUsername("clinica1",db)):
+    if(not checkRegistration("clinica1","clinica@m.com",db)):
         registerUser("clinica@m.com","admin","clinica1","ES",db)
         #registerCitizen("1233","miguel23","miguel2","adad","dada",0,"21111","haei","calle 1","masculino","22/06","A",db)
         registerHealthEn("123455","clinica1","medical","bogota",1,34,55,33,44,"ffa","cadd","31111","I",db)
     
-    if(not checkUsername("clinica2",db)):
+    if(not checkRegistration("clinica2","clinic2@m.com",db)):
         registerUser("clinic2@m.com","admin","clinica2","ES",db)
         #registerCitizen("1233","miguel23","miguel2","adad","dada",0,"21111","haei","calle 1","masculino","22/06","A",db)
         registerHealthEn("12345533","clinica2","medical","bogota",1,34,55,33,44,"ffa","cadd","31111","I",db)
     
-    if(not checkUsername("EP1",db)):
+    if(not checkRegistration("EP1","EP1@m.com",db)):
         registerUser("EP1@m.com","admin","EP1","EP",db)
         registerEstablishment("535353","EP1","Eestab1","cali",1,34,"dada","calle 1","3232323","hola","I",db)
     
-    if(not checkUsername("EP2",db)):
+    if(not checkRegistration("EP2","EP2@m.com",db)):
         registerUser("EP2@m.com","admin","EP2","EP",db)
         registerEstablishment("535353","EP2","Eestab1","cali",1,34,"dada","calle 1","3232323","hola","I",db)
     
