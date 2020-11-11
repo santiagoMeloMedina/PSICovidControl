@@ -8,6 +8,11 @@ import time
 import pymongo
 
 
+def printDocument(doc):
+    for k in doc.keys():
+        print(f"{k}: {doc[k]}")
+    print()
+
 def checkUserCred(username,password,db):
     return str(db.user.find_one({'username':username,'password':password})['_id']) if db.user.find_one({'username':username,'password':password}) != None else None
 
@@ -17,6 +22,8 @@ def checkUsername(username,db):
 
 def checkEmail(email,db):
     return True if db.user.find_one({'email':email}) != None else False
+
+
 
 def checkRegistration(username,email,db):
     return checkUsername(username,db) or checkEmail(email,db)
@@ -297,6 +304,8 @@ def main():
     #print(getInactiveUsers(db))
     #print(getActiveUsers(db))
     print(getAllCitizens(db))
+    #for doc in getAllCitizens(db):
+    #    printDocument(doc)
     print("\n\n\n")
     print(getAllHealthEn(db))
     print("\n\n\n")
