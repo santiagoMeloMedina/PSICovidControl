@@ -25,6 +25,10 @@ services:
   user_db:
     build: ./database
     container_name: user_db
+    ports:
+      - '2200:27017'
+    expose:
+      - '2200'
     networks:
       - psi
 

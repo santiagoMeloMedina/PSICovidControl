@@ -5,8 +5,15 @@ def authenticate(username, password):
     result = None
     check = database.user.find_one({'username':username,'password':password})
     if check != None:
-        result = str(check['_id'])
+        result = check
     return result
 
-def getRoleByUsername(username):
-    return "Admin"
+def register(data):
+    result = None
+    values = {'email':data['email'],'password':data['password'],'username':data['username'],'rol':data['rol']}
+    try:
+        database.user.insert_one(values)
+        result = values
+    except Exception as e:
+        pass
+    return result
