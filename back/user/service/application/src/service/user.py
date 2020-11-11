@@ -6,7 +6,7 @@ import src.constant.token as TOKEN
 import src.constant.response as RESPONSE
 
 def authenticate():
-    result = RESPONSE.EMPTY
+    result = RESPONSE.EMPTY.copy()
     data = eval(request.data.decode("utf-8"))
     username, password = data["username"], data["password"]
     response = UserRepository.authenticate(username, password)
