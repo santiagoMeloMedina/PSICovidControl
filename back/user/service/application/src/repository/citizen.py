@@ -14,3 +14,12 @@ def register(data):
     except Exception as e:
         pass
     return result
+
+def getAllCitizens():
+    result = []
+    query = database.citizen.find({})
+    for doc in query:
+        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],'lastname':doc['lastname'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'gender':doc['gender'],'state':doc['state']})
+    return result

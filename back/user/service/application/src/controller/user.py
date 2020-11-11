@@ -31,3 +31,14 @@ def register():
     except Exception as e:
         print(e)
     return result
+
+@route.route("/{}/all".format(alias), methods=["GET"])
+def getAllUsers():
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.getAllUsers()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
