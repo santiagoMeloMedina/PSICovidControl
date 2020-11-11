@@ -88,6 +88,16 @@ export const CONSTANTS = {
           description: "Registra el examen clinico de ciudadanos",
           image: "assets/icons/user.png",
           link: "register-exam"
+        },
+        {
+          id: "PARAMETER",
+          roles: [
+            AUTH.ROLES.ADMIN
+          ],
+          name: "Parametrizar sistema",
+          description: "Parametriza los datos escenciales del sistema",
+          image: "assets/icons/user.png",
+          link: "parameter"
         }
       ]
 }
