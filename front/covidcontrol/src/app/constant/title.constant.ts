@@ -60,6 +60,10 @@ export const CONSTANTS = {
         "/dashboard/parameter": {
             NAME: "Parametrizar datos",
             OTHER: true
+        },
+        "/dashboard/qr": {
+            NAME: "Codigo QR",
+            OTHER: true
         }
     }
 }
