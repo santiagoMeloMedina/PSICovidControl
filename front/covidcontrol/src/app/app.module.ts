@@ -23,6 +23,7 @@ import { EntryComponent } from './component/dashboard/entry/entry.component';
 import { EditInformationComponent } from './component/dashboard/edit-information/edit-information.component';
 import { ExamComponent } from './component/dashboard/exam/exam.component';
 import { RegisterDetailComponent } from './component/main/pages/register/register-detail/register-detail.component';
+import { ParameterComponent } from './component/dashboard/parameter/parameter.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RegisterDetailComponent } from './component/main/pages/register/registe
     EntryComponent,
     EditInformationComponent,
     ExamComponent,
-    RegisterDetailComponent
+    RegisterDetailComponent,
+    ParameterComponent
   ],
   imports: [
     BrowserModule,
