@@ -1,0 +1,63 @@
+<div class = "noselect">
+    <div class = "box">
+        <div class = "content">
+            <div class = "category">
+                <h1>Categoria</h1>
+                <div class = "list">
+                    <div class = "element">
+                        <button class="btn" ><span>Eliminar</span></button>
+                    </div>
+                </div>
+                <form [formGroup] = getCategoryForm()>
+                    <input type="text" formControlName="name" placeholder="Nombre categoria">
+                </form>
+                <button class="btn" ><span>Agregar</span></button>
+            </div>
+
+            <div class = "docType">
+                <h1>Tipo de documento</h1>
+                <div class = "list">
+                    <div class = "element">
+                        <button class="btn" ><span>Eliminar</span></button>
+                    </div>
+                </div>
+                <form [formGroup] = getDocTypeForm()>
+                    <input type="text" formControlName="name" placeholder="Nombre documento">
+                </form>
+                <button class="btn" ><span>Agregar</span></button>
+            </div>
+
+            <div class = "neighHood">
+                <h1>Barrio</h1>
+                <div class = "list">
+                    <div class = "element">
+                        <button class="btn" ><span>Eliminar</span></button>
+                    </div>
+                </div>
+                <form [formGroup] = getNeighHoodForm()>
+                    <input type="text" formControlName="name" placeholder="Barrio">
+                </form>
+                <select class = "munic">
+                    <option value = "1">
+                        cali
+                    </option>
+                    <option value = "2">
+                        bogota
+                    </option>
+
+                </select>
+                <button class="btn" ><span>Agregar</span></button>     
+            </div>
+            <div class = "quarantine">
+                <h1>Cuarentena</h1>
+                <form [formGroup] = getQuarantineForm()>
+                    <input type="text" formControlName="days" placeholder="periodo en dias">
+                </form>
+                <button class="btn" ><span>Actualizar</span></button>
+            </div>
+
+            
+        </div>
+    </div>
+
+</div>
