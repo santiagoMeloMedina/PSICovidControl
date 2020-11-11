@@ -1,0 +1,41 @@
+
+{
+    "register": {
+        "url": "user/register",
+        "method": "POST",
+        "body": {
+            "email":"crack@gmail.com",
+            "password":"mjvfdoasnfoi",
+            "username":"h",
+            "rol":"Admin",
+            "docType":"cc",
+            "docNum":"62546524",
+            "name":"Crack",
+            "lastname":"cracked",
+            "city":"Cali",
+            "phoneNum":"56451",
+            "neighHood":"ciudad jardin",
+            "address":"Calle de la calle",
+            "gender":"M",
+            "birthdate":"1990-09-09",
+            "state":"A",
+            "totalCap":12,
+            "totalBeds":12,
+            "totalRes":12,
+            "totalDocts":12,
+            "category":"Cine"
+        }
+    },
+    "getAllUsers": {
+        "url": "user/all",
+        "method": "GET"
+    },
+    "authenticate": {
+        "url": "user/authenticate",
+        "method": "POST",
+        "body": {
+            "username": "crack",
+            "password": "crack"
+        }
+    }
+}

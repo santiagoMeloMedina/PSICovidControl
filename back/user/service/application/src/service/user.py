@@ -48,12 +48,19 @@ def register():
     result = RESPONSE.EMPTY.copy()
     data = eval(request.data.decode("utf-8"))
     repository = getRoleRepository(data['rol'])
-    user = UserRepository.register(data)
-    profile = repository.register(data)
-    user['_id'], profile['_id'] = str(user['_id']), str(profile['_id'])
-    if user and profile:
-        result[VALUE.CONTENT] = user
+    if not UserRepository.checkRegistration(data['username'], data['email']):
+        user = UserRepository.register(data)
+        profile = repository.register(data)
+        user['_id'], profile['_id'] = str(user['_id']), str(profile['_id'])
+        if user and profile:
+            result[VALUE.CONTENT] = user
     return result
 
+def getAllUsers():
+    result = RESPONSE.EMPTY.copy()
+    users = UserRepository.getAllUsers()
+    if users:
+        result[VALUE.CONTENT] = users
+    return result
 
     

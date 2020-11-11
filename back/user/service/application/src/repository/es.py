@@ -14,3 +14,13 @@ def register(data):
     except Exception as e:
         pass
     return result
+
+def getAllHealthEn():
+    result = []
+    query = database.healthEntity.find({})
+    for doc in query:
+        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
+        'totalRes':doc['totalRes']})
+    return result
