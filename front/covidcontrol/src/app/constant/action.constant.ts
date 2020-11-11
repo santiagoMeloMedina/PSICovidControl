@@ -98,6 +98,16 @@ export const CONSTANTS = {
           description: "Parametriza los datos escenciales del sistema",
           image: "assets/icons/user.png",
           link: "parameter"
+        },
+        {
+          id: "QR",
+          roles: [
+            AUTH.ROLES.CITIZEN
+          ],
+          name: "Visualizar QR",
+          description: "Utiliza tu QR para identificarte en las EP",
+          image: "assets/icons/user.png",
+          link: "qr"
         }
       ]
 }
