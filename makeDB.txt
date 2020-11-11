@@ -1,6 +1,6 @@
 use UsersDB
 db
-db.user.insert({'email':'','password':'','username':'','rol':''})
+db.user.insert({"email":'",'password':'','username':'','rol':''})
 db.citizen.insert({'docNum':'','username':'','names':'', 'lastNames':'','city':'','docType': '','phoneNum':'','neighHood':'','address':'','gender':'','birthdate':'','state':''})
 db.administrator.insert({'docType':'','docNum':'','username':'',
     'names':'','lastNames':''})
