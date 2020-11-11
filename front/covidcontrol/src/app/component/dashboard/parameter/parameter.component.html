@@ -1,62 +1,65 @@
-<div class = "noselect">
-    <div class = "box">
-        <div class = "content">
-            <div class = "category">
-                <h1>Categoria</h1>
-                <div class = "list">
-                    <div class = "element">
-                        <button class="btn" ><span>Eliminar</span></button>
+<div class="noselect">
+    <div class="box">
+        <div class="content">
+            <div class="types">
+                <button *ngFor="let field of getParameterType()" (click)="selectParameterType(field['ID'])" class="type" [disabled]="isParameterTypeEqual(getParameterTypeName(field['ID']))">
+                    {{ field["NAME"] }}
+                </button>
+            </div>
+            <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('CATEGORY')) ? '':'hide'">
+                <div class="list">
+                    <div class="element" *ngFor="let category of getCategories()">
+                        <span>{{ category['name'] }}</span>
+                        <button class="delete">Eliminar</button>
                     </div>
                 </div>
-                <form [formGroup] = getCategoryForm()>
+                <form [formGroup]=getCategoryForm()>
                     <input type="text" formControlName="name" placeholder="Nombre categoria">
                 </form>
-                <button class="btn" ><span>Agregar</span></button>
+                <button class="btn" (click)="add()" [disabled]="!getCategoryForm().valid"><span>Agregar</span></button>
             </div>
 
-            <div class = "docType">
-                <h1>Tipo de documento</h1>
-                <div class = "list">
-                    <div class = "element">
-                        <button class="btn" ><span>Eliminar</span></button>
+            <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('DOCUMENT')) ? '':'hide'">
+                <div class="list">
+                    <div class="element" *ngFor="let document of getDocuments()">
+                        <span>{{ document['name'] }}</span>
+                        <button class="delete">Eliminar</button>
                     </div>
                 </div>
-                <form [formGroup] = getDocTypeForm()>
+                <form [formGroup]=getDocTypeForm()>
                     <input type="text" formControlName="name" placeholder="Nombre documento">
                 </form>
-                <button class="btn" ><span>Agregar</span></button>
+                <button class="btn" (click)="add()" [disabled]="!getDocTypeForm().valid"><span>Agregar</span></button>
             </div>
 
-            <div class = "neighHood">
-                <h1>Barrio</h1>
-                <div class = "list">
-                    <div class = "element">
-                        <button class="btn" ><span>Eliminar</span></button>
+            <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('NEIGHBORHOOD')) ? '':'hide'">
+                <div class="list">
+                    <div class="element" *ngFor="let neigborhood of getNeighborhoods()">
+                        <span>{{ neigborhood['name'] }}</span>
+                        <button class="delete">Eliminar</button>
                     </div>
                 </div>
-                <form [formGroup] = getNeighHoodForm()>
+                <form [formGroup]=getNeighHoodForm()>
                     <input type="text" formControlName="name" placeholder="Barrio">
+                    <select class="munic" formControlName="city">
+                        <option value="" selected disabled>Seleccione su municipio</option>
+                        <option value="1">
+                            cali
+                        </option>
+                        <option value="2">
+                            bogota
+                        </option>
+                    </select>
                 </form>
-                <select class = "munic">
-                    <option value = "1">
-                        cali
-                    </option>
-                    <option value = "2">
-                        bogota
-                    </option>
-
-                </select>
-                <button class="btn" ><span>Agregar</span></button>     
-            </div>
-            <div class = "quarantine">
-                <h1>Cuarentena</h1>
-                <form [formGroup] = getQuarantineForm()>
-                    <input type="text" formControlName="days" placeholder="periodo en dias">
-                </form>
-                <button class="btn" ><span>Actualizar</span></button>
+                <button class="btn" (click)="add()" [disabled]="!getNeighHoodForm().valid"><span>Agregar</span></button>     
             </div>
 
-            
+            <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('QUARANTINE')) ? '':'hide'">
+                <form [formGroup]=getQuarantineForm()>
+                    <input type="text" formControlName="days" placeholder="Periodo de dias">
+                </form>
+                <button class="btn" (click)="update()" [disabled]="!getQuarantineForm().valid"><span>Actualizar</span></button>
+            </div>
         </div>
     </div>
 

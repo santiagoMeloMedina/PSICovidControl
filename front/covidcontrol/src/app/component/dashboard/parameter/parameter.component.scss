@@ -1,0 +1,176 @@
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    height: 75%;
+    min-height: 550px;
+    height: 90%;
+    top: 30px;
+    overflow: hidden;
+    background-color: #F2F4F4;
+}
+
+.data {
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 120px;
+    left: 50%;
+    width: 80%;
+    height: 50%;
+}
+
+.data .title {
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 20px;
+    left: 50%;
+    font-family: 'Ubuntu';
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.types {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    top: 70px;
+    grid-column-gap: 10px;
+}
+
+.types .type {
+    position: relative;
+    height: 30px;
+    min-width: 100px;
+    background-color: #17202F;
+    color: white;
+    outline: 0;
+    border: 0;
+}
+
+.types .type:hover { 
+    background-color: #17204e;
+}
+
+.types .type:active {
+    background-color: #17354e;
+}
+
+.types .type:disabled {
+    background-color: gray;
+}
+
+.list {
+    position: relative;
+    height: 300px;
+    margin-top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.list .element {
+    position: relative;
+    width: 90%;
+    transform: translate(-50%, 0);
+    left: 50%;
+    background-color: white;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.list .element span {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 50%;
+    font-family: 'Ubuntu';
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.list .element .delete {
+    position: absolute;
+    width: 10%;
+    min-width: 80px;
+    height: 100%;
+    right: 0;
+    border: 0;
+    background-color: #17202F;
+    color: white;
+}
+
+.list .element .delete:hover { 
+    background-color: #17204e;
+}
+
+.list .element .delete:active {
+    background-color: #17354e;
+}
+
+.list .element .delete:disabled {
+    background-color: gray;
+}
+
+form {
+    position: relative;
+    width: 80%;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+form input {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    border: 0;
+    padding-left: 10px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+form select {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    border: 0;
+    padding-left: 10px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+.btn {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    height: 30px;
+    width: 50%;
+    background-color: #17202F;
+    color: white;
+    outline: 0;
+    border: 0;
+    margin-top: 20px;
+}
+
+.btn:hover { 
+    background-color: #17204e;
+}
+
+.btn:active {
+    background-color: #17354e;
+}
+
+.btn:disabled {
+    background-color: gray;
+}

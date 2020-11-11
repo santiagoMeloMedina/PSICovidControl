@@ -56,6 +56,10 @@ export const CONSTANTS = {
         "/dashboard/register-exam": {
             NAME: "Registrar Examen",
             OTHER: true
+        },
+        "/dashboard/parameter": {
+            NAME: "Parametrizar datos",
+            OTHER: true
         }
     }
 }

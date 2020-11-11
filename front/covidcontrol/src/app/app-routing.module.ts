@@ -113,7 +113,9 @@ export const routes: Routes = [
       },
       {
         path:"parameter",
-        component: ParameterComponent
+        component: ParameterComponent,
+        canActivate: [ActionGuard],
+        data: { name: "PARAMETER"}
       }
     ]
   }
