@@ -7,6 +7,7 @@ from datetime import datetime
 import time
 import pymongo
 
+
 def checkUserCred(username,password,db):
     return str(db.user.find_one({'username':username,'password':password})['_id']) if db.user.find_one({'username':username,'password':password}) != None else None
 
@@ -302,7 +303,7 @@ def main():
     print(getAllEstablishment(db))
     print("\n\n\n\n\n")
     print(getUsersToActivate(db))
-
     print(db.list_collection_names())
+    
 main()
     
