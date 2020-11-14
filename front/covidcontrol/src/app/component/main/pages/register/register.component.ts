@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { RoutingService } from 'src/app/service/routing/routing.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   private registerForm: FormGroup;
 
   constructor(public routing: RoutingService, 
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder, 
+              private authenticationService: AuthenticationService) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -28,6 +30,11 @@ export class RegisterComponent implements OnInit {
     return this.registerForm;
   }
 
-  /// TODO(Santiago): Need to add parameter data from service
+  public register(): void {
+    let values: Object = this.registerForm.value;
+    this.registerForm.reset();
+    this.authenticationService.setRegisterData(values);
+    this.routing.absoluteRoute("register-detail");
+  }
 
 }

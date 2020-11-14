@@ -16,7 +16,7 @@
                 <input type="password" formControlName="confirm_password" placeholder="Confirmar Contraseña">
             </form>
             <div class="actions">
-                <button class="btn" [disabled]="!(getRegisterForm().valid)"><span>Registrar</span></button>
+                <button class="btn" [disabled]="!(getRegisterForm().valid)" (click)="register()"><span>Registrar</span></button>
                 <button class="btn" (click)="routing.absoluteRoute('login')"><span>Inicia Sesión</span></button>
             </div>
         </div>

@@ -31,15 +31,19 @@ def generatePayload(id, username, role):
     }
     return result
 
-def getRoleRepository(rol):
+def getRoleRepository(data):
+    rol = data['rol']
+    data['state'] = 'A'
     if rol == ROLE.ROLES['ADMIN']:
         result = AdminRepository
     elif rol == ROLE.ROLES['CITIZEN']:
         result = CitizenRepository
     elif rol == ROLE.ROLES['EP']:
         result = EPRepository
+        data['state'] = 'I'
     elif rol == ROLE.ROLES['ES']:
         result = ESRepository
+        data['state'] = 'I'
     else:
         result = UserRepository
     return result
@@ -47,7 +51,7 @@ def getRoleRepository(rol):
 def register():
     result = RESPONSE.EMPTY.copy()
     data = eval(request.data.decode("utf-8"))
-    repository = getRoleRepository(data['rol'])
+    repository = getRoleRepository(data)
     if not UserRepository.checkRegistration(data['username'], data['email']):
         user = UserRepository.register(data)
         profile = repository.register(data)
