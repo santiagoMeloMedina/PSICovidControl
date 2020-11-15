@@ -155,11 +155,18 @@ def getInactiveUsers(db):
     ans = list()
     q1,q2,q3 = db.citizen.find({'state':'I'}),db.healthEntity.find({'state':'I'}),db.establishment.find({'state':'I'})
     for doc in q1:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'names':doc['names'],'lastNames':doc['lastNames'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'gender':doc['gender'],'state':doc['state']})
     for doc in q2:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
+        'totalRes':doc['totalRes']})
     for doc in q3:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
     return ans
 
 
@@ -186,11 +193,18 @@ def getActiveUsers(db):
     ans = list()
     q1,q2,q3 = db.citizen.find({'state':'A'}),db.healthEntity.find({'state':'A'}),db.establishment.find({'state':'A'})
     for doc in q1:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'names':doc['names'],'lastNames':doc['lastNames'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'gender':doc['gender'],'state':doc['state']})
     for doc in q2:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
+        'totalRes':doc['totalRes']})
     for doc in q3:
-        ans.append(str(doc['_id']))
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
     return ans
 
 
@@ -694,6 +708,7 @@ def main():
     print(db.list_collection_names())
     """
     r = getUsersToActivate(client.UsersDB,0,2)
+    #r = getAllUsers(client.UsersDB,2,3)
     for doc in r:
         printDocument(doc)
     #print(getEntriesByEstablishmentAndCitizen(client.EntryDB,client.UsersDB,"",""))
