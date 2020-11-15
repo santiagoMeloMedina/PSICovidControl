@@ -237,16 +237,52 @@ def getAllExams(db):
     return ans
 
 def getAllEntries(db):#Mostrar el nombre de la persona y el del establecimiento ? 
-    q,ans = db.entries.find({}),list()
+    q,ans = db.entry.find({}),list()
     for doc in q:
         ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
         'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description']})
     return ans
+
+def getEstablishmentByCategory(db,name):#la db es la de users!
+    q,ans = db.establishment.find({'category':name}),list()
+    for doc in q:
+        ans.append(doc['docNum'])
+    return ans
+
+def getEntriesByCategory(db,establishments):#la db es la de EntryDB, establishments es una lista de numeros de documento de los EP de la categoria buscada
+    q,ans = db.entry.find({'docNumEs':{'$in':establishments}}),list()#Revisar!
+    for doc in q:
+        ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+        'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description']}) 
+    return ans
+
+def getExamsByCitizenDocNum(db,docNum):#numero de documento del CIUDADANO
+    q,ans = db.exam.find({'docNumCi':docNum}),list()
+    for doc in q:
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+    return ans
+
+def getExamsByCitizenName(db,name):
+    q,ans = db.exam.find({'citizensName':name}),list()
+    for doc in q:
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+    return ans
+    
+
+def getExamsByResult(db,result):
+    q,ans = db.exam.find({'result':result}),list()
+    for doc in q:
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+    return ans
+       
+
 def getAllNeighHoods(db):
     q,ans = db.neighborHood.find({}),list()
     for doc in q:
         ans.append({'name':doc['name'],'city': getNameCity(db,doc['city'])})
     return ans
+
+
 
 def registerNeighHood(db,name,cityName):
     db.neighborHood.insert_one({'name':name,'city':getIdCity(db,cityName)})
@@ -254,22 +290,36 @@ def registerNeighHood(db,name,cityName):
 def registerDocType(db,name):
     db.documentType.insert_one({'name':name})
 
+def registerCategory(db,name):
+    db.category.insert_one({'name':name})
+
 
 def registerQuarantine(db,days):
     db.quarantine.drop()
     db.quarantine.insert_one({'days':days})
 
 
+def deleteNeighHood(db,name):
+    db.neighborHood.delete_one({'name':name})
 
-def setCitizenState(db,username,newState):#Revisar!!
+def deleteDocType(db,name):
+    db.documentType.delete_one({'name':name})
+
+
+def deleteCategory(db,name):
+    db.category.delete_one({'name':name})
+
+def setCitizenState(db,username,newState):
     db.citizen.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
 
-def setHealthEnState(db,username,newState):#Revisar!!
+def setHealthEnState(db,username,newState):
     db.healthEntity.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
 
 
-def setEstablishmentState(db,username,newState):#Revisar!!
+def setEstablishmentState(db,username,newState):
     db.establishment.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
+
+
 
 
 
@@ -465,6 +515,7 @@ def main():
     if(not checkRegistration("EP2","EP2@m.com",db)):
         registerUser("EP2@m.com","admin","EP2","EP",db)
         registerEstablishment("535353","EP2","Eestab1","cali",1,34,"dada","calle 1","3232323","hola","I",db)
+    
     """
     #print(checkUserCred("b","a",db))
     #print(getInactiveUsers(db))
@@ -480,12 +531,14 @@ def main():
     print(getUsersToActivate(db))
     print(db.list_collection_names())
     """
-   
+    #setCitizenState(client.UsersDB,"miguel22","A")
     db = client.ParametersDB
     #db.city.drop()
     #db.department.drop()
     #initializeCountryParams(db,"dataset.csv")
     print(getCitiesByDept(db,"Antioquia"))
+    #print(getEstablishmentByCategory(client.UsersDB,""))
+    #print(getEntriesByCategory(client.EntryDB,getEstablishmentByCategory(client.UsersDB,'')))
     
 main()
     
