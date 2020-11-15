@@ -165,7 +165,7 @@ def getInactiveUsers(db):
 
 def getUsersToActivate(db,skipV,limitV):
     ans = list()
-    qHe,qEs = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV//2),db.establishment.find({'state':'I'}).skip(skipV).limit(limitV//2)
+    qHe,qEs = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV),db.establishment.find({'state':'I'}).skip(skipV).limit(limitV)
     for doc in qHe:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
@@ -590,12 +590,12 @@ def main():
     print(getUsersToActivate(db))
     print(db.list_collection_names())
     """
-    r = getUsersToActivate(client.UsersDB,0,2)
+    r = getUsersToActivate(client.UsersDB,1,1)
     for doc in r:
         printDocument(doc)
     #setCitizenState(client.UsersDB,"miguel22","A")
     db = client.ParametersDB
-    #db.city.drop()
+    #db.city.drop() 
     #db.department.drop()
     #initializeCountryParams(db,"dataset.csv")
     print(getCitiesByDept(db,"Antioquia"))
