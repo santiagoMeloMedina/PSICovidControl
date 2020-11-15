@@ -224,7 +224,9 @@ def getAllEstablishment(db,skipV,limitV):
 
 
 def getAllUsers(db,skipV,limitV):
-    return getAllCitizens(db,skipV,limitV)+getAllHealthEn(db,skipV,limitV)+getAllEstablishment(db,skipV,limitV)
+    ans = getAllCitizens(db,skipV,limitV//3)+getAllHealthEn(db,skipV,limitV//3)+getAllEstablishment(db,skipV,limitV//3)
+    ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
+    return ans
 
     
 def getAllDocTypes(db):
