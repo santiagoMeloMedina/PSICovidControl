@@ -47,7 +47,7 @@ export class UserService {
     });
   }
 
-  public getUnauthorizedUser(): Promise<User[]> {
+  public getUnauthorizedUsers(): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {
       let result: User = new User().deserealize({
         "id": 1,

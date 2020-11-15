@@ -23,3 +23,12 @@ def getAllEstablishment():
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
     return result
+
+def getUnauthorized():
+    result = []
+    query = database.establishment.find({})
+    for doc in query:
+        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
+    return result

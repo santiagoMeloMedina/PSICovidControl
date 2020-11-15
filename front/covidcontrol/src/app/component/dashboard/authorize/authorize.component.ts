@@ -25,7 +25,7 @@ export class AuthorizeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setRows();
+    this.getUnauthorizedUsers();
   }
 
   public getSearchForm(): FormGroup{
@@ -40,8 +40,8 @@ export class AuthorizeComponent implements OnInit {
     return this.rows;
   }
 
-  public setRows(): void {
-    this.userService.getUnauthorizedUser().then(result => {
+  public getUnauthorizedUsers(): void {
+    this.userService.getUnauthorizedUsers().then(result => {
       this.rows = result;
     })
   }
