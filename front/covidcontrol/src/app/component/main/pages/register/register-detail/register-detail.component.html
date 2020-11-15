@@ -8,8 +8,11 @@
                 </button>
             </div>
             <form [formGroup]="getCitizenForm()" [ngClass]="isRoleEqual(getRoleName('CITIZEN')) ? 'fields':'hide'">
-                <input type="text" formControlName="names" placeholder="Nombres">
-                <input type="text" formControlName="lastNames" placeholder="Apellidos">
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
+                <input type="text" formControlName="name" placeholder="Nombres">
+                <input type="text" formControlName="lastname" placeholder="Apellidos">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
                     <option value="1">
@@ -56,13 +59,12 @@
                         F
                     </option>
                 </select>
-                
-                <input type="text" formControlName="email" placeholder="Correo">
-                <input type="text" formControlName="username" placeholder="Nombre de usuario">
-                <input type="text" formControlName="password" placeholder="Contraseña">
             </form>
 
             <form [formGroup]="getHealthEnForm()" [ngClass]="isRoleEqual(getRoleName('ES')) ? 'fields':'hide'">   
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
                 <input type="text" formControlName="name" placeholder="Nombre">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
@@ -91,7 +93,7 @@
                 </select>
                 <input type="text" formControlName="totalCap" placeholder="Capacidad total">
                 <input type="text" formControlName="totalBeds" placeholder="Total de camas">
-                <input type="text" formControlName="totalResp" placeholder="Total de respiradores">
+                <input type="text" formControlName="totalRes" placeholder="Total de respiradores">
                 <input type="text" formControlName="totalDocts" placeholder="Total de doctores">
                 <input type="text" formControlName="address" placeholder="Dirección">
                 <select type="text" formControlName="neighHood" placeholder="Barrio">
@@ -103,13 +105,13 @@
                         Barrio 2
                     </option>
                 </select>
-                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
-                <input type="text" formControlName="email" placeholder="Correo">
-                <input type="text" formControlName="username" placeholder="Nombre de usuario">
-                <input type="text" formControlName="password" placeholder="Contraseña">          
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">       
             </form>
 
             <form [formGroup]="getPublicEsForm()" [ngClass]="isRoleEqual(getRoleName('EP')) ? 'fields':'hide'">
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
                 <input type="text" formControlName="name" placeholder="Nombre">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
@@ -157,9 +159,6 @@
                         Restaurante
                     </option>
                 </select>
-                <input type="text" formControlName="email" placeholder="Correo">
-                <input type="text" formControlName="username" placeholder="Nombre de usuario">
-                <input type="text" formControlName="password" placeholder="Contraseña"> 
             </form>
             <button class="btn" [disabled]="!getFormAccordingToRole().valid" (click)="register()"><span>Finalizar registro</span></button>
         </div>

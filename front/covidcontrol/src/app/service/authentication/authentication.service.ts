@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, resolveForwardRef } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Response } from 'src/app/model/response.model'
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +12,54 @@ export class AuthenticationService {
 
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private cookieService: CookieService) { }
+  private registerData: Object = null;
 
-  public authenticate(): void {
-    let token: string = "";
-    this.cookieService.set(environment.AUTHENTICATION.COOKIE.USER, token);
+  constructor(private cookieService: CookieService, 
+              private httpClient: HttpClient) { }
+
+  public authenticate(username: string, password: string): Promise<boolean> {
+    let body: Object = {"username": username, "password": password};
+    return new Promise<boolean>((resolve, reject) => {
+      let url: string = `${environment.PETITION.API}${environment.PETITION.ENDPOINTS.AUTHENTICATE.URL}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let token: string = "";
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          token = response.getResponse()['token'];
+          result = true;
+        }
+        this.cookieService.set(environment.AUTHENTICATION.COOKIE.USER, token, null, "/");
+        resolve(result);
+      });
+    });
+  }
+
+  public setRegisterData(data: Object): void {
+    this.registerData = data;
+  }
+
+  public getRegisterData(): Object {
+    return this.registerData;
   }
 
   public register(data: Object): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      resolve(true);
+      let url: string = `${environment.PETITION.API}${environment.PETITION.ENDPOINTS.REGISTER.URL}`;
+      this.httpClient.post(url, data, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          console.log(response.getResponse())
+          result = true;
+        }
+        resolve(result);
+      });
     });
+  }
+
+  public logOut(): void {
+    this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
   }
 
   public isLogged(): boolean {

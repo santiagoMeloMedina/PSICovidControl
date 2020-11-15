@@ -9,6 +9,6 @@ class Response:
     def toMap(self):
         return jsonify({
             "code": self.code,
-            "reponse": self.response
+            "response": self.response
         })
 

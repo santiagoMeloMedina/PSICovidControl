@@ -17,7 +17,8 @@ export class RegisterDetailComponent implements OnInit {
   private publicEsForm: FormGroup;
 
   private roles: Object[] = [];
-  private role: string;
+  private role: string = null;
+  private registerData: Object = null;
 
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
@@ -28,9 +29,9 @@ export class RegisterDetailComponent implements OnInit {
         email: ['',Validators.required],
         username: ['',Validators.required],
         docNum: ['',Validators.required],
-        names: ['',Validators.required], 
+        name: ['',Validators.required], 
         gender: ['',Validators.required], 
-        lastNames: ['', Validators.required],
+        lastname: ['', Validators.required],
         address: ['', Validators.required],
         phoneNum: ['', Validators.required],
         neighHood: ['', Validators.required],
@@ -49,7 +50,7 @@ export class RegisterDetailComponent implements OnInit {
       name: ['',Validators.required],
       totalCap:  ['',Validators.required],
       totalBeds: ['',Validators.required],
-      totalResp: ['',Validators.required],
+      totalRes: ['',Validators.required],
       totalDocts: ['',Validators.required],
       address: ['', Validators.required],
       phoneNum: ['', Validators.required],
@@ -79,6 +80,31 @@ export class RegisterDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setRegisterData();
+  }
+
+  private setRegisterData(): void {
+    this.registerData = this.authenticationService.getRegisterData();
+    if (this.registerData == null) {
+      this.routing.absoluteRoute("register");
+    } else {
+      this.patchRegisterData();
+    }
+  }
+
+  private patchRegisterData(): void {
+    this.publicEsForm.patchValue({
+      "username": this.registerData['username'],
+      "password": this.registerData['password']
+    });
+    this.healthEnForm.patchValue({
+      "username": this.registerData['username'],
+      "password": this.registerData['password']
+    });
+    this.citizenForm.patchValue({
+      "username": this.registerData['username'],
+      "password": this.registerData['password']
+    });
   }
 
   private setRoles(): void {
@@ -143,9 +169,13 @@ export class RegisterDetailComponent implements OnInit {
   public register(): void {
     let form: FormGroup = this.getFormAccordingToRole();
     let values: Object = form.value;
-    form.reset();
+    values['rol'] = this.role;
     this.authenticationService.register(values).then(result => {
-      console.log(values);
+      if (result) {
+        this.routing.absoluteRoute("login");
+      } else {
+        alert("No pudo registrar");
+      }
     });
   }
 
