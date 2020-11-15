@@ -29,8 +29,6 @@ def registerDept(db,name):
     db.department.insert_one({"name":name})
 
 
-
-
 def registerCity(db,name,idDept):
     db.city.insert_one({"name":name,"idDept":idDept})
 
@@ -170,18 +168,48 @@ def getInactiveUsers(db):
     return ans
 
 
-def getUsersToActivate(db,skipV,limitV):
+
+def getUsersToActivateHealthEn(db,skipV,limitV):
     ans = list()
-    qHe,qEs = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV//2),db.establishment.find({'state':'I'}).skip(skipV).limit(limitV//2)
+    qHe = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV)
     for doc in qHe:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
-        'totalRes':doc['totalRes']})
+        'totalRes':doc['totalRes'],'city':doc['city']})
+    ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
+    return ans
+
+    
+def getUsersToActivateEstablishment(db,skipV,limitV):
+    ans = list()
+    qEs = db.establishment.find({'state':'I'}).skip(skipV).limit(limitV)
     for doc in qEs:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
-        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
+
+    ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
+    return ans
+
+
+    
+
+
+
+
+def getUsersToActivate(db,skipV,limitV):
+    ans = list()
+    qHe,qEs = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV),db.establishment.find({'state':'I'}).skip(skipV).limit(limitV)
+    for doc in qHe:
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
+        'totalRes':doc['totalRes'],'city':doc['city']})
+    for doc in qEs:
+        ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
 
     ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
     return ans
@@ -707,7 +735,7 @@ def main():
     print(getUsersToActivate(db))
     print(db.list_collection_names())
     """
-    r = getUsersToActivate(client.UsersDB,0,2)
+    r = getUsersToActivate(client.UsersDB,0,-1)
     #r = getAllUsers(client.UsersDB,2,3)
     for doc in r:
         printDocument(doc)
