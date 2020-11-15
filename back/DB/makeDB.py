@@ -169,6 +169,8 @@ def getInactiveUsers(db):
 
 
 
+
+
 def getUsersToActivateHealthEn(db,skipV,limitV):
     ans = list()
     qHe = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV)
@@ -193,7 +195,9 @@ def getUsersToActivateEstablishment(db,skipV,limitV):
     return ans
 
 
-    
+#REvisar que la cuenta este activa!!!
+
+
 
 
 
@@ -369,6 +373,15 @@ def setEstablishmentState(db,username,newState):
     db.establishment.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
 
 
+def setNameAdmin(db,username,newName):
+    db.administrator.update_one({'username':username},{'$set':{'names':newName}},upsert = False)
+
+def setLastnameAdmin(db,username,newLastname):
+    db.administrator.update_one({'username':username},{'$set':{'lastNames':newLastname}},upsert = False)
+
+
+def setPasswordUser(db,username,newPassword):# igual para todos los usuarios
+    db.user.update_one({'username':username},{'$set':{'password':newPassword}},upsert = False)
 
 
 
@@ -377,6 +390,21 @@ def setEstablishmentState(db,username,newState):
 
 
 #------------------------------------Funciones ciudadano---------------------------------------
+
+
+def setNameCitizen(db,username,newName):
+    db.citizen.update_one({'username':username},{'$set':{'names':newName}},upsert = False)
+
+def setLastnameCitizen(db,username,newLastname):
+    db.citizen.update_one({'username':username},{'$set':{'lastNames':newLastname}},upsert = False)
+
+def setPhoneNumberCitizen(db,username,newPhoneNum):
+    db.citizen.update_one({'username':username},{'$set':{'phoneNum':newPhoneNum}},upsert = False)
+
+def setNeighHoodCitizen(db,username,newNeighHood):
+    db.citizen.update_one({'username':username},{'$set':{'neighHood':newNeighHood}},upsert = False)
+
+
 
 def getCategoryById(db,_id):
     return db.establishment.find_one({'_id':_id})['category']
@@ -411,6 +439,21 @@ def getEntriesByCitizenAndCategory(dbEntry,dbUsers,docNum,category):
 
 #------------------------------------Funciones EP---------------------------------------
    
+
+def setNameEstablishment(db,username,newName):
+    db.establishment.update_one({'username':username},{'$set':{'names':newName}},upsert = False)
+
+def setAddressEstablishment(db,username,newAddress):
+    db.establishment.update_one({'username':username},{'$set':{'address':newAddress}},upsert = False)
+
+def setPhoneNumberEstablishment(db,username,newPhoneNum):
+    db.establishment.update_one({'username':username},{'$set':{'phoneNum':newPhoneNum}},upsert = False)
+
+def setNeighHoodEstablishment(db,username,newNeighHood):
+    db.establishment.update_one({'username':username},{'$set':{'neighHood':newNeighHood}},upsert = False)
+
+def setCategoryEstablishment(db,username,newCategory):
+    db.establishment.update_one({'username':username},{'$set':{'category':newCategory}},upsert = False)
 
 def getGenderById(db,_id):
     return db.citizen.find_one({'_id':_id})['gender']
@@ -483,6 +526,20 @@ def registerEntry(db,docNumCi,docNumEs,idEs,idCitizen,temperature,date,time,mask
 
 
 #------------------------------------Funciones ES---------------------------------------
+
+
+
+def setNameHealthEntity(db,username,newName):
+    db.healthEntity.update_one({'username':username},{'$set':{'names':newName}},upsert = False)
+
+def setAddressHealthEntity(db,username,newAddress):
+    db.healthEntity.update_one({'username':username},{'$set':{'address':newAddress}},upsert = False)
+
+def setPhoneNumberHealthEntity(db,username,newPhoneNum):
+    db.healthEntity.update_one({'username':username},{'$set':{'phoneNum':newPhoneNum}},upsert = False)
+
+def setNeighHoodHealthEntity(db,username,newNeighHood):
+    db.healthEntity.update_one({'username':username},{'$set':{'neighHood':newNeighHood}},upsert = False)
 
 def getExamsByHealthEntityAndDocNumCi(db,docNumCi,docNumHe):
     exams,ans = list(db.healthEntity.find_one({'docNum':docNumHe})['examsReg']),list()
@@ -735,7 +792,7 @@ def main():
     print(getUsersToActivate(db))
     print(db.list_collection_names())
     """
-    r = getUsersToActivate(client.UsersDB,0,-1)
+    r = getUsersToActivate(client.UsersDB,0,2)
     #r = getAllUsers(client.UsersDB,2,3)
     for doc in r:
         printDocument(doc)
