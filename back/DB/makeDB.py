@@ -117,6 +117,10 @@ def getDepts(db):
         ans.append(doc['name'])
     return ans
 
+
+def getDeptByCity(db,cityName):
+    return db.department.find_one({'_id': db.city.find_one({"name":cityName})["idDept"]})['name']
+
 def getCitiesByDept(db,deptName):#obtiene todas las ciudades de un departamento
     q,ans =  db.city.find({'idDept' : getIdDept(db,deptName)}),list()
     for doc in q:
@@ -798,7 +802,9 @@ def main():
         printDocument(doc)
     #print(getEntriesByEstablishmentAndCitizen(client.EntryDB,client.UsersDB,"",""))
     #setCitizenState(client.UsersDB,"miguel22","A")
+    
     db = client.ParametersDB
+    #print(getDeptByCity(db,"Cali"))
     #db.city.drop() 
     #db.department.drop()
     #initializeCountryParams(db,"dataset.csv")
