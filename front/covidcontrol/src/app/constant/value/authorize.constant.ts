@@ -4,7 +4,6 @@ export const CONSTANTS = {
         "Documento",
         "Rol",
         "Nombre",
-        "Apellidos",
         "Estado",
         "Usuario",
         "Municipio",

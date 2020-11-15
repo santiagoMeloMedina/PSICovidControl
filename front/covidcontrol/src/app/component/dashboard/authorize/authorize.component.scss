@@ -41,7 +41,7 @@
     transform: translate(-50%, 0);
     left: 50%;
     margin-top: 80px;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     background-color: #F2F4F4;
     width: 90%;
 }
@@ -87,7 +87,7 @@
     position: relative;
     width: 100%;
     display: inline-grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(8, 1fr);
 }
 
 .table .rows .row:hover {

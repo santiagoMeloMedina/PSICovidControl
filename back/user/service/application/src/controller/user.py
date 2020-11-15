@@ -12,6 +12,7 @@ alias = BLUEPRINT.USER['ALIAS']
 
 @route.route("/{}/authenticate".format(alias), methods=["POST"])
 def authenticate():
+    """ This function authenticates a user"""
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
         response = UserService.authenticate()
@@ -23,6 +24,7 @@ def authenticate():
 
 @route.route("/{}/register".format(alias), methods=["POST"])
 def register():
+    """ This function registers a user"""
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
         response = UserService.register()
@@ -32,11 +34,36 @@ def register():
         print(e)
     return result
 
-@route.route("/{}/all".format(alias), methods=["GET"])
-def getAllUsers():
+@route.route("/{}/all/<int:start>/<int:limit>".format(alias), methods=["GET"])
+def getAllUsers(start, limit):
+    """ This function obtains all users"""
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
-        response = UserService.getAllUsers()
+        response = UserService.getAllUsers(start, limit)
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/unauthorized/<int:start>/<int:limit>".format(alias), methods=["GET"])
+def getUnauthorized(start, limit):
+    """ This function obtains all unauthorized users"""
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.getUnauthorized(start, limit)
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/authorize".format(alias), methods=["POST"])
+def authorize():
+    """ This function authorize a certain user"""
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.authorize()
         if response != RESPONSE.EMPTY.copy():
             result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
     except Exception as e:

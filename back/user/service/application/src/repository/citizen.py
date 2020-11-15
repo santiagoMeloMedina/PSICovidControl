@@ -1,5 +1,6 @@
 
 from src.configuration.app import database
+import src.constant.role as ROLE
 
 def register(data):
     result = None
@@ -15,11 +16,15 @@ def register(data):
         pass
     return result
 
-def getAllCitizens():
+def getSome(start, limit):
     result = []
-    query = database.citizen.find({})
+    query = database.citizen.find({}).skip(start).limit(limit)
     for doc in query:
-        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],'lastname':doc['lastname'],
+        result.append({'id':str(doc['_id']),'rol': ROLE.ROLES['CITIZEN'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],'lastname':doc['lastname'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'gender':doc['gender'],'state':doc['state']})
     return result
+
+def setState(username, newState):
+    result = database.citizen.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
+    return result.matched_count > 0

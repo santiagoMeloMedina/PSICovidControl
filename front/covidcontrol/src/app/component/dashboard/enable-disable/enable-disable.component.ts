@@ -24,7 +24,7 @@ export class EnableDisableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setRows();
+    this.getEnabledDisabledUsers();
   }
 
   public getSearchForm(): FormGroup{
@@ -39,21 +39,25 @@ export class EnableDisableComponent implements OnInit {
     return this.rows;
   }
 
-  public setRows(): void {
-    this.userService.getUsers().then(result => {
+  public getEnabledDisabledUsers(): void {
+    this.userService.getEnabledDisabledUsers(0, 10).then(result => {
       this.rows = result;
     })
   }
 
-  public enable(id: string, username: string): void {
-    this.userService.enableUser(id, username).then(result => {
-      console.log(`enabled ${id}-${username}`);
+  public enable(rol: string, username: string): void {
+    this.userService.enableUser(rol, username).then(result => {
+      if (result) {
+        window.location.reload();
+      }
     });
   }
   
-  public disable(id: string, username: string): void {
-    this.userService.disableUser(id, username).then(result => {
-      console.log(`disabled ${id}-${username}`);
+  public disable(rol: string, username: string): void {
+    this.userService.disableUser(rol, username).then(result => {
+      if (result) {
+        window.location.reload();
+      }
     });
   }
 

@@ -41,14 +41,16 @@ export class AuthorizeComponent implements OnInit {
   }
 
   public getUnauthorizedUsers(): void {
-    this.userService.getUnauthorizedUsers().then(result => {
+    this.userService.getUnauthorizedUsers(0, 10).then(result => {
       this.rows = result;
-    })
+    });
   }
 
-  public authorize(id: string, username: string): void {
-    this.userService.authorizeUser(id, username).then(result => {
-      console.log(`authorized ${id}-${username}`);
+  public authorize(username: string, rol: string): void {
+    this.userService.authorizeUser(username, rol).then(result => {
+      if (result) {
+        window.location.reload();
+      }
     });
   }
 

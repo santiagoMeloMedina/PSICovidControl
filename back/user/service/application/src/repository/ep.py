@@ -1,5 +1,7 @@
 
 from src.configuration.app import database
+import random
+import src.constant.role as ROLE
 
 def register(data):
     result = None
@@ -15,20 +17,15 @@ def register(data):
         pass
     return result
 
-def getAllEstablishment():
+def getSome(start, limit):
     result = []
-    query = database.establishment.find({})
+    query = database.establishment.find({}).skip(start).limit(limit)
     for doc in query:
-        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        result.append({'id':str(doc['_id']),'rol': ROLE.ROLES['EP'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
     return result
 
-def getUnauthorized():
-    result = []
-    query = database.establishment.find({})
-    for doc in query:
-        result.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
-        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
-        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
-    return result
+def setState(username, newState):
+    result = database.establishment.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
+    return result.matched_count > 0

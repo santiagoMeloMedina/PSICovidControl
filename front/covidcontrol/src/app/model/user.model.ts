@@ -5,8 +5,8 @@ export class User implements Deserealizable {
 
     private id: string;
     private rol: string;
+    private docNum: number;
     private name: string;
-    private lastname: string;
     private state: string;
     private username: string;
     private city: string;
@@ -16,9 +16,9 @@ export class User implements Deserealizable {
 
     deserealize(data: any): this {
         this.id = data['id'];
+        this.docNum = data['docNum']
         this.rol = data['rol'];
         this.name = data['name'];
-        this.lastname = data['lastname'];
         this.state = data['state'];
         this.username = data['username'];
         this.city = data['city'];
@@ -34,12 +34,12 @@ export class User implements Deserealizable {
         return this.rol;
     }
 
-    public getName(): string {
-        return this.name;
+    public getDocNum(): number {
+        return this.docNum;
     }
 
-    public getLastname(): string {
-        return this.lastname;
+    public getName(): string {
+        return this.name;
     }
 
     public getState(): string {
@@ -59,7 +59,7 @@ export class User implements Deserealizable {
     }
 
     public isActive(): boolean {
-        return this.state == "Activo";
+        return this.state == "A";
     }
     
 }

@@ -9,15 +9,3 @@ import src.constant.response as RESPONSE
 
 route = Blueprint(BLUEPRINT.EP['ALIAS'], __name__)
 alias = BLUEPRINT.EP['ALIAS']
-
-@route.route("/{}/unauthorized".format(alias), methods=["POST"])
-def getUnauthorized():
-    """ This function obtains all unauthorized users"""
-    result = Response(HTTP_CODE.ERROR, {}).toMap()
-    try:
-        response = EPService.getUnauthorized()
-        if response != RESPONSE.EMPTY.copy():
-            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
-    except Exception as e:
-        print(e)
-    return result

@@ -1,12 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Response } from 'src/app/model/response.model';
 import { User } from 'src/app/model/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   public createAdmin(data: Object): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
@@ -31,53 +34,87 @@ export class UserService {
     });
   }
 
-  public getUsers(): Promise<User[]> {
+  public getEnabledDisabledUsers(start: number, limit: number): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {
-      let result: User = new User().deserealize({
-        "id": 1,
-        "rol": "Citizen",
-        "name": "Crack",
-        "lastname": "Cracked",
-        "state": "Activo",
-        "username": "crack",
-        "city": "Cali",
-        "department": "Valle del Cauca"
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.GET.ENABLE_DISABLE.URL(start, limit)}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.get(url, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: User[] = [];
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          response.getResponse()['content'].forEach(user => {
+            user['department'] = "valle"; // TODO(Santiago): Change this when the result is obtained from api.
+            result.push(new User().deserealize(user));
+          });
+        }
+        resolve(result);
       });
-      resolve([result, result]);
     });
   }
 
-  public getUnauthorizedUsers(): Promise<User[]> {
+  public getUnauthorizedUsers(start: number, limit: number): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {
-      let result: User = new User().deserealize({
-        "id": 1,
-        "rol": "Citizen",
-        "name": "Crack",
-        "lastname": "Cracked",
-        "state": "Inactivo",
-        "username": "crack",
-        "city": "Cali",
-        "department": "Valle del Cauca"
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.GET.NOT_AUTHORIZED.URL(start, limit)}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.get(url, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: User[] = [];
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          response.getResponse()['content'].forEach(user => {
+            user['department'] = "valle"; // TODO(Santiago): Change this when the result is obtained from api.
+            result.push(new User().deserealize(user));
+          });
+        }
+        resolve(result);
       });
-      resolve([result]);
     });
   }
 
-  public authorizeUser(id: string, username: string): Promise<boolean> {
+  public authorizeUser(username: string, rol: string): Promise<boolean> {
+    let body: Object = {"username": username, "rol": rol, "state": 'A'};
     return new Promise<boolean>((resolve, reject) => {
-      resolve(true);
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.POST.AUTHORIZED.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = response.getResponse()['content'];
+        }
+        resolve(result);
+      });
     });
   }
 
-  public enableUser(id: string, username: string): Promise<boolean> {
+  public enableUser(rol: string, username: string): Promise<boolean> {
+    let body: Object = {"username": username, "rol": rol, "state": 'A'};
     return new Promise<boolean>((resolve, reject) => {
-      resolve(true);
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.POST.AUTHORIZED.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = response.getResponse()['content'];
+        }
+        resolve(result);
+      });
     });
   }
 
-  public disableUser(id: string, username: string): Promise<boolean> {
+  public disableUser(rol: string, username: string): Promise<boolean> {
+    let body: Object = {"username": username, "rol": rol, "state": 'I'};
     return new Promise<boolean>((resolve, reject) => {
-      resolve(true);
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.POST.AUTHORIZED.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = response.getResponse()['content'];
+        }
+        resolve(result);
+      });
     });
   }
 
