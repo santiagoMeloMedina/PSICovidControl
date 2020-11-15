@@ -70,6 +70,16 @@ def checkEmail(email,db):
 def checkRegistration(username,email,db):
     return checkUsername(username,db) or checkEmail(email,db)
 
+def checkStateCitizen(db,username):
+    return db.citizen.find_one({'username':username})['state'] == 'A'
+
+
+def checkStateHealthEntity(db,username):
+    return db.healthEntity.find_one({'username':username})['state'] == 'A'
+
+def checkStateEstablishment(db,username):
+    return db.establishment.find_one({'username':username})['state'] == 'A'
+
 
 #------------------------------------Chequear registro de usuario------------------------------------
 
