@@ -83,6 +83,7 @@ def getRole(username,db):
 
 #------------------------------------Registrar usuario------------------------------------
 
+
 def registerUser(email,password,username,rol,db):
     db.user.insert_one({'email':email,'password':password,'username':username,'rol':rol})
 
@@ -162,19 +163,22 @@ def getInactiveUsers(db):
     return ans
 
 
-def getUsersToActivate(db):
+def getUsersToActivate(db,skipV,limitV):
     ans = list()
-    q1,q2 = db.healthEntity.find({'state':'I'}),db.establishment.find({'state':'I'})
-    for doc in q1:
+    qHe,qEs = db.healthEntity.find({'state':'I'}).skip(skipV).limit(limitV//2),db.establishment.find({'state':'I'}).skip(skipV).limit(limitV//2)
+    for doc in qHe:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
         'totalRes':doc['totalRes']})
-    for doc in q2:
+    for doc in qEs:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category']})
+
+    ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
     return ans
+
 
 
 
@@ -190,8 +194,8 @@ def getActiveUsers(db):
     return ans
 
 
-def getAllCitizens(db):
-    ans,q = list(),db.citizen.find({})
+def getAllCitizens(db,skipV,limitV):
+    ans,q = list(),db.citizen.find({}).skip(skipV).limit(limitV)
     for doc in q:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'names':doc['names'],'lastNames':doc['lastNames'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
@@ -199,8 +203,8 @@ def getAllCitizens(db):
     return ans  
 
 
-def getAllHealthEn(db):
-    ans,q = list(),db.healthEntity.find({})
+def getAllHealthEn(db,skipV,limitV):
+    ans,q = list(),db.healthEntity.find({}).skip(skipV).limit(limitV)
     for doc in q:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
@@ -210,8 +214,8 @@ def getAllHealthEn(db):
 
 
 
-def getAllEstablishment(db):
-    ans,q = list(),db.establishment.find({})
+def getAllEstablishment(db,skipV,limitV):
+    ans,q = list(),db.establishment.find({}).skip(skipV).limit(limitV)
     for doc in q:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
@@ -219,8 +223,8 @@ def getAllEstablishment(db):
     return ans
 
 
-def getAllUsers(db):
-    return getAllCitizens(db)+getAllHealthEn(db)+getAllEstablishment(db)
+def getAllUsers(db,skipV,limitV):
+    return getAllCitizens(db,skipV,limitV)+getAllHealthEn(db,skipV,limitV)+getAllEstablishment(db,skipV,limitV)
 
     
 def getAllDocTypes(db):
@@ -243,7 +247,9 @@ def getAllEntries(db):#Mostrar el nombre de la persona y el del establecimiento 
         'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description']})
     return ans
 
-def getEstablishmentByCategory(db,name):#la db es la de users!
+
+
+def getEstablishmentsByCategory(db,name):#la db es la de users!
     q,ans = db.establishment.find({'category':name}),list()
     for doc in q:
         ans.append(doc['docNum'])
@@ -281,7 +287,6 @@ def getAllNeighHoods(db):
     for doc in q:
         ans.append({'name':doc['name'],'city': getNameCity(db,doc['city'])})
     return ans
-
 
 
 def registerNeighHood(db,name,cityName):
@@ -328,10 +333,62 @@ def setEstablishmentState(db,username,newState):
 
 
 #------------------------------------Funciones ciudadano---------------------------------------
-#TODO
 
+def getCategoryById(db,_id):
+    return db.establishment.find_one({'_id':_id})['category']
+
+
+def getEntriesByCitizen(dbEntry,dbUsers,docNum): #BORRAR citizen de EntryDB?, db es la de EntryDB
+    entries,ans = list(dbEntry.citizen.find_one({'docNum':docNum})['entriesReg']),list()
+    print(entries)
+    q = dbEntry.entry.find({'_id':{'$in':entries}}) #Revisar!
+    for doc in q:
+          ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+        'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':getCategoryById(dbUsers,doc['idEs'])})
+    return ans 
+
+
+def getEntriesByCitizenAndCategory(dbEntry,dbUsers,docNum,category):
+    entries,ans = list(dbEntry.citizen.find_one({'docNum':docNum})['entriesReg']),list()
+    q = dbEntry.entry.find({'_id':{'$in':entries}}) #revisar
+    for doc in q:
+        _category = getCategoryById(dbUsers,doc['idEs'])
+        if(_category == category):
+            ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+            'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':_category})
+    return ans
+ 
 
 #------------------------------------Funciones ciudadano---------------------------------------
+
+
+
+
+
+#------------------------------------Funciones EP---------------------------------------
+   
+
+def updateCitizenEntry(db,_id,docNum):
+    doc = db.citizen.find_one({'docNum':docNum})
+    if( doc != None):
+        entries = list(doc['entriesReg'])
+        entries.append(_id)
+        db.citizen.update_one({'docNum':docNum},{'$set': {'entriesReg':entries}},upsert = False)
+    else:
+        db.citizen.insert_one({'docNum':docNum,'entriesReg':[_id]})
+    
+
+
+
+
+def registerEntry(db,docNumCi,docNumEs,idEs,temperature,date,time,mask,ans,description):
+    _id = db.entry.insert_one({'docNumCi':docNumCi,'docNumEs':docNumEs,'idEs':idEs,'temperature':temperature,
+    'date':date,'time':time,'mask':mask,'ans':ans,'description':description}).inserted_id
+    updateCitizenEntry(db,_id,docNumCi)
+
+
+
+#------------------------------------Funciones EP---------------------------------------
 
 
 
@@ -423,12 +480,13 @@ def makeEntryDB(client):
     col.insert_one({
         'docNumCi':'',
         'docNumEs':'',
+        'idEs':'', #IdObject del ES
         'temperature':'',
         'date':'',
         'time':'',
         'mask':'',
         'ans':'',
-        'description':''
+        'description':'',
     })
 
     col = db['citizen']
@@ -436,6 +494,7 @@ def makeEntryDB(client):
         'docNum':'',
         'entriesReg':[]
     })
+
 
 
 
@@ -531,6 +590,9 @@ def main():
     print(getUsersToActivate(db))
     print(db.list_collection_names())
     """
+    r = getUsersToActivate(client.UsersDB,0,2)
+    for doc in r:
+        printDocument(doc)
     #setCitizenState(client.UsersDB,"miguel22","A")
     db = client.ParametersDB
     #db.city.drop()
