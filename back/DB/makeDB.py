@@ -184,6 +184,30 @@ def getInactiveUsers(db):
 
 
 
+def getUserData(db,username):
+    rol,ans = db.user.find_one({'username':username})['rol'],list()
+    if(rol == 'Admin'):
+        doc = db.administrator.find_one({'username':username})
+        ans.append({'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'names':doc['names'],
+        'lastNames':doc['lastNames']}) 
+    elif(rol == 'Citizen'):
+        doc = db.citizen.find_one({'username':username})
+        ans.append({'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'names':doc['names'],'lastNames':doc['lastNames'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'gender':doc['gender'],'state':doc['state']})
+    elif(rol == 'EP'):
+        doc = db.establishment.find_one({'username':username})
+        ans.append({'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
+    elif(rol == 'ES'):
+        doc = db.healthEntity.find_one({'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
+    
+
+    return ans
+
 
 def getUsersToActivateHealthEn(db,skipV,limitV):
     ans = list()
