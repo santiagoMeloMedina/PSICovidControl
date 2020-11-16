@@ -18,6 +18,9 @@ export const CONSTANTS = {
         POST: {
             AUTHORIZED: {
                 URL: "/user/authorize"
+            },
+            USER: {
+                URL: "/user/user"
             }
         }
     }

@@ -19,7 +19,7 @@ import { EditInformationComponent } from '@component/dashboard/edit-information/
 import { ExamComponent } from '@component/dashboard/exam/exam.component';
 import { RegisterDetailComponent } from 'src/app/component/main/pages/register/register-detail/register-detail.component';
 import { ParameterComponent } from '@component/dashboard/parameter/parameter.component';
-import { ViewQrComponent } from '@component/dashboard/view-qr/view-qr.component';
+import { QrViewComponent } from '@component/dashboard/qr-view/qr-view.component';
 
 
 export const routes: Routes = [
@@ -119,7 +119,7 @@ export const routes: Routes = [
       },
       {
         path:"qr",
-        component: ViewQrComponent,
+        component: QrViewComponent,
         canActivate: [ActionGuard],
         data: { name: "QR"}
       }

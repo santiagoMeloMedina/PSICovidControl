@@ -75,6 +75,14 @@ def register():
             result[VALUE.CONTENT] = user
     return result
 
+def getUser():
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    response = UserRepository.getUser(data['username'])
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
+
 def getAllUsers(start, limit):
     result = RESPONSE.EMPTY.copy()
     users = UserRepository.getAllUsers(start, limit)

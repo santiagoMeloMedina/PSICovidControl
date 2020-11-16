@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Citizen } from 'src/app/model/citizen.model';
 import { Response } from 'src/app/model/response.model';
 import { User } from 'src/app/model/user.model';
 import { environment } from 'src/environments/environment';
@@ -19,18 +20,34 @@ export class UserService {
   }
 
   public getUser(username: string): Promise<User> {
+    let body: Object = {"username": username};
     return new Promise<User>((resolve, reject) => {
-      let user: User = new User().deserealize({
-        "id": 1,
-        "rol": "Citizen",
-        "name": "craaack",
-        "lastname": "Cracked",
-        "state": "Activo",
-        "username": "crack",
-        "city": "Cali",
-        "department": "Valle del Cauca"
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.POST.USER.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: User = null;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = new User().deserealize(response.getResponse()['content']);
+        }
+        resolve(result);
       });
-      resolve(user);
+    });
+  }
+
+  public getCitizen(username: string): Promise<Citizen> {
+    let body: Object = {"username": username};
+    return new Promise<Citizen>((resolve, reject) => {
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.POST.USER.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.post(url, body, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: Citizen = null;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = new Citizen().deserealize(response.getResponse()['content']);
+        }
+        resolve(result);
+      });
     });
   }
 

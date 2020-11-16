@@ -5,6 +5,7 @@ import { CONSTANTS as ENABLE_DISABLE } from 'src/app/constant/value/enable-disab
 import { CONSTANTS as AUTHORIZE } from 'src/app/constant/value/authorize.constant';
 import { CONSTANTS as ENTRY } from 'src/app/constant/value/entry.constant';
 import { CONSTANTS as PARAMETER } from 'src/app/constant/value/parameter.constant';
+import { CONSTANTS as QRCODE } from 'src/app/constant/value/qr.constant';
 
 export const CONSTANTS = {
     EXAM_HISTORY: EXAM_HISTORY,
@@ -12,5 +13,6 @@ export const CONSTANTS = {
     ENABLE_DISABLE: ENABLE_DISABLE,
     AUTHORIZE: AUTHORIZE,
     ENTRY: ENTRY,
-    PARAMETER: PARAMETER
+    PARAMETER: PARAMETER,
+    QRCODE: QRCODE
 }
