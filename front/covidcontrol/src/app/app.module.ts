@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { EditInformationComponent } from './component/dashboard/edit-information
 import { ExamComponent } from './component/dashboard/exam/exam.component';
 import { RegisterDetailComponent } from './component/main/pages/register/register-detail/register-detail.component';
 import { ParameterComponent } from './component/dashboard/parameter/parameter.component';
+import { QrViewComponent } from './component/dashboard/qr-view/qr-view.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +49,15 @@ import { ParameterComponent } from './component/dashboard/parameter/parameter.co
     EditInformationComponent,
     ExamComponent,
     RegisterDetailComponent,
-    ParameterComponent
+    ParameterComponent,
+    QrViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QRCodeModule
   ],
   providers: [
     CookieService

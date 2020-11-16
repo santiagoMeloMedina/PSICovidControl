@@ -34,6 +34,18 @@ def register():
         print(e)
     return result
 
+@route.route("/{}/user".format(alias), methods=["POST"])
+def getUser():
+    """ This function obtains a user"""
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.getUser()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
 @route.route("/{}/all/<int:start>/<int:limit>".format(alias), methods=["GET"])
 def getAllUsers(start, limit):
     """ This function obtains all users"""

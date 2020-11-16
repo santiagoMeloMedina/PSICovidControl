@@ -33,6 +33,31 @@ def register(data):
         pass
     return result
 
+def getUser(username):
+    result = None
+    rol = database.user.find_one({'username':username})['rol']
+    if(rol == ROLE.ROLES['ADMIN']):
+        doc = database.administrator.find_one({'username':username})
+        result = {'id':str(doc['_id']),'rol': ROLE.ROLES['ADMIN'],'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'lastname':doc['lastname']}
+    elif(rol == ROLE.ROLES['CITIZEN']):
+        doc = database.citizen.find_one({'username':username})
+        result = {'id':str(doc['_id']),'rol': ROLE.ROLES['CITIZEN'],'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],'lastname':doc['lastname'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'gender':doc['gender'],'state':doc['state']}
+    elif(rol == ROLE.ROLES['EP']):
+        doc = database.establishment.find_one({'username':username})
+        result = {'id':str(doc['_id']),'rol': ROLE.ROLES['EP'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']}
+    elif(rol == ROLE.ROLES['ES']):
+        doc = database.healthEntity.find_one({'username':username})
+        result = {'id':str(doc['_id']),'rol': ROLE.ROLES['ES'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
+        'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
+        'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
+        'totalRes':doc['totalRes'],'city':doc['city']}
+    return result
+
 def getAllUsers(start, limit):
     result = CitizenRepository.getSome(start, limit) + EPRepository.getSome(start, limit) + ESRepository.getSome(start, limit)
     result = sorted(result, key = lambda x: False if not random.randint(0,1) else True)
