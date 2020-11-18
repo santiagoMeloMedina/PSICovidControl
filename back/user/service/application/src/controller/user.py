@@ -81,3 +81,15 @@ def authorize():
     except Exception as e:
         print(e)
     return result
+
+@route.route("/{}/update".format(alias), methods=["PUT"])
+def update():
+    """ This function updates a certain user"""
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.update()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result

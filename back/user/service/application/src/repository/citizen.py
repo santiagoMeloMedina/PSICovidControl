@@ -1,6 +1,7 @@
 
 from src.configuration.app import database
 import src.constant.role as ROLE
+from src.model.user.citizen import Citizen
 
 def register(data):
     result = None
@@ -28,3 +29,11 @@ def getSome(start, limit):
 def setState(username, newState):
     result = database.citizen.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
     return result.matched_count > 0
+
+def update(data):
+    result = 0
+    user = Citizen(**data)
+    doc = database.citizen.find_one({'username': user.getUsername()})
+    if(doc != None):
+        result = database.citizen.update_one({'username': user.getUsername()},{'$set': user.getMap()},upsert = False).matched_count
+    return result > 0

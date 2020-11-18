@@ -107,4 +107,13 @@ def authorize():
     if response:
         result[VALUE.CONTENT] = True
     return result
+
+def update():
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    repository = getRoleRepository(data)
+    response = repository.update(data)
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
     

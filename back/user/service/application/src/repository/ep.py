@@ -2,6 +2,7 @@
 from src.configuration.app import database
 import random
 import src.constant.role as ROLE
+from src.model.user.ep import EP
 
 def register(data):
     result = None
@@ -29,3 +30,11 @@ def getSome(start, limit):
 def setState(username, newState):
     result = database.establishment.update_one({'username':username},{'$set':{'state':newState}},upsert = False)
     return result.matched_count > 0
+
+def update(data):
+    result = 0
+    user = EP(**data)
+    doc = database.establishment.find_one({'username': user.getUsername()})
+    if(doc != None):
+        result = database.establishment.update_one({'username': user.getUsername()},{'$set': user.getMap()},upsert = False).matched_count
+    return result > 0

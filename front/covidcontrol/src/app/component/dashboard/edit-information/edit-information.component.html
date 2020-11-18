@@ -2,13 +2,13 @@
     <div class = "box">
         <div class = "content">
             <form [formGroup]="getAdminForm()" [ngClass]="sameRole(getRoleName('ADMIN')) ? '':'hide'">
-                <input type="text" formControlName="name" placeholder="Nombres">
-                <input type="text" formControlName="lastname" placeholder="Apellidos">
+                <input type="text" formControlName="name" placeholder="Nombre">
+                <input type="text" formControlName="lastname" placeholder="Apellido">
                 <input type="password" formControlName="password" placeholder="Contraseña">
             </form>
             <form [formGroup]="getCitizenForm()" [ngClass]="sameRole(getRoleName('CITIZEN')) ? '':'hide'">
-                <input type="text" formControlName="name" placeholder="Nombres">
-                <input type="text" formControlName="lastname" placeholder="Apellidos">
+                <input type="text" formControlName="name" placeholder="{{ getCitizenForm().get('name').value }}">
+                <input type="text" formControlName="lastname" placeholder="Apellido">
                 <input type="text" formControlName="address" placeholder="Dirección">
                 <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
                 <select type="text" formControlName="neighHood" placeholder="Barrio">
