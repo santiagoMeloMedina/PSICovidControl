@@ -4,7 +4,12 @@ export const CONSTANTS = {
         URL: "/user/authenticate"
     },
     REGISTER: {
-        URL: "/user/register"
+        ALL: {
+            URL: "/user/register"
+        },
+        ADMIN: {
+            URL: "/user/register/admin"
+        }
     },
     USER: {
         GET: {
@@ -21,6 +26,11 @@ export const CONSTANTS = {
             },
             USER: {
                 URL: "/user/user"
+            }
+        },
+        PUT: {
+            UPDATE: {
+                URL: "/user/update"
             }
         }
     }

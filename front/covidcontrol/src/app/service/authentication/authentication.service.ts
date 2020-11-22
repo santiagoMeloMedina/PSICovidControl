@@ -45,12 +45,25 @@ export class AuthenticationService {
 
   public register(data: Object): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      let url: string = `${environment.PETITION.API}${environment.PETITION.ENDPOINTS.REGISTER.URL}`;
+      let url: string = `${environment.PETITION.API}${environment.PETITION.ENDPOINTS.REGISTER.ALL.URL}`;
       this.httpClient.post(url, data, {}).subscribe(data => {
         let response: Response = new Response(data);
         let result: boolean = false;
         if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
-          console.log(response.getResponse())
+          result = true;
+        }
+        resolve(result);
+      });
+    });
+  }
+
+  public registerAdmin(data: Object): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      let url: string = `${environment.PETITION.API}${environment.PETITION.ENDPOINTS.REGISTER.ADMIN.URL}`;
+      this.httpClient.post(url, data, {}).subscribe(data => {
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
           result = true;
         }
         resolve(result);

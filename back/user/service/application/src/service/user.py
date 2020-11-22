@@ -48,18 +48,10 @@ def getRoleRepository(data):
 def setStateByRol(data):
     rol = data['rol']
     data['state'] = 'A'
-    if rol == ROLE.ROLES['ADMIN']:
-        result = AdminRepository
-    elif rol == ROLE.ROLES['CITIZEN']:
-        result = CitizenRepository
-    elif rol == ROLE.ROLES['EP']:
-        result = EPRepository
+    if rol == ROLE.ROLES['EP']:
         data['state'] = 'I'
     elif rol == ROLE.ROLES['ES']:
-        result = ESRepository
         data['state'] = 'I'
-    else:
-        result = UserRepository
     return result
 
 def register():
@@ -70,6 +62,18 @@ def register():
     if not UserRepository.checkRegistration(data['username'], data['email']):
         user = UserRepository.register(data)
         profile = repository.register(data)
+        user['_id'], profile['_id'] = str(user['_id']), str(profile['_id'])
+        if user and profile:
+            result[VALUE.CONTENT] = user
+    return result
+
+def registerAdmin():
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    if not UserRepository.checkRegistration(data['username'], data['email']):
+        data['rol'] = ROLE.ROLES['ADMIN']
+        user = UserRepository.register(data)
+        profile = AdminRepository.register(data)
         user['_id'], profile['_id'] = str(user['_id']), str(profile['_id'])
         if user and profile:
             result[VALUE.CONTENT] = user

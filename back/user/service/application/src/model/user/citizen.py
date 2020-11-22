@@ -29,6 +29,7 @@ class Citizen(User):
                 toDelete.append(key)
         for key in toDelete:
             del result[key]
+        print(toDelete)
         result["lastname"] = self.lastname
         result["gender"] = self.gender
         return result

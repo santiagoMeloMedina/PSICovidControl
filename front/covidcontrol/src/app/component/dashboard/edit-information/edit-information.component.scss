@@ -29,30 +29,43 @@
 
 form {
     position: relative;
-    width: 50%;
-    height: 300px;
+    width: 55%;
+    height: 400px;
     min-width: 300px;
     transform: translate(-50%, 0);
     left: 50%;
     margin-top: 80px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 form input {
     position: relative;
-    width: 100%;
+    width: 45%;
     margin-top: 10px;
     height: 25px;
+    left: 140px;
+}
+
+form span {
+    position: absolute;
+    width: 80px;
+    margin-top: 10px;
+    text-align: left;
+    padding-left: 15px;
+    font-size: smaller;
+    color: gray;
+    font-family: 'Ubuntu', sans-serif;
+    left: 0;
 }
 
 form select {
     position: relative;
-    width: 100%;
+    width: 380px;
     height: 40px;
     border: 0;
-    padding-left: 10px;
-    transform: translate(-50%, 0);
-    left: 50%;
     margin-top: 10px;
+    left: 140px;
 }
 
 .actions {

@@ -55,7 +55,7 @@ def getUser(username):
         result = {'id':str(doc['_id']),'rol': ROLE.ROLES['ES'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
         'state':doc['state'],'totalDocts':doc['totalDocts'],'totalCap':doc['totalCap'],
-        'totalRes':doc['totalRes'],'city':doc['city']}
+        'totalRes':doc['totalRes'],'totalBeds':doc['totalBeds'],'city':doc['city']}
     return result
 
 def getAllUsers(start, limit):

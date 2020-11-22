@@ -15,13 +15,6 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createAdmin(data: Object): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      console.log(data);
-      resolve(true);
-    });
-  }
-
   public getUser(username: string): Promise<User> {
     let body: Object = {"username": username};
     return new Promise<User>((resolve, reject) => {
@@ -186,9 +179,19 @@ export class UserService {
     });
   }
 
-  public updateUser(id: string, username: string, data: Object): Promise<boolean> {
+  public updateUser(data: Object): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      resolve(true);
+      let path: string = `${environment.PETITION.ENDPOINTS.USER.PUT.UPDATE.URL}`;
+      let url: string = `${environment.PETITION.API}${path}`;
+      this.httpClient.put(url, data, {}).subscribe(data => {
+        console.log(data);
+        let response: Response = new Response(data);
+        let result: boolean = false;
+        if (response.getCode() == environment.HTTP_CODES.SUCCESS) {
+          result = response.getResponse()['content'];
+        }
+        resolve(result);
+      });
     });
   }
   

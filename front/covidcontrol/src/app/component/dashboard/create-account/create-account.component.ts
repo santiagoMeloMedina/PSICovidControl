@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoutingService } from 'src/app/service/routing/routing.service';
 import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
 import { DocumentType } from 'src/app/model/parameters/document.model';
-import { UserService } from 'src/app/service/service/user/user.service';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { NoticeService } from 'src/app/service/notice/notice.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-account',
@@ -18,14 +20,16 @@ export class CreateAccountComponent implements OnInit {
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
               private parameterService: ParameterService, 
-              private userService: UserService) {
+              private authenticationService: AuthenticationService, 
+              private noticeService: NoticeService) {
     this.adminForm = this.formBuilder.group({
       username: ['',Validators.required],  
+      email: ['',Validators.required],
       password: ['', Validators.required],
       docType: ['', Validators.required],
       docNum:['', Validators.required],
       name:['', Validators.required],
-      lastName:['', Validators.required]
+      lastname:['', Validators.required]
     });
   }  
 
@@ -49,8 +53,12 @@ export class CreateAccountComponent implements OnInit {
 
   public create(): void {
     let data: Object = this.adminForm.value;
-    this.adminForm.reset();
-    this.userService.createAdmin(data).then(result => {
+    this.authenticationService.registerAdmin(data).then(result => {
+      if (result) {
+        this.noticeService.alertMessageRestart(environment.VALUE.MESSAGE.REGISTER.SUCESS);
+      } else {
+        this.noticeService.alertMessage(environment.VALUE.MESSAGE.REGISTER.ERROR);
+      }
     });
   }
 

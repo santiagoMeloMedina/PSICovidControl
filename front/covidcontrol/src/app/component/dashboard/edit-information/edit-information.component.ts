@@ -34,8 +34,7 @@ export class EditInformationComponent implements OnInit {
               private parameterService: ParameterService) {
       this.adminForm = this.formBuilder.group({
           name: ['',Validators.required],  
-          lastname: ['', Validators.required],
-          password: ['', Validators.required]
+          lastname: ['', Validators.required]
       });
 
       this.citizenForm = this.formBuilder.group({
@@ -44,7 +43,9 @@ export class EditInformationComponent implements OnInit {
         address: ['', Validators.required],
         phoneNum: ['', Validators.required],
         neighHood: ['', Validators.required],
-        password: ['', Validators.required]
+        gender: ['', Validators.required],
+        department: ['', Validators.required],
+        city: ['', Validators.required]
     });
 
     this.healthEnForm = this.formBuilder.group({
@@ -52,7 +53,12 @@ export class EditInformationComponent implements OnInit {
       address: ['', Validators.required],
       phoneNum: ['', Validators.required],
       neighHood: ['', Validators.required],
-      password: ['', Validators.required]
+      department: ['', Validators.required], 
+      city: ['', Validators.required],
+      totalCap: ['', Validators.required],
+      totalRes: ['', Validators.required],
+      totalDocts: ['', Validators.required],
+      totalBeds: ['', Validators.required]
     });
 
     this.publicEsForm = this.formBuilder.group({
@@ -60,8 +66,10 @@ export class EditInformationComponent implements OnInit {
       address: ['', Validators.required],
       phoneNum: ['', Validators.required],
       neighHood: ['', Validators.required],
-      password: ['', Validators.required],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
+      totalCap: ['', Validators.required],
+      department: ['', Validators.required], 
+      city: ['', Validators.required]
     });
   }
 
@@ -134,9 +142,63 @@ export class EditInformationComponent implements OnInit {
     return result;
   }
 
+  public patchAdminValues(): void {
+    let admin: Admin = new Admin().deserealize(Object(this.user));
+    this.adminForm.patchValue({
+      "name": admin.getName(),
+      "lastname": admin.getLastname()
+    });
+  }
+
+  public patchCitizenValues(): void {
+    let citizen: Citizen = new Citizen().deserealize(Object(this.user));
+    this.citizenForm.patchValue({
+      "name": citizen.getName(),  
+      "lastname": citizen.getLastname(),
+      "address": citizen.getAddress(),
+      "phoneNum": citizen.getPhone(),
+      "neighHood": citizen.getNeighborhood(),
+      "gender": citizen.getGender(),
+      "department": citizen.getDepartment(),
+      "city": citizen.getCity()
+    });
+  }
+
+  public patchEPValues(): void {
+    let ep: EP = new EP().deserealize(Object(this.user));
+    this.publicEsForm.patchValue({
+      "name": ep.getName(),
+      "address": ep.getAddress(),
+      "phoneNum": ep.getPhone(),
+      "neighHood": ep.getNeighborhood(),
+      "category": ep.getCategory(),
+      "totalCap": ep.getTotalCap(),
+      "department": ep.getDepartment(),
+      "city": ep.getCity()
+    });
+  }
+
+  public patchESValues(): void {
+    let es: ES = new ES().deserealize(Object(this.user));
+    this.healthEnForm.patchValue({
+      "name": es.getName(),
+      "address": es.getAddress(),
+      "phoneNum": es.getPhone(),
+      "neighHood": es.getNeighborhood(),
+      "department": es.getDepartment(),
+      "city": es.getCity(),
+      "totalCap": es.getTotalCap(),
+      "totalRes": es.getTotalRes(),
+      "totalDocts": es.getTotalDocts(),
+      "totalBeds": es.getTotalBeds()
+    });
+  }
+
   public setFormValues(): void {
-    let form: FormGroup = this.getFormAccordingToRole();
-    form.patchValue({"name": this.user.getName()}); // TODO(Santiago): Set all form values with user information on all roles.
+    this.patchAdminValues();
+    this.patchCitizenValues();
+    this.patchEPValues();
+    this.patchESValues();
   }
 
   public setUserInfo(): void {
@@ -164,14 +226,14 @@ export class EditInformationComponent implements OnInit {
 
   public update(): void {
     let form: FormGroup = this.getFormAccordingToRole();
-    let user: Object = this.authenticationService.getUser();
     let values: Object = form.value;
-    form.reset();
-    let id: string = user[environment.AUTHENTICATION.ATTR.ID];
-    let username: string = user[environment.AUTHENTICATION.ATTR.USERNAME];
-    this.userService.updateUser(id, username, values).then(result => {
-      console.log(values)
-      console.log(`Updated ${id} - ${username}`)
+    Object.keys(values).forEach(key => {
+      this.user[key] = values[key];
+    });
+    this.userService.updateUser(Object(this.user)).then(result => {
+      if (result) {
+        window.location.reload();
+      }
     });
   }
   

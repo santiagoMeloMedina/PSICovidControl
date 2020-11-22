@@ -6,6 +6,8 @@ import { CONSTANTS as AUTHORIZE } from 'src/app/constant/value/authorize.constan
 import { CONSTANTS as ENTRY } from 'src/app/constant/value/entry.constant';
 import { CONSTANTS as PARAMETER } from 'src/app/constant/value/parameter.constant';
 import { CONSTANTS as QRCODE } from 'src/app/constant/value/qr.constant';
+import { CONSTANTS as NOTICE } from 'src/app/constant/value/notice.constant';
+import { CONSTANTS as MESSAGE } from 'src/app/constant/value/message.constant';
 
 export const CONSTANTS = {
     EXAM_HISTORY: EXAM_HISTORY,
@@ -14,5 +16,7 @@ export const CONSTANTS = {
     AUTHORIZE: AUTHORIZE,
     ENTRY: ENTRY,
     PARAMETER: PARAMETER,
-    QRCODE: QRCODE
+    QRCODE: QRCODE,
+    NOTICE: NOTICE,
+    MESSAGE: MESSAGE
 }

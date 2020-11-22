@@ -24,10 +24,22 @@ def authenticate():
 
 @route.route("/{}/register".format(alias), methods=["POST"])
 def register():
-    """ This function registers a user"""
+    """ This function registers a user of type Citizen, EP, or ES"""
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
         response = UserService.register()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/register/admin".format(alias), methods=["POST"])
+def registerAdmin():
+    """ This function registers a user of type Admin"""
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = UserService.registerAdmin()
         if response != RESPONSE.EMPTY.copy():
             result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
     except Exception as e:

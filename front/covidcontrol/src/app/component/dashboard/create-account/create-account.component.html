@@ -5,7 +5,8 @@
                 <form [formGroup]="getAdminForm()">
                     <div class = "fields">
                         <input type="text" formControlName="username" placeholder="Usuario">
-                        <input type="text" formControlName="password" placeholder="Contraseña">
+                        <input type="text" formControlName="email" placeholder="Correo Electronico">
+                        <input type="password" formControlName="password" placeholder="Contraseña">
                         <select type="text" formControlName="docType" placeholder="Tipo de documento">
                             <option value="" disabled selected>Tipo de documento</option>
                             <option *ngFor="let type of getDocumentTypes()" value="{{ type.getId() }}">
@@ -14,7 +15,7 @@
                         </select>
                         <input type="text" formControlName="docNum" placeholder="Número de documento">
                         <input type="text" formControlName="name" placeholder="Nombres">
-                        <input type="text" formControlName="lastName" placeholder="Apellidos">                       
+                        <input type="text" formControlName="lastname" placeholder="Apellidos">                       
                     </div>
                 </form>
                 <button class="create" (click)="create()" [disabled]="!(getAdminForm().valid)">Crear</button>

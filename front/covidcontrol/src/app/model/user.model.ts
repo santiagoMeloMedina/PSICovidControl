@@ -4,6 +4,7 @@ import { Deserealizable } from './deserealize.model';
 export class User implements Deserealizable {
 
     private id: string;
+    private email: string;
     private rol: string;
     private docType: string;
     private docNum: number;
@@ -13,13 +14,14 @@ export class User implements Deserealizable {
     private city: string;
     private department: string;
     private address: string;
-    private neighborhood: string;
-    private phone: number;
+    private neighHood: string;
+    private phoneNum: number;
 
     constructor() {}
 
     deserealize(data: any): this {
         this.id = data['id'];
+        this.email = data['email'];
         this.docType = data['docType'];
         this.docNum = data['docNum'];
         this.rol = data['rol'];
@@ -29,13 +31,17 @@ export class User implements Deserealizable {
         this.city = data['city'];
         this.department = data['department'];
         this.address = data['address'];
-        this.neighborhood = data['neighHood'];
-        this.phone = data['phoneNum'];
+        this.neighHood = data['neighHood'];
+        this.phoneNum = data['phoneNum'];
         return this;
     }
 
     public getId(): string {
         return this.id;
+    }
+
+    public getEmail(): string {
+        return this.email;
     }
 
     public getRol(): string {
@@ -75,11 +81,11 @@ export class User implements Deserealizable {
     }
 
     public getNeighborhood(): string {
-        return this.neighborhood;
+        return this.neighHood;
     }
 
     public getPhone(): number {
-        return this.phone;
+        return this.phoneNum;
     }
 
     public isActive(): boolean {
