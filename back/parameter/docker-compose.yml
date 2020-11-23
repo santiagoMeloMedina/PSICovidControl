@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  
+  # parameter:
+  #   build: ./service/application
+  #   container_name: parameter
+  #   ports:
+  #     - '5000:5000'
+  #   expose:
+  #     - '5000'
+  #   networks:
+  #     - psi
+
+  parameter_nginx:
+    build: ./service/proxy
+    container_name: parameter_nginx
+    ports:
+      - '5100:5100'
+    expose:
+      - '5100'
+    networks:
+      - psi
+    
+  parameter_db:
+    build: ./database
+    container_name: parameter_db
+    ports:
+      - '5200:27017'
+    expose:
+      - '5200'
+    networks:
+      - psi
+
+networks:
+  psi:
+    external: true

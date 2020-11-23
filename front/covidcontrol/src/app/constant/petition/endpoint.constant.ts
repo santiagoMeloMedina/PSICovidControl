@@ -33,5 +33,26 @@ export const CONSTANTS = {
                 URL: "/user/update"
             }
         }
+    },
+    PARAMETER: {
+        GET: {
+            ALL_DEPARTMENT: {
+                URL: "/parameter/department"
+            },
+            ALL_DOCUMENT_TYPE: {
+                URL: "/parameter/documenttype"
+            }
+        },
+        POST: {
+            CITY_DEPARTMENT: {
+                URL: "/parameter/city"
+            },
+            NEIGHBORHOOD_CITY: {
+                URL: "/parameter/neighborhood"
+            },
+            DEPARTMENT_CITY: {
+                URL: "/parameter/department/city"
+            }
+        }
     }
 }

@@ -36,6 +36,10 @@ export class User implements Deserealizable {
         return this;
     }
 
+    public setDepartment(department: string): void {
+        this.department = department;
+    }
+
     public getId(): string {
         return this.id;
     }

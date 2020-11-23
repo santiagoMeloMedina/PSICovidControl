@@ -1,9 +1,9 @@
 
 import { Deserealizable } from '../deserealize.model';
 
-export class DocumentType implements Deserealizable {
+export class Department implements Deserealizable {
 
-    private id: number;
+    private id: string;
     private name: string;
 
     constructor() {}
@@ -14,7 +14,7 @@ export class DocumentType implements Deserealizable {
         return this;
     }
 
-    public getId(): number {
+    public getId(): string {
         return this.id;
     }
 

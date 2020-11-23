@@ -15,37 +15,28 @@
                 <input type="text" formControlName="lastname" placeholder="Apellidos">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
-                    <option value="1">
-                        op1
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="docNum" placeholder="Número de documento">
-                <select type="text" formControlName="department" placeholder="Departamento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
                     <option value="" selected disabled>Seleccione su departamento</option>
-                    <option value="1">
-                        Valle del cauca
-                    </option>
-                    <option value="2">
-                        Amazonas
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
                     </option>
                 </select>
-                <select type="text" formControlName="city" placeholder="Municipio">
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
                     <option value="" selected disabled>Seleccione su municipio</option>
-                    <option value="1">
-                        Cali
-                    </option>
-                    <option value="2">
-                        AAA
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="address" placeholder="Dirección">
                 <select type="text" formControlName="neighHood" placeholder="Barrio">
                     <option value="" selected disabled>Seleccione su barrio</option>
-                    <option value="1">
-                        Barrio 1
-                    </option>
-                    <option value="2">
-                        Barrio 2
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
@@ -68,27 +59,21 @@
                 <input type="text" formControlName="name" placeholder="Nombre">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
-                    <option value="1">
-                        op1
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="docNum" placeholder="Número de documento">
-                <select type="text" formControlName="department" placeholder="Departamento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
                     <option value="" selected disabled>Seleccione su departamento</option>
-                    <option value="1">
-                        Valle del cauca
-                    </option>
-                    <option value="2">
-                        Amazonas
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
                     </option>
                 </select>
-                <select type="text" formControlName="city" placeholder="Municipio">
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
                     <option value="" selected disabled>Seleccione su municipio</option>
-                    <option value="1">
-                        Cali
-                    </option>
-                    <option value="2">
-                        AAA
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="totalCap" placeholder="Capacidad total">
@@ -98,11 +83,8 @@
                 <input type="text" formControlName="address" placeholder="Dirección">
                 <select type="text" formControlName="neighHood" placeholder="Barrio">
                     <option value="" selected disabled>Seleccione su barrio</option>
-                    <option value="1">
-                        Barrio 1
-                    </option>
-                    <option value="2">
-                        Barrio 2
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="phoneNum" placeholder="Número de telefono">       
@@ -115,38 +97,29 @@
                 <input type="text" formControlName="name" placeholder="Nombre">
                 <select type="text" formControlName="docType" placeholder="Tipo de documento">
                     <option value="" selected disabled>Seleccione tipo de documento</option>
-                    <option value="1">
-                        op1
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="docNum" placeholder="Número de documento">
-                <select type="text" formControlName="department" placeholder="Departamento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
                     <option value="" selected disabled>Seleccione su departamento</option>
-                    <option value="1">
-                        Valle del cauca
-                    </option>
-                    <option value="2">
-                        Amazonas
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
                     </option>
                 </select>
-                <select type="text" formControlName="city" placeholder="Municipio">
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
                     <option value="" selected disabled>Seleccione su municipio</option>
-                    <option value="1">
-                        Cali
-                    </option>
-                    <option value="2">
-                        AAA
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="totalCap" placeholder="Capacidad total">
                 <input type="text" formControlName="address" placeholder="Dirección">
                 <select type="text" formControlName="neighHood" placeholder="Barrio">
                     <option value="" selected disabled>Seleccione su barrio</option>
-                    <option value="1">
-                        Barrio 1
-                    </option>
-                    <option value="2">
-                        Barrio 2
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
                     </option>
                 </select>
                 <input type="text" formControlName="phoneNum" placeholder="Número de telefono">

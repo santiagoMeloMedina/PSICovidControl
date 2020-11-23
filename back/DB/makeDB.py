@@ -28,13 +28,8 @@ def getNameCity(db,_id):
 def registerDept(db,name):
     db.department.insert_one({"name":name})
 
-
-
-
 def registerCity(db,name,idDept):
     db.city.insert_one({"name":name,"idDept":idDept})
-
-
 
 def initializeCountryParams(db,fileName):
     with open(fileName,encoding="utf8") as file:

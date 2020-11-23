@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoutingService } from 'src/app/service/routing/routing.service';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { environment } from 'src/environments/environment';
-import { Neighborhood } from 'src/app/model/neighborhood.model';
+import { Neighborhood } from 'src/app/model/parameters/neighborhood.model';
 import { UserService } from 'src/app/service/service/user/user.service';
 import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
 import { Citizen } from 'src/app/model/citizen.model';
@@ -11,6 +11,8 @@ import { Admin } from 'src/app/model/admin.model';
 import { EP } from 'src/app/model/ep.model';
 import { ES } from 'src/app/model/es.model';
 import { User } from 'src/app/model/user.model';
+import { City } from 'src/app/model/parameters/city.model';
+import { Department } from 'src/app/model/parameters/department.model';
 
 @Component({
   selector: 'app-edit-information',
@@ -23,9 +25,14 @@ export class EditInformationComponent implements OnInit {
   private citizenForm: FormGroup;
   private healthEnForm: FormGroup;
   private publicEsForm: FormGroup;
-  private neighborhoods: Neighborhood[] = [];
 
   private user: User | Citizen | Admin | EP | ES = new User();
+
+  private departments: Department[] = [];
+  private cities: Map<string, City[]> = new Map();
+  private department: Department = new Department();
+  private neighborhoods: Map<string, Neighborhood[]> = new Map();
+  private city: City = new City();
   
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder,
@@ -74,8 +81,8 @@ export class EditInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setNeighborhood();
     this.setUserInfo();
+    this.setDepartments();
   }
   
   public getAdminForm(): FormGroup {
@@ -206,6 +213,14 @@ export class EditInformationComponent implements OnInit {
     let username: string = user[environment.AUTHENTICATION.ATTR.USERNAME];
     this.getUserGetFunctionByRole(username).then(result => {
       this.user = result;
+      this.parameterService.getDepartmentByCity(new City().deserealize({'_id': this.user.getCity()})).then(result => {
+        this.user.setDepartment(result.getId());
+        this.selectDepartment(result.getId());
+        setTimeout(() => {
+          this.selectCity(this.user.getCity());
+          this.setFormValues();
+        }, 1000);
+      });
       this.setFormValues();
     });
   }
@@ -214,14 +229,54 @@ export class EditInformationComponent implements OnInit {
     return this.user;
   }
 
-  public getNeighborhood(): Neighborhood[] {
-    return this.neighborhoods;
+  public setDepartments(): void {
+    this.parameterService.getDepartmentAll().then(result => {
+      this.departments = result;
+    })
   }
 
-  public setNeighborhood(): void {
-    this.parameterService.getNeighborhoods().then(result => {
-      this.neighborhoods = result;
-    })
+  public getDepartments(): Department[] {
+    return this.departments;
+  }
+
+  public selectDepartment(departmentId: string): void {
+    this.department = this.departments.filter((department) => {
+      return department.getId() == departmentId;
+    })[0];
+    this.setCities();
+  }
+
+  public setCities(): void {
+    let department: Department = this.department;
+    if (!this.cities.has(department.getId())) {
+      this.parameterService.getCitiesByDepartment(department).then(result => {
+        this.cities.set(department.getId(), result);
+      }) 
+    }
+  }
+
+  public getCities(): City[] {
+    return this.cities.get(this.department.getId());
+  }
+
+  public selectCity(cityId: string): void {
+    this.city = this.cities.get(this.department.getId()).filter((city) => {
+      return city.getId() == cityId;
+    })[0];
+    this.setNeighoods();
+  }
+
+  public setNeighoods(): void {
+    let city: City = this.city;
+    if (!this.neighborhoods.has(city.getId())) {
+      this.parameterService.getNeighborhoodsByCity(city).then(result => {
+        this.neighborhoods.set(city.getId(), result);
+      }) 
+    }
+  }
+
+  public getNeighoods(): Neighborhood[] {
+    return this.neighborhoods.get(this.city.getId());
   }
 
   public update(): void {

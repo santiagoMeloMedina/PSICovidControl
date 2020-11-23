@@ -3,6 +3,11 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { RoutingService } from 'src/app/service/routing/routing.service';
 import { environment } from 'src/environments/environment';
+import { Department } from 'src/app/model/parameters/department.model';
+import { City } from 'src/app/model/parameters/city.model';
+import { Neighborhood } from 'src/app/model/parameters/neighborhood.model';
+import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
+import { DocumentType } from 'src/app/model/parameters/document.model';
 
 
 @Component({
@@ -20,9 +25,18 @@ export class RegisterDetailComponent implements OnInit {
   private role: string = null;
   private registerData: Object = null;
 
+
+  private departments: Department[] = [];
+  private cities: Map<string, City[]> = new Map();
+  private department: Department = new Department();
+  private neighborhoods: Map<string, Neighborhood[]> = new Map();
+  private city: City = new City();
+  private documentTypes: DocumentType[] = [];
+
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService, 
+              private parameterService: ParameterService) {
      
       this.citizenForm = this.formBuilder.group({
         docType:['',Validators.required],
@@ -81,6 +95,8 @@ export class RegisterDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.setRegisterData();
+    this.setDepartments();
+    this.setDocumentTypes();
   }
 
   private setRegisterData(): void {
@@ -125,6 +141,7 @@ export class RegisterDetailComponent implements OnInit {
 
   public selectRoles(id: string): void {
     this.role = environment.AUTHENTICATION.ROLES[id];
+    this.resetData();
   }
 
   public isRoleEqual(role: string): boolean {
@@ -177,6 +194,71 @@ export class RegisterDetailComponent implements OnInit {
         alert("No pudo registrar");
       }
     });
+  }
+
+  public setDepartments(): void {
+    this.parameterService.getDepartmentAll().then(result => {
+      this.departments = result;
+    })
+  }
+
+  public getDepartments(): Department[] {
+    return this.departments;
+  }
+
+  public selectDepartment(departmentId: string): void {
+    this.department = this.departments.filter((department) => {
+      return department.getId() == departmentId;
+    })[0];
+    this.setCities();
+  }
+
+  public setCities(): void {
+    let department: Department = this.department;
+    if (!this.cities.has(department.getId())) {
+      this.parameterService.getCitiesByDepartment(department).then(result => {
+        this.cities.set(department.getId(), result);
+      }) 
+    }
+  }
+
+  public getCities(): City[] {
+    return this.cities.get(this.department.getId());
+  }
+
+  public selectCity(cityId: string): void {
+    this.city = this.cities.get(this.department.getId()).filter((city) => {
+      return city.getId() == cityId;
+    })[0];
+    this.setNeighoods();
+  }
+
+  public setNeighoods(): void {
+    let city: City = this.city;
+    if (!this.neighborhoods.has(city.getId())) {
+      this.parameterService.getNeighborhoodsByCity(city).then(result => {
+        this.neighborhoods.set(city.getId(), result);
+      }) 
+    }
+  }
+
+  public getNeighoods(): Neighborhood[] {
+    return this.neighborhoods.get(this.city.getId());
+  }
+
+  public setDocumentTypes(): void {
+    this.parameterService.getDocumentTypes().then(result => {
+      this.documentTypes = result;
+    });
+  }
+
+  public getDocumentTypes(): DocumentType[] {
+    return this.documentTypes;
+  }
+
+  private resetData(): void {
+    this.department = new Department();
+    this.city = new City();
   }
 
 }

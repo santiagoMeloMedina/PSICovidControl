@@ -52,7 +52,7 @@ def setStateByRol(data):
         data['state'] = 'I'
     elif rol == ROLE.ROLES['ES']:
         data['state'] = 'I'
-    return result
+    return
 
 def register():
     result = RESPONSE.EMPTY.copy()
