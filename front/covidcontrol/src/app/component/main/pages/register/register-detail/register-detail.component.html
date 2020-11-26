@@ -125,11 +125,8 @@
                 <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
                 <select type="text" formControlName="category" placeholder="Categoria">
                     <option value="" selected disabled>Seleccione categoria de EP</option>
-                    <option value="1">
-                        Cine
-                    </option>
-                    <option value="2">
-                        Restaurante
+                    <option value="{{ category.getId() }}" *ngFor="let category of getCategories()">
+                        {{ category.getName() }}
                     </option>
                 </select>
             </form>

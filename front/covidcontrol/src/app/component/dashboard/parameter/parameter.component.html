@@ -9,8 +9,8 @@
             <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('CATEGORY')) ? '':'hide'">
                 <div class="list">
                     <div class="element" *ngFor="let category of getCategories()">
-                        <span>{{ category['name'] }}</span>
-                        <button class="delete">Eliminar</button>
+                        <span>{{ category.getName() }}</span>
+                        <button class="delete" (click)="delete(category.getId())">Eliminar</button>
                     </div>
                 </div>
                 <form [formGroup]=getCategoryForm()>
@@ -22,8 +22,8 @@
             <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('DOCUMENT')) ? '':'hide'">
                 <div class="list">
                     <div class="element" *ngFor="let document of getDocuments()">
-                        <span>{{ document['name'] }}</span>
-                        <button class="delete">Eliminar</button>
+                        <span>{{ document.getName() }}</span>
+                        <button class="delete" (click)="delete(document.getId())">Eliminar</button>
                     </div>
                 </div>
                 <form [formGroup]=getDocTypeForm()>
@@ -35,21 +35,24 @@
             <div class="data" [ngClass]="isParameterTypeEqual(getParameterTypeName('NEIGHBORHOOD')) ? '':'hide'">
                 <div class="list">
                     <div class="element" *ngFor="let neigborhood of getNeighborhoods()">
-                        <span>{{ neigborhood['name'] }}</span>
-                        <button class="delete">Eliminar</button>
+                        <span>{{ neigborhood.getName() }}</span>
+                        <button class="delete" (click)="delete(neigborhood.getId())">Eliminar</button>
                     </div>
                 </div>
                 <form [formGroup]=getNeighHoodForm()>
-                    <input type="text" formControlName="name" placeholder="Barrio">
-                    <select class="munic" formControlName="city">
-                        <option value="" selected disabled>Seleccione su municipio</option>
-                        <option value="1">
-                            cali
-                        </option>
-                        <option value="2">
-                            bogota
+                    <select type="text" (change)="selectDepartment($event.target.value)" placeholder="Departamento">
+                        <option value="" selected disabled>Seleccione su departamento</option>
+                        <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                            {{ department.getName() }}
                         </option>
                     </select>
+                    <select type="text" (change)="selectCity($event.target.value)" formControlName="cityId" placeholder="Municipio">
+                        <option value="" selected disabled>Seleccione su municipio</option>
+                        <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                            {{ city.getName() }}
+                        </option>
+                    </select>
+                    <input type="text" formControlName="name" placeholder="Barrio">
                 </form>
                 <button class="btn" (click)="add()" [disabled]="!getNeighHoodForm().valid"><span>Agregar</span></button>     
             </div>

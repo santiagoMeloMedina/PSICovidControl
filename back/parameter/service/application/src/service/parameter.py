@@ -22,25 +22,25 @@ def getCitiesByDepartment():
         result[VALUE.CONTENT] = response
     return result
 
-def getNeighborhoodsByDepartment():
-    result = RESPONSE.EMPTY.copy()
-    data = eval(request.data.decode("utf-8"))
-    response = ParameterRepository.getNeighborhoodsByDepartment(data['cityId'])
-    if response:
-        result[VALUE.CONTENT] = response
-    return result
-
-def getDocumentTypes():
-    result = RESPONSE.EMPTY.copy()
-    response = ParameterRepository.getDocumentTypes()
-    if response:
-        result[VALUE.CONTENT] = response
-    return result
-
 def getDepartmentByCity():
     result = RESPONSE.EMPTY.copy()
     data = eval(request.data.decode("utf-8"))
     response = ParameterRepository.getDepartmentByCity(data['cityId'])
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
+
+def getQuarantinePeriod():
+    result = RESPONSE.EMPTY.copy()
+    response = ParameterRepository.getQuarantinePeriod()
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
+
+def updateQuarantinePeriod():
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    response = ParameterRepository.updateQuarantinePeriod(data['days'])
     if response:
         result[VALUE.CONTENT] = response
     return result

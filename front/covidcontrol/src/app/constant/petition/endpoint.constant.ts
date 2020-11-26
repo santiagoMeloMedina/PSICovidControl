@@ -40,7 +40,13 @@ export const CONSTANTS = {
                 URL: "/parameter/department"
             },
             ALL_DOCUMENT_TYPE: {
-                URL: "/parameter/documenttype"
+                URL: "/documenttype"
+            },
+            CATEGORIES: {
+                URL: "/category"
+            },
+            QUARANTINE: {
+                URL: "/parameter/quarantine"
             }
         },
         POST: {
@@ -48,10 +54,37 @@ export const CONSTANTS = {
                 URL: "/parameter/city"
             },
             NEIGHBORHOOD_CITY: {
-                URL: "/parameter/neighborhood"
+                URL: "/neighborhood"
             },
             DEPARTMENT_CITY: {
                 URL: "/parameter/department/city"
+            },
+            ADD: {
+                CATEGORY: {
+                    URL: "/category/add"
+                },
+                NEIGHBORHOOD: {
+                    URL: "/neighborhood/add"
+                },
+                DOCUMENTTYPE: {
+                    URL: "/documenttype/add"
+                }
+            }
+        },
+        DELETE: {
+            CATEGORY: {
+                URL: "/category/delete"
+            },
+            NEIGHBORHOOD: {
+                URL: "/neighborhood/delete"
+            },
+            DOCUMENTTYPE: {
+                URL: "/documenttype/delete"
+            }
+        }, 
+        PUT: {
+            QUARANTINE: {
+                URL: "/parameter/quarantine"
             }
         }
     }

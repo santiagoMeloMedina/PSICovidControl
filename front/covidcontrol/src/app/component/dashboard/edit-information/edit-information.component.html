@@ -61,8 +61,8 @@
                 <span>Nombre</span><input type="text" formControlName="name" placeholder="Nombre"><br>
                 <span>Categoria</span><select type="text" formControlName="category" placeholder="Categoría">
                     <option value="" disabled selected>Seleccionar categoria</option>
-                    <option *ngFor="let neighborhood of getNeighoods()" value="{{ neighborhood.getId() }}">
-                        {{ neighborhood.getName() }}
+                    <option *ngFor="let category of getCategories()" value="{{ category.getId() }}">
+                        {{ category.getName() }}
                     </option>
                 </select><br>
                 <span>Dirección</span><input type="text" formControlName="address" placeholder="Dirección"><br>

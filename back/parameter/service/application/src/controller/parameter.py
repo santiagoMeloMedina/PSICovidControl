@@ -32,33 +32,33 @@ def getCitiesByDepartment():
         print(e)
     return result
 
-@route.route("/{}/neighborhood".format(alias), methods=["POST"])
-def getNeighborhoodsByDepartment():
-    result = Response(HTTP_CODE.ERROR, {}).toMap()
-    try:
-        response = ParameterService.getNeighborhoodsByDepartment()
-        if response != RESPONSE.EMPTY.copy():
-            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
-    except Exception as e:
-        print(e)
-    return result
-
-@route.route("/{}/documenttype".format(alias), methods=["GET"])
-def getDocumentTypes():
-    result = Response(HTTP_CODE.ERROR, {}).toMap()
-    try:
-        response = ParameterService.getDocumentTypes()
-        if response != RESPONSE.EMPTY.copy():
-            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
-    except Exception as e:
-        print(e)
-    return result
-
 @route.route("/{}/department/city".format(alias), methods=["POST"])
 def getDepartmentByCity():
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
         response = ParameterService.getDepartmentByCity()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/quarantine".format(alias), methods=["GET"])
+def getQuarantinePeriod():
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = ParameterService.getQuarantinePeriod()
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+    
+@route.route("/{}/quarantine".format(alias), methods=["PUT"])
+def updateQuarantinePeriod():
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = ParameterService.updateQuarantinePeriod()
         if response != RESPONSE.EMPTY.copy():
             result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
     except Exception as e:

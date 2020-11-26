@@ -1,7 +1,7 @@
 
-PORT = 5200#27017
+PORT = 27017
 NAME = "ParameterDB"
-HOST = "localhost"#"parameter_db"
+HOST = "parameter_db"
 
 USER = "admin"
 PASSWORD = "admin"

@@ -8,7 +8,7 @@ import { City } from 'src/app/model/parameters/city.model';
 import { Neighborhood } from 'src/app/model/parameters/neighborhood.model';
 import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
 import { DocumentType } from 'src/app/model/parameters/document.model';
-
+import { Category } from 'src/app/model/parameters/category.model';
 
 @Component({
   selector: 'app-register-detail',
@@ -32,6 +32,7 @@ export class RegisterDetailComponent implements OnInit {
   private neighborhoods: Map<string, Neighborhood[]> = new Map();
   private city: City = new City();
   private documentTypes: DocumentType[] = [];
+  private categories: Category[] = [];
 
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
@@ -97,6 +98,7 @@ export class RegisterDetailComponent implements OnInit {
     this.setRegisterData();
     this.setDepartments();
     this.setDocumentTypes();
+    this.setCategories();
   }
 
   private setRegisterData(): void {
@@ -254,6 +256,16 @@ export class RegisterDetailComponent implements OnInit {
 
   public getDocumentTypes(): DocumentType[] {
     return this.documentTypes;
+  }
+
+  public setCategories(): void {
+    this.parameterService.getCategories().then(result => {
+      this.categories = result;
+    })
+  }
+
+  public getCategories(): Category[] {
+    return this.categories;
   }
 
   private resetData(): void {

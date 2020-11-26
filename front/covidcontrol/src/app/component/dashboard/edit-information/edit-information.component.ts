@@ -13,6 +13,8 @@ import { ES } from 'src/app/model/es.model';
 import { User } from 'src/app/model/user.model';
 import { City } from 'src/app/model/parameters/city.model';
 import { Department } from 'src/app/model/parameters/department.model';
+import { Category } from 'src/app/model/parameters/category.model';
+import { NoticeService } from 'src/app/service/notice/notice.service';
 
 @Component({
   selector: 'app-edit-information',
@@ -33,12 +35,14 @@ export class EditInformationComponent implements OnInit {
   private department: Department = new Department();
   private neighborhoods: Map<string, Neighborhood[]> = new Map();
   private city: City = new City();
+  private categories: Category[] = [];
   
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder,
               public authenticationService: AuthenticationService, 
               private userService: UserService, 
-              private parameterService: ParameterService) {
+              private parameterService: ParameterService, 
+              private noticeService: NoticeService) {
       this.adminForm = this.formBuilder.group({
           name: ['',Validators.required],  
           lastname: ['', Validators.required]
@@ -206,6 +210,7 @@ export class EditInformationComponent implements OnInit {
     this.patchCitizenValues();
     this.patchEPValues();
     this.patchESValues();
+    this.setCategories();
   }
 
   public setUserInfo(): void {
@@ -279,6 +284,16 @@ export class EditInformationComponent implements OnInit {
     return this.neighborhoods.get(this.city.getId());
   }
 
+  public setCategories(): void {
+    this.parameterService.getCategories().then(result => {
+      this.categories = result;
+    })
+  }
+
+  public getCategories(): Category[] {
+    return this.categories;
+  }
+
   public update(): void {
     let form: FormGroup = this.getFormAccordingToRole();
     let values: Object = form.value;
@@ -287,7 +302,9 @@ export class EditInformationComponent implements OnInit {
     });
     this.userService.updateUser(Object(this.user)).then(result => {
       if (result) {
-        window.location.reload();
+        this.noticeService.alertMessageRestart(environment.VALUE.MESSAGE.USER.UPDATE.SUCCESS);
+      } else {
+        this.noticeService.alertMessage(environment.VALUE.MESSAGE.USER.UPDATE.ERROR);
       }
     });
   }
