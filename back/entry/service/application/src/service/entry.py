@@ -37,3 +37,26 @@ def getResponseDescription(temperature, mask, exam, quarantine, **kwargs):
             description.append(ENTRY.DESCRIPTION[condition])
     result = ENTRY.RESPONSE["ACCEPT"] if result else ENTRY.RESPONSE["REJECT"]
     return result, '\n'.join(description)
+
+def getAllEntryHistory(start, limit):
+    result = RESPONSE.EMPTY.copy()
+    response = EntryRepository.getAllEntryHistory(start, limit)
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
+
+def getEntryHistoryByEp(start, limit):
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    response = EntryRepository.getEntryHistoryByEp(data['docNum'], start, limit)
+    if response:
+        result[VALUE.CONTENT] = response
+    return result
+
+def getEntryHistoryByCitizen(start, limit):
+    result = RESPONSE.EMPTY.copy()
+    data = eval(request.data.decode("utf-8"))
+    response = EntryRepository.getEntryHistoryByCitizen(data['docNum'], start, limit)
+    if response:
+        result[VALUE.CONTENT] = response
+    return result

@@ -20,3 +20,36 @@ def addEntry():
     except Exception as e:
         print(e)
     return result
+
+@route.route("/{}/all/<int:start>/<int:limit>".format(alias), methods=["POST"])
+def getAllEntryHistory(start, limit):
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = EntryService.getAllEntryHistory(start, limit)
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/ep/<int:start>/<int:limit>".format(alias), methods=["POST"])
+def getEntryHistoryByEp(start, limit):
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = EntryService.getEntryHistoryByEp(start, limit)
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
+
+@route.route("/{}/citizen/<int:start>/<int:limit>".format(alias), methods=["POST"])
+def getEntryHistoryByCitizen(start, limit):
+    result = Response(HTTP_CODE.ERROR, {}).toMap()
+    try:
+        response = EntryService.getEntryHistoryByCitizen(start, limit)
+        if response != RESPONSE.EMPTY.copy():
+            result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
+    except Exception as e:
+        print(e)
+    return result
