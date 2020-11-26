@@ -10,11 +10,11 @@ import src.constant.response as RESPONSE
 route = Blueprint(BLUEPRINT.ENTRY['ALIAS'], __name__)
 alias = BLUEPRINT.ENTRY['ALIAS']
 
-@route.route("/{}/get".format(alias), methods=["POST"])
-def get():
+@route.route("/{}/add".format(alias), methods=["POST"])
+def addEntry():
     result = Response(HTTP_CODE.ERROR, {}).toMap()
     try:
-        response = EntryService.get()
+        response = EntryService.addEntry()
         if response != RESPONSE.EMPTY.copy():
             result = Response(HTTP_CODE.SUCESSFUL, response).toMap()
     except Exception as e:

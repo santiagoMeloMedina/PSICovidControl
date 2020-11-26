@@ -41,7 +41,7 @@ def getQuarantinePeriod():
 def updateQuarantinePeriod(days):
     result = None
     update_query = database.quarantine.update_many({'state':'A'},{'$set': {'state':'I'}},upsert = False).matched_count
-    values = {'days':days, 'state':'A', 'date': datetime.datetime.now()}
+    values = {'days':days, 'state':'A', 'date': datetime.datetime.today().date()}
     add_query = database.quarantine.insert_one(values)
     if add_query:
         result = values

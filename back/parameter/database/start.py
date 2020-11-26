@@ -37,33 +37,33 @@ def initializeCountryParams(database, fileName):
             i += 1
 
 def make(database):
-    col = database['category']
-    col.insert_one({
-        'name':''
-    })
-    col = database['documentType']
-    col.insert_one({
-        'name':''
-    })
-    col = database['city']
-    col.insert_one({
-        'name':'', 
-        'departmentId':''
-    })
-    col = database['department']
-    col.insert_one({
-        'name':''
-    })
-    col = database['neighborHood']
-    col.insert_one({
-        'name':'',
-        'cityId':''
-    })
-    col = database['quarantine']
-    col.insert_one({
-        'days':'',
-        'state':''
-    })
+    # col = database['category']
+    # col.insert_one({
+    #     'name':''
+    # })
+    # col = database['documentType']
+    # col.insert_one({
+    #     'name':''
+    # })
+    # col = database['city']
+    # col.insert_one({
+    #     'name':'', 
+    #     'departmentId':''
+    # })
+    # col = database['department']
+    # col.insert_one({
+    #     'name':''
+    # })
+    # col = database['neighborHood']
+    # col.insert_one({
+    #     'name':'',
+    #     'cityId':''
+    # })
+    # col = database['quarantine']
+    # col.insert_one({
+    #     'days':'',
+    #     'state':''
+    # })
     initializeCountryParams(database, os.environ['DATA'])
 
 make(client[os.environ['MONGO_INITDB_DATABASE']])
