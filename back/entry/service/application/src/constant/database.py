@@ -1,7 +1,7 @@
 
-PORT = 3200#27017
+PORT = 27017
 NAME = "EntryDB"
-HOST = "localhost"#"entry_db"
+HOST = "entry_db"
 
 USER = "admin"
 PASSWORD = "admin"

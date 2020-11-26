@@ -2,25 +2,25 @@ version: '3'
 
 services:
   
-  # entry:
-  #   build: ./service/application
-  #   container_name: entry
-  #   ports:
-  #     - '3000:3000'
-  #   expose:
-  #     - '3000'
-  #   networks:
-  #     - psi
+  entry:
+    build: ./service/application
+    container_name: entry
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
+    networks:
+      - psi
 
-  # entry_nginx:
-  #   build: ./service/proxy
-  #   container_name: entry_nginx
-  #   ports:
-  #     - '3100:3100'
-  #   expose:
-  #     - '3100'
-  #   networks:
-  #     - psi
+  entry_nginx:
+    build: ./service/proxy
+    container_name: entry_nginx
+    ports:
+      - '3100:3100'
+    expose:
+      - '3100'
+    networks:
+      - psi
     
   entry_db:
     build: ./database
