@@ -203,7 +203,7 @@ def getUserData(db,username):
     elif(rol == 'ES'):
         doc = db.healthEntity.find_one({'docType':doc['docType'],'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
-        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
+        'state':doc['state'],'totalCap':doc['totalCap'],'city':doc['city']})
     
 
     return ans
@@ -251,8 +251,7 @@ def getUsersToActivate(db,skipV,limitV):
     for doc in qEs:
         ans.append({'docNum':doc['docNum'],'username':doc['username'],'name':doc['name'],
         'city':doc['city'],'phoneNum':doc['phoneNum'],'neighHood':doc['neighHood'],'address':doc['address'],
-        'state':doc['state'],'totalCap':doc['totalCap'],'category':doc['category'],'city':doc['city']})
-
+        'state':doc['state'],'totalCap':doc['totalCap'],'city':doc['city']})
     ans = sorted(ans,key = lambda x: False if not random.randint(0,1) else True)
     return ans
 
@@ -338,7 +337,8 @@ def getAllEntries(db):#Mostrar el nombre de la persona y el del establecimiento 
 def getEstablishmentsByCategory(db,name):#la db es la de users!
     q,ans = db.establishment.find({'category':name}),list()
     for doc in q:
-        ans.append(doc['docNum'])
+        ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+        'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':name})
     return ans
 
 def getEntriesByCategory(db,establishments):#la db es la de EntryDB, establishments es una lista de numeros de documento de los EP de la categoria buscada
@@ -430,6 +430,13 @@ def setPasswordUser(db,username,newPassword):# igual para todos los usuarios
 #------------------------------------Funciones ciudadano---------------------------------------
 
 
+
+def getDate(s):#string s in format "dd-mm-yy"
+    return [int(i) for i in s.split("-")]
+
+
+
+
 def setNameCitizen(db,username,newName):
     db.citizen.update_one({'username':username},{'$set':{'names':newName}},upsert = False)
 
@@ -441,8 +448,6 @@ def setPhoneNumberCitizen(db,username,newPhoneNum):
 
 def setNeighHoodCitizen(db,username,newNeighHood):
     db.citizen.update_one({'username':username},{'$set':{'neighHood':newNeighHood}},upsert = False)
-
-
 
 def getCategoryById(db,_id):
     return db.establishment.find_one({'_id':_id})['category']
@@ -468,6 +473,18 @@ def getEntriesByCitizenAndCategory(dbEntry,dbUsers,docNum,category):
             'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':_category})
     return ans
  
+def getEntriesByCitizenAndDate(dbEntry,dbUsers,docNum,initialDate,finalDate):
+    initialDate,finalDate = getDate(initialDate),getDate(finalDate)
+    entries,ans = list(dbEntry.citizen.find_one({'docNum':docNum})['entriesReg']),list()
+    q = dbEntry.entry.find({'_id':{'$in':entries}}) #revisar
+    for doc in q:
+        date = getDate(doc['date'])
+        if( initialDate[0] <= date[0] <= finalDate[0] and initialDate[1] <= date[1] <= finalDate[1] and initialDate[2] <= date[2] <= finalDate[2]):#dia/mes/anio
+            ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+            'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':getCategoryById(dbUsers,doc['idEs'])})
+    return ans
+ 
+
 
 #------------------------------------Funciones ciudadano---------------------------------------
 
@@ -528,7 +545,17 @@ def getEntriesByEstablishmentAndGender(dbEntry,dbUsers,docNumEs,gender):
             'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans']}) 
     return ans
 
-
+def getEntriesByEstablishmentAndDate(dbEntry,docNumEs,initialDate,finalDate):
+    initialDate,finalDate = getDate(initialDate),getDate(finalDate)
+    entries,ans = list(dbEntry.establishment.find_one({'docNum':docNumEs})['entriesReg']),list()
+    q = dbEntry.entry.find({'_id':{'$in':entries}}) #revisar
+    for doc in q:
+        date = getDate(doc['date'])
+        if( initialDate[0] <= date[0] <= finalDate[0] and initialDate[1] <= date[1] <= finalDate[1] and initialDate[2] <= date[2] <= finalDate[2]):#dia/mes/anio
+            ans.append({'docNumCi':doc['docNumCi'],'docNumEs':doc['docNumEs'],'temperature':doc['temperature'],
+            'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':getCategoryById(dbUsers,doc['idEs'])})
+    return ans
+ 
 
 def updateCitizenEntry(db,_id,docNum):
     doc = db.citizen.find_one({'docNum':docNum})
@@ -681,7 +708,7 @@ def makeParametersDB(client):
 
     col = db['city']
     col.insert_one({
-        'name':'', 'dep':''
+        'name':'', 'departmentId':''
 
     })
 
