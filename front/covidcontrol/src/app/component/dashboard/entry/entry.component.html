@@ -2,21 +2,27 @@
     <div class = "box">
         <div class = "content">
             <div class = "data">
+                <div class="registryType">
+                    <button (click)="selectRegisterType(getAutomaticRegisterType())">Automatico</button>
+                    <button (click)="selectRegisterType(getManualRegisterType())">Manual</button>
+                </div>
                 <form [formGroup]="getEntryForm()">
                     <div class = "fields">
-                        <input type="text" formControlName="docNum" placeholder="Número de documento">
+                        <input type="text" formControlName="citizenDocNum" placeholder="Número de documento">
                         <input type="text" formControlName="temperature" placeholder="Temperatura">
                         <select type="text" formControlName="mask" placeholder="Uso de tapabocas">
                             <option value="" disabled selected>Uso de tapabocas</option>
-                            <option *ngFor="let response of getResponses()">
-                                {{ response }}
+                            <option value="{{ response['value'] }}" *ngFor="let response of getResponses()">
+                                {{ response['name'] }}
                             </option>
-                        </select>   
-                        <input type="date" formControlName="date" placeholder="Fecha">
-                        <input type="time" formControlName="time" placeholder="Hora">        
+                        </select>
+                        <div [ngClass]="isManualRegistryType() ? '':'hide'">
+                            <input type="date" formControlName="date" placeholder="Fecha">
+                            <input type="time" formControlName="time" placeholder="Hora">   
+                        </div>     
                     </div>
                 </form>
-                <button class="btn" [disabled]="!(getEntryForm().valid)" (click)="registerEntry()"><span>Registrar</span></button> 
+                <button class="btn" [disabled]="!validForm()" (click)="registerEntry()"><span>Registrar</span></button> 
             </div>
         </div>
     </div>

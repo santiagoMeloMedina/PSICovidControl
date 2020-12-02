@@ -34,6 +34,13 @@ export const CONSTANTS = {
             }
         }
     },
+    ENTRY: {
+        POST: {
+            ADD: {
+                URL: "/entry/add"
+            }
+        }
+    },
     PARAMETER: {
         GET: {
             ALL_DEPARTMENT: {
@@ -47,6 +54,17 @@ export const CONSTANTS = {
             },
             QUARANTINE: {
                 URL: "/parameter/quarantine"
+            },
+            ENTRY: {
+                ALL: {
+                    URL: (start: number, limit: number) => {return `/entry/all/${start}/${limit}`}
+                },
+                EP: {
+                    URL: (start: number, limit: number) => {return `/entry/ep/${start}/${limit}`}
+                },
+                CITIZEN: {
+                    URL: (start: number, limit: number) => {return `/entry/citizen/${start}/${limit}`}
+                }
             }
         },
         POST: {

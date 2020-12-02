@@ -4,8 +4,10 @@ import { Deserealizable } from './deserealize.model';
 export class EntryHistory implements Deserealizable {
 
     private id: number;
-    private idCitizen: number;
-    private idEp: number;
+    private citizenId: number;
+    private citizenDocNum: string;
+    private epId: number;
+    private epDocNum: string;
     private date: Date;
     private time: string;
     private temperature: number;
@@ -16,9 +18,11 @@ export class EntryHistory implements Deserealizable {
     constructor() {}
 
     deserealize(data: any): this {
-        this.id = data['id'];
-        this.idCitizen = data['idCitizen'];
-        this.idEp = data['idEp'];
+        this.id = data['_id'];
+        this.citizenId = data['citizenId'];
+        this.citizenDocNum = data['citizenDocNum'];
+        this.epId = data['epId'];
+        this.epDocNum = data['epDocNum'];
         this.date = data['date'];
         this.time = data['time'];
         this.temperature = data['temperature'];
@@ -32,12 +36,20 @@ export class EntryHistory implements Deserealizable {
         return this.id;
     }
 
-    public getIdCitizen(): number {
-        return this.idCitizen;
+    public getCitizenId(): number {
+        return this.citizenId;
     }
 
-    public getIdEp(): number {
-        return this.idEp;
+    public getCitizenDocNum(): string {
+        return this.citizenDocNum;
+    }
+
+    public getEpId(): number {
+        return this.epId;
+    }
+
+    public getEpDocNum(): string {
+        return this.epDocNum;
     }
         
     public getDate(): Date {

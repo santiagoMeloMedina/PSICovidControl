@@ -27,6 +27,33 @@
     background-color: #F2F4F4;
 }
 
+.registryType {
+    position: absolute;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 200px;
+    height: 40px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: -60px;
+}
+
+.registryType button {
+    border: none;
+    background-color: #212D3D;
+    color: white;
+    margin: 3px;
+}
+
+.registryType button:hover {
+    background-color: #F2F4F4;
+    color: #212D3D;
+}
+
+.registryType button:active {
+    background-color: white;
+}
+
 .data {
     position: relative;
     width: 100%;

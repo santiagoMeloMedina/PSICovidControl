@@ -17,14 +17,14 @@
         <div class = "table">
             <div class="rows">
                 <div *ngFor="let entry of getRows()" class="row">
-                    <div class="detail"><span>{{ entry.getIdCitizen() }}</span></div>
-                    <div class="detail"><span>{{ entry.getIdEp() }}</span></div>
+                    <div class="detail"><span>{{ entry.getCitizenDocNum() }}</span></div>
+                    <div class="detail"><span>{{ entry.getEpDocNum() }}</span></div>
                     <div class="detail"><span>{{ entry.getDate() }}</span></div>
                     <div class="detail"><span>{{ entry.getTime() }}</span></div>
                     <div class="detail"><span>{{ entry.getTemperature() }}</span></div>
                     <div class="detail"><span>{{ entry.getMask() }}</span></div>
                     <div class="detail"><span>{{ entry.getResponse() }}</span></div>
-                    <div class="detail"><span>{{ entry.getDescription() }}</span></div>
+                    <div class="description"><span>{{ entry.getDescription() }}</span></div>
                 </div>
             </div>
         </div>

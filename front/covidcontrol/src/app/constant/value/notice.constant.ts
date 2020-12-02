@@ -1,4 +1,4 @@
 
 export const CONSTANTS = {
-    TIME: 1500
+    TIME: 500
 }

@@ -5,13 +5,13 @@ import src.constant.role as ROLE
 import datetime
 from bson import ObjectId
 
-def addEntry(epDocNum, citizenDocNum, epId, citizenId, temperature, mask, response, description, **kwargs):
+def addEntry(epDocNum, citizenDocNum, temperature, mask, response, description, date=None, time=None, **kwargs):
     result = None
-    today = str(datetime.datetime.today().date())
-    now = str(datetime.datetime.today().time())
-    values = {'epDocNum': epDocNum, 'citizenDocNum': citizenDocNum, 'epId': ObjectId(epId), 
-              'citizenId': ObjectId(citizenId), 'temperature': temperature, 'date': today, 
-              'time': now, 'mask': mask, 'response': response, 'description': description
+    time_now = datetime.datetime.today()
+    today = str(time_now.date()) if date == None else date
+    now = "{}:{}".format(time_now.time().hour, time_now.time().minute) if time == None else time
+    values = {'epDocNum': epDocNum, 'citizenDocNum': citizenDocNum, 'temperature': temperature, 
+              'date': today, 'time': now, 'mask': mask, 'response': response, 'description': description
             }
     query = database.entry.insert_one(values)
     if query:
@@ -20,8 +20,6 @@ def addEntry(epDocNum, citizenDocNum, epId, citizenId, temperature, mask, respon
         addEpEntry(epDocNum, id)
         addCitizenEntry(citizenDocNum, id)
         result['_id'] = str(id)
-        result['citizenId'] = str(result['citizenId'])
-        result['epId'] = str(result['epId'])
     return result
 
 def addCitizenEntry(docNum, id):
@@ -52,8 +50,6 @@ def getAllEntryHistory(start, limit):
     for doc in query:
         story = doc
         story['_id'] = str(story['_id'])
-        story['citizenId'] = str(story['citizenId'])
-        story['epId'] = str(story['epId'])
         result.append(story)
     return result
 
@@ -65,8 +61,6 @@ def getEntryHistoryByEp(docNum, start, limit):
         for id in ep['entries'][start:start+limit+1]:
             story = database.entry.find_one({'_id': ObjectId(id)})
             story['_id'] = str(story['_id'])
-            story['citizenId'] = str(story['citizenId'])
-            story['epId'] = str(story['epId'])
             result.append(story)
     return result
 
@@ -78,7 +72,5 @@ def getEntryHistoryByCitizen(docNum, start, limit):
         for id in citizen['entries'][start:start+limit+1]:
             story = database.entry.find_one({'_id': ObjectId(id)})
             story['_id'] = str(story['_id'])
-            story['citizenId'] = str(story['citizenId'])
-            story['epId'] = str(story['epId'])
             result.append(story)
     return result

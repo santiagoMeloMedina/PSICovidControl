@@ -11,6 +11,12 @@ export const CONSTANTS = {
             ERROR: "Usuario NO pudo ser actualizado"
         }
     },
+    ENTRY: {
+        ADITTION: {
+            SUCCESS: "Entrada agregada correctamente",
+            ERROR: "Entrada NO pudo ser agregada"
+        }
+    },
     PARAMETER: {
         NEIGHBORHOOD: {
             ADITITION: {

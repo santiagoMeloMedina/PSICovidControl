@@ -22,12 +22,13 @@ def addEntry():
 def getResponseDescription(temperature, mask, exam, quarantine, **kwargs):
     result = True
     description = []
+    quarantine = int(quarantine)
     plusQuarantine = datetime.datetime.today()-timedelta(1)
     if exam:
         plusQuarantine = datetime.datetime.strptime(exam['date'], '%Y-%m-%d')+timedelta(quarantine)
     conditions = {
         "TEMPERATURE": int(temperature) < ENTRY.RESPONSE['LIMIT_TEMPERATURE'], 
-        "MASK": mask,
+        "MASK": int(mask) > 0,
         "QUARANTINE": not (exam['result'] == ENTRY.RESPONSE['INFECTED'] and plusQuarantine >= datetime.datetime.today())
     }
     for condition in conditions:
