@@ -351,7 +351,7 @@ def getEntriesByCategory(db,establishments):#la db es la de EntryDB, establishme
 def getExamsByCitizenDocNum(db,docNum):#numero de documento del CIUDADANO
     q,ans = db.exam.find({'docNumCi':docNum}),list()
     for doc in q:
-        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result'],'date':doc['date'],'time':doc['time']})
     return ans
 
 def getExamsByCitizenName(db,name):
