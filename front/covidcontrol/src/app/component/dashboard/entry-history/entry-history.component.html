@@ -24,9 +24,15 @@
                     <div class="detail"><span>{{ entry.getTemperature() }}</span></div>
                     <div class="detail"><span>{{ entry.getMask() }}</span></div>
                     <div class="detail"><span>{{ entry.getResponse() }}</span></div>
-                    <div class="description"><span>{{ entry.getDescription() }}</span></div>
+                    <div class="description"><span>{{ canSeeDescription() ? entry.getDescription() : "" }}</span></div>
                 </div>
             </div>
         </div>
+        <div class="page">
+            <button (click)="lastPage()" [disabled]="!canLastPage()">Atras</button>
+            <button (click)="nextPage()" [disabled]="!canNextPage()">Siguiente</button>
+        </div>
+        <button class="pdf" (click)="getPdfHistory()">Descargar PDF</button>
+        <button class="excel" (click)="getExcelHistory()">Descargar Excel</button>
     </div>
 </div>

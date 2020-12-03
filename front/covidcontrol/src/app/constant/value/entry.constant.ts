@@ -15,5 +15,8 @@ export const CONSTANTS = {
             MANUAL: "manual",
             AUTOMATIC: "automatic"
         }
+    },
+    PAGE: {
+        SIZE: 8
     }
 }

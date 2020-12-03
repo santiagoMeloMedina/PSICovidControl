@@ -32,6 +32,10 @@ export class EntryHistory implements Deserealizable {
         return this;
     }
 
+    public setDescription(description: string): void {
+        this.description = description;
+    }
+
     public getId(): number {
         return this.id;
     }
