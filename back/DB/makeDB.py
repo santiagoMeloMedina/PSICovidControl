@@ -646,11 +646,22 @@ def updateHealthEntity(db,_id,docNum):
     else:
         db.healthEntity.insert_one({'docNum':docNum,'examsReg':[_id]})
 
+def updateCitizenExams(db,_id,docNum):
+    doc = db.citizen.find_one({'docNum': docNum})
+    if(doc != None):
+        exams = list(db.citizen.find_one({'docNum':docNum})['examsReg'])
+        exams.append(_id)
+        db.citizen.update_one({'docNum':docNum},{'$set': {'examsReg':exams}},upsert = False)
+    else:
+        db.citizen.insert_one({'docNum':docNum,'examsReg':[_id]})
 
-def registerExam(db,docNumCi,docNumHe,citizensName,result,date,time):
+
+
+
+def registerExam(db,docNumCi,docNumHe,citizensName,result,date,time):#db es la base de datos de examenes
     _id = db.exam.insert_one({'docNumCi':docNumCi,'docNumHe':docNumHe,'citizensname':citizensName,'result':result,'date':date,'time':time}).inserted_id
     updateHealthEntity(db,_id,docNumHe)
-
+    updateCitizenExams(db,_id,docNumCi)
 
 #------------------------------------Funciones ES---------------------------------------
 
