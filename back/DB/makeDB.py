@@ -322,7 +322,7 @@ def getAllDocTypes(db):
 def getAllExams(db):
     q,ans = db.exam.find({}),list()
     for doc in q:
-        ans.append({"docNumCi":doc['docNumCi'],"docNumHe":doc['docNumHe'],"citizensName":doc['citizensName'],"result":doc['result'],'date':doc['date'],'time':['time']})
+        ans.append({"docNumCi":doc['docNumCi'],"docNumHe":doc['docNumHe'],"citizensName":doc['citizensName'],"result":doc['result'],'date':doc['date'],'time':doc['time']})
     return ans
 
 def getAllEntries(db):#Mostrar el nombre de la persona y el del establecimiento ? 
@@ -604,6 +604,11 @@ def setPhoneNumberHealthEntity(db,username,newPhoneNum):
 
 def setNeighHoodHealthEntity(db,username,newNeighHood):
     db.healthEntity.update_one({'username':username},{'$set':{'neighHood':newNeighHood}},upsert = False)
+
+
+def setExamResult(db,result,_id):
+    db.exam.update_one({'_id':_id},{'$set':{'result':result}},upsert = False)
+
 
 def getExamsByHealthEntityAndDocNumCi(db,docNumCi,docNumHe):
     exams,ans = list(db.healthEntity.find_one({'docNum':docNumHe})['examsReg']),list()
