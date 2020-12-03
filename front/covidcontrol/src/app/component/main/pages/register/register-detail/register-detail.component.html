@@ -1,0 +1,136 @@
+<div class = "noselect">
+    <div class = "box">
+        <div class = "content">
+            <span class = "title">Detalles de Registro</span>
+            <div class="roles">
+                <button *ngFor="let field of getRoles()" (click)="selectRoles(field['ID'])" class="role">
+                    {{ field["NAME"] }}
+                </button>
+            </div>
+            <form [formGroup]="getCitizenForm()" [ngClass]="isRoleEqual(getRoleName('CITIZEN')) ? 'fields':'hide'">
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
+                <input type="text" formControlName="name" placeholder="Nombres">
+                <input type="text" formControlName="lastname" placeholder="Apellidos">
+                <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                    <option value="" selected disabled>Seleccione tipo de documento</option>
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="docNum" placeholder="Número de documento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select>
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                <input type="date" formControlName="birthdate" placeholder="Fecha nacimiento">
+                <select type="text" formControlName="gender" placeholder="Género">
+                    <option value="" selected disabled>Seleccione genero</option>
+                    <option value="1">
+                        M
+                    </option>
+                    <option value="2">
+                        F
+                    </option>
+                </select>
+            </form>
+
+            <form [formGroup]="getHealthEnForm()" [ngClass]="isRoleEqual(getRoleName('ES')) ? 'fields':'hide'">   
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
+                <input type="text" formControlName="name" placeholder="Nombre">
+                <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                    <option value="" selected disabled>Seleccione tipo de documento</option>
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="docNum" placeholder="Número de documento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select>
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="totalCap" placeholder="Capacidad total">
+                <input type="text" formControlName="totalBeds" placeholder="Total de camas">
+                <input type="text" formControlName="totalRes" placeholder="Total de respiradores">
+                <input type="text" formControlName="totalDocts" placeholder="Total de doctores">
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">       
+            </form>
+
+            <form [formGroup]="getPublicEsForm()" [ngClass]="isRoleEqual(getRoleName('EP')) ? 'fields':'hide'">
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña" style="color: gray;" disabled>
+                <input type="text" formControlName="email" placeholder="Correo">
+                <input type="text" formControlName="name" placeholder="Nombre">
+                <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                    <option value="" selected disabled>Seleccione tipo de documento</option>
+                    <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                        {{ document.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="docNum" placeholder="Número de documento">
+                <select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select>
+                <select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="totalCap" placeholder="Capacidad total">
+                <input type="text" formControlName="address" placeholder="Dirección">
+                <select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+                <input type="text" formControlName="phoneNum" placeholder="Número de telefono">
+                <select type="text" formControlName="category" placeholder="Categoria">
+                    <option value="" selected disabled>Seleccione categoria de EP</option>
+                    <option value="{{ category.getId() }}" *ngFor="let category of getCategories()">
+                        {{ category.getName() }}
+                    </option>
+                </select>
+            </form>
+            <button class="btn" [disabled]="!getFormAccordingToRole().valid" (click)="register()"><span>Finalizar registro</span></button>
+        </div>
+    </div>
+</div>

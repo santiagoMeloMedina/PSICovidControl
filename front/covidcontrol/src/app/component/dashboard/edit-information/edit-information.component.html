@@ -1,0 +1,93 @@
+<div class = "noselect">
+    <div class = "box">
+        <div class = "content">
+            <form [formGroup]="getAdminForm()" [ngClass]="sameRole(getRoleName('ADMIN')) ? '':'hide'">
+                <span>Nombre</span><input type="text" formControlName="name" placeholder="Nombre"><br>
+                <span>Apellido</span><input type="text" formControlName="lastname" placeholder="Apellido">
+            </form>
+            <form [formGroup]="getCitizenForm()" [ngClass]="sameRole(getRoleName('CITIZEN')) ? '':'hide'">
+                <span>Nombre</span><input type="text" formControlName="name" placeholder="Nombre"><br>
+                <span>Apellido</span><input type="text" formControlName="lastname" placeholder="Apellido"><br>
+                <span>Dirección</span><input type="text" formControlName="address" placeholder="Dirección"><br>
+                <span>Telefono</span><input type="text" formControlName="phoneNum" placeholder="Número de telefono"><br>
+                <span>Genero</span><input type="text" formControlName="gender" placeholder="Genero"><br>
+                <span>Departamento</span><select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select><br>
+                <span>Ciudad</span><select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select><br>
+                <span>Barrio</span><select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+            </form>
+            <form [formGroup]="getHealthEnForm()" [ngClass]="sameRole(getRoleName('ES')) ? '':'hide'">
+                <span>Nombre</span><input type="text" formControlName="name" placeholder="Nombre"><br>
+                <span>Dirección</span><input type="text" formControlName="address" placeholder="Dirección"><br>
+                <span>Telefono</span><input type="text" formControlName="phoneNum" placeholder="Número de telefono"><br>
+                <span>Capacidad Total</span><input type="text" formControlName="totalCap" placeholder="Capacidad Total"><br>
+                <span># de Camas</span><input type="text" formControlName="totalBeds" placeholder="Cantidad de Camas"><br>
+                <span># de Doctores</span><input type="text" formControlName="totalDocts" placeholder="Cantidad de Medicos"><br>
+                <span># de Respiradores</span><input type="text" formControlName="totalRes" placeholder="Cantidad de Respiradores"><br>
+                <span>Departamento</span><select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select><br>
+                <span>Ciudad</span><select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select><br>
+                <span>Barrio</span><select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+            </form>
+            <form [formGroup]="getPublicEsForm()" [ngClass]="sameRole(getRoleName('EP')) ? '':'hide'">
+                <span>Nombre</span><input type="text" formControlName="name" placeholder="Nombre"><br>
+                <span>Categoria</span><select type="text" formControlName="category" placeholder="Categoría">
+                    <option value="" disabled selected>Seleccionar categoria</option>
+                    <option *ngFor="let category of getCategories()" value="{{ category.getId() }}">
+                        {{ category.getName() }}
+                    </option>
+                </select><br>
+                <span>Dirección</span><input type="text" formControlName="address" placeholder="Dirección"><br>
+                <span>Telefono</span><input type="text" formControlName="phoneNum" placeholder="Número de telefono"><br>
+                <span>Capacidad Total</span><input type="text" formControlName="totalCap" placeholder="Capacidad Total"><br>
+                <span>Departamento</span><select type="text" (change)="selectDepartment($event.target.value)" formControlName="department" placeholder="Departamento">
+                    <option value="" selected disabled>Seleccione su departamento</option>
+                    <option value="{{ department.getId() }}" *ngFor="let department of getDepartments()">
+                        {{ department.getName() }}
+                    </option>
+                </select><br>
+                <span>Ciudad</span><select type="text" (change)="selectCity($event.target.value)" formControlName="city" placeholder="Municipio">
+                    <option value="" selected disabled>Seleccione su municipio</option>
+                    <option value="{{ city.getId() }}" *ngFor="let city of getCities()">
+                        {{ city.getName() }}
+                    </option>
+                </select><br>
+                <span>Barrio</span><select type="text" formControlName="neighHood" placeholder="Barrio">
+                    <option value="" selected disabled>Seleccione su barrio</option>
+                    <option value="{{ neighood.getId() }}" *ngFor="let neighood of getNeighoods()">
+                        {{ neighood.getName() }}
+                    </option>
+                </select>
+            </form>
+            <button class="actions" (click)="update()" [disabled]="!getFormAccordingToRole().valid"><span>Actualizar</span></button>
+        </div>
+    </div>
+</div>

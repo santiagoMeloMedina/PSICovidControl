@@ -1,0 +1,22 @@
+
+<div class="box">
+    <div class="logo">
+        <img src="assets/logo/virus.png" draggable="false">
+    </div>
+    <div class="menu">
+        <div *ngFor="let title of ['HOME', 'MISION', 'CONTACT']" class="title" (click)="routing.absoluteRoute(getNav()[title]['LINK'])">
+            <span>{{ getNav()[title]['NAME'] }}</span>
+        </div>
+    </div>
+    <div id="nav-icon3" [ngClass]="getDisplayDropdown() ? 'open':''" (click)="toggleDisplayDropdown()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div [ngClass]="getDisplayDropdown() ? 'dropmenu':'hide'">
+        <div *ngFor="let title of ['HOME', 'MISION', 'CONTACT']" class="title" (click)="chooseFromDropdown(getNav()[title]['LINK'])">
+            <span>{{ getNav()[title]['NAME'] }}</span>
+        </div>
+    </div>
+</div>

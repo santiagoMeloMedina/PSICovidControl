@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  
+  user:
+    build: ./service/application
+    container_name: user
+    ports:
+      - '2000:2000'
+    expose:
+      - '2000'
+    networks:
+      - psi
+
+  user_nginx:
+    build: ./service/proxy
+    container_name: user_nginx
+    ports:
+      - '2100:2100'
+    expose:
+      - '2100'
+    networks:
+      - psi
+    
+  user_db:
+    build: ./database
+    container_name: user_db
+    ports:
+      - '2200:27017'
+    expose:
+      - '2200'
+    networks:
+      - psi
+
+networks:
+  psi:
+    external: true

@@ -1,0 +1,23 @@
+<div class = "noselect">
+    <div class = "box">
+        <span class="title">Dejanos un mensaje!</span>
+        <div class = "content">
+            <div class="image">
+                <img src="assets/contacto.png" class="cellphone" draggable="false">
+            </div>
+            <div class="data">
+                <form [formGroup]="getContactForm()">
+                    <div class = "fields">
+                        <input type="text" formControlName="email" placeholder="Correo">
+                        <input type="text" formControlName="subject" placeholder="Asunto">
+                    </div>
+                    <textarea formControlName="text" placeholder="Texto"></textarea>
+                </form>
+                <div class = "actions">
+                    <button class="btn" [disabled]="!(getContactForm().valid)"><span>Enviar</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div class = "noselect">
+    <div class = "box">
+        <form [formGroup]="getSearchForm()" class="filter">
+            <input type="text" placeholder="Que desea filtrar...">
+            <select type="text">
+                <option value="" disabled selected>Filtrar por</option>
+                <option value="id">Documento</option>
+            </select>
+        </form>
+        <div class = "columns">
+            <div *ngFor = "let col of getCols()" class ="column">
+                <span>{{ col }}</span>
+            </div>
+        </div>
+        <div class = "table">
+            <div class="rows">
+                <div *ngFor="let user of getRows()" class="row">
+                    <div class="detail"><span>{{ user.getDocNum() }}</span></div>
+                    <div class="detail"><span>{{ user.getRol() }}</span></div>
+                    <div class="detail"><span>{{ user.getName() }}</span></div>
+                    <div class="detail"><span>{{ user.getState() }}</span></div>
+                    <div class="detail"><span>{{ user.getUsername() }}</span></div>
+                    <div class="detail"><span>{{ user.getCity() }}</span></div>
+                    <div class="detail"><span>{{ user.getDepartment() }}</span></div>
+                    <div class="action">
+                        <button [disabled]="user.isActive()" (click)="authorize(user.getUsername(), user.getRol())">Autorizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

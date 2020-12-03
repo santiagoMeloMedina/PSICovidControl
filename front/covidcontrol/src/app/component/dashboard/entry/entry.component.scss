@@ -1,0 +1,125 @@
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.content {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    height: 75%;
+    min-height: 550px;
+    max-height: 600px;
+    top: 30px;
+    overflow: hidden;
+    background-color: #F2F4F4;
+}
+
+.registryType {
+    position: absolute;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 200px;
+    height: 40px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: -60px;
+}
+
+.registryType button {
+    border: none;
+    background-color: #212D3D;
+    color: white;
+    margin: 3px;
+}
+
+.registryType button:hover {
+    background-color: #F2F4F4;
+    color: #212D3D;
+}
+
+.registryType button:active {
+    background-color: white;
+}
+
+.data {
+    position: relative;
+    width: 100%;
+}
+
+form {
+    position: relative;
+    width: 50%;
+    height: 280px;
+    min-width: 350px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 80px;
+}
+
+.fields {
+    position: absolute;
+}
+
+.fields input {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    border: 0;
+    padding-left: 10px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+.fields select {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    border: 0;
+    padding-left: 10px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 10px;
+}
+
+.btn {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 50%;
+    margin-top: 10px;
+    border: 0;
+    height: 40px;
+    min-width: 350px;
+    background-color: #17202F;
+    color: white;
+}
+
+.btn:hover { 
+    background-color: #17204e;
+}
+
+.btn:active {
+    background-color: #17354e;
+}
+
+.btn:disabled {
+    background-color: gray;
+}
+
+
+@media (max-width: 720px) {
+}

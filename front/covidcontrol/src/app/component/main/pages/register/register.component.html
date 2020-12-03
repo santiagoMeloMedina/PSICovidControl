@@ -1,0 +1,24 @@
+<div class="noselect">
+    <div class="box">
+        <div class="content">
+            <div class="logo">
+                <div class="brand">
+                    <img src="assets/logo/cellphone.png" class="cellphone" draggable="false">
+                    <img src="assets/logo/virus.png" class="virus" draggable="false">
+                </div>
+                <div class="title">
+                    <span>PSI Covid Control</span>
+                </div>
+            </div>
+            <form [formGroup]="getRegisterForm()" class="fields">
+                <input type="text" formControlName="username" placeholder="Usuario">
+                <input type="password" formControlName="password" placeholder="Contraseña">
+                <input type="password" formControlName="confirm_password" placeholder="Confirmar Contraseña">
+            </form>
+            <div class="actions">
+                <button class="btn" [disabled]="!(getRegisterForm().valid)" (click)="register()"><span>Registrar</span></button>
+                <button class="btn" (click)="routing.absoluteRoute('login')"><span>Inicia Sesión</span></button>
+            </div>
+        </div>
+    </div>
+</div>

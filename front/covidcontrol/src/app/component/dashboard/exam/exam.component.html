@@ -1,0 +1,37 @@
+
+<div class = "noselect">
+    <div class = "box">
+        <div class = "content">
+            <div class = "data">
+                <form [formGroup]="getExamForm()">
+                    <div class = "fields">
+                        <input type="text" formControlName="name" placeholder="Nombres">
+                        <input type="text" formControlName="lastname" placeholder="Apellidos">
+                        <select type="text" formControlName="docType" placeholder="Tipo de documento">
+                            <option value="" selected disabled>Seleccione tipo de documento</option>
+                            <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                                {{ document.getName() }}
+                            </option>
+                        </select>
+                        <input type="text" formControlName="citizenDocNum" placeholder="Número de documento">
+                        <input type="date" formControlName="date" placeholder="Fecha">
+                        <input type="time" formControlName="time" placeholder="Hora">
+                        <select type="text" formControlName="result" placeholder="Resultado">
+                            <option value="" disabled selected>Seleccione resultado</option>
+                            <option value="N">
+                                Sin respuesta
+                            </option>
+                            <option value="A">
+                                Positivo
+                            </option>
+                            <option value="I">
+                                Negativo
+                            </option>
+                        </select>
+                    </div>
+                </form>
+                <button class="btn" [disabled]="!(getExamForm().valid)" (click)="registerExam()"><span>Registrar</span></button> 
+            </div>
+        </div>
+    </div>
+</div>

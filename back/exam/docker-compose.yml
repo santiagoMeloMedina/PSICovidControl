@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  
+  exam:
+    build: ./service/application
+    container_name: exam
+    ports:
+      - '4000:4000'
+    expose:
+      - '4000'
+    networks:
+      - psi
+
+  exam_nginx:
+    build: ./service/proxy
+    container_name: exam_nginx
+    ports:
+      - '4100:4100'
+    expose:
+      - '4100'
+    networks:
+      - psi
+    
+  exam_db:
+    build: ./database
+    container_name: exam_db
+    ports:
+      - '4200:27017'
+    expose:
+      - '4200'
+    networks:
+      - psi
+
+networks:
+  psi:
+    external: true

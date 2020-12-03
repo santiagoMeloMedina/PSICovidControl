@@ -30,7 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jspdf/dist/jspdf.es.min.js",
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "node_modules/font-awesome/css/font-awesome.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "covidcontrol"
+    }
+  },
+  "defaultProject": "covidcontrol",
+  "cli": {
+    "analytics": "d2fc663a-b9bb-435e-9989-62f43aeaa437"
+  }
 }

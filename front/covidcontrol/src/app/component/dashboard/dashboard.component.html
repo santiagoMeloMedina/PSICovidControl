@@ -1,0 +1,24 @@
+
+<div class="noselect">
+    <header>
+        <div class="content">
+            <div class="title" (click)="routing.absoluteRoute('dashboard')">
+                <span [ngClass]="dashboard.getOther() ? 'other':'hide'">{{ dashboard.getTitle() }}</span>
+                <span [ngClass]="dashboard.getOther() ? 'main':'out'">Mis Acciones</span>
+            </div>
+            <div class="user">
+                <div class="info">
+                    <span class="name">{{ dashboard.getUserName() }}</span>
+                </div>
+                <div class="image" (click)="toggleUserMenu()">
+                    <div [ngClass]="getUserMenu() ? 'usermenu':'hide'" (click)="logOut()">
+                        <button>Cerrar Sesión</button>
+                    </div>
+                    <img src="assets/icons/user_orange.png" class="orange">
+                    <img src="assets/icons/user_white.png" class="white">
+                </div>
+            </div>
+        </div>
+    </header>
+    <router-outlet></router-outlet>
+</div>

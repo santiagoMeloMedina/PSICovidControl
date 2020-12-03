@@ -1,0 +1,38 @@
+<div class = "noselect">
+    <div class = "box">
+        <form [formGroup]="getFilterForm()" class="filter">
+            <input type="text" placeholder="Que desea filtrar...">
+            <select type="text">
+                <option value="" disabled selected>Filtrar por</option>
+                <option value="date">Fechas</option>
+                <option value="id">Documento</option>
+                <option value="gender">Genero</option>
+            </select>
+        </form>
+        <div class = "columns">
+            <div *ngFor = "let col of getCols()" class ="column">
+                <span>{{ col }}</span>
+            </div>
+        </div>
+        <div class = "table">
+            <div class="rows">
+                <div *ngFor="let entry of getRows()" class="row">
+                    <div class="detail"><span>{{ entry.getCitizenDocNum() }}</span></div>
+                    <div class="detail"><span>{{ entry.getEpDocNum() }}</span></div>
+                    <div class="detail"><span>{{ entry.getDate() }}</span></div>
+                    <div class="detail"><span>{{ entry.getTime() }}</span></div>
+                    <div class="detail"><span>{{ entry.getTemperature() }}</span></div>
+                    <div class="detail"><span>{{ entry.getMask() }}</span></div>
+                    <div class="detail"><span>{{ entry.getResponse() }}</span></div>
+                    <div class="description"><span>{{ canSeeDescription() ? entry.getDescription() : "" }}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <button (click)="lastPage()" [disabled]="!canLastPage()">Atras</button>
+            <button (click)="nextPage()" [disabled]="!canNextPage()">Siguiente</button>
+        </div>
+        <button class="pdf" (click)="getPdfHistory()">Descargar PDF</button>
+        <button class="excel" (click)="getExcelHistory()">Descargar Excel</button>
+    </div>
+</div>

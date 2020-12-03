@@ -1,0 +1,4 @@
+
+EXAM = {
+    "ALIAS": "exam"
+}

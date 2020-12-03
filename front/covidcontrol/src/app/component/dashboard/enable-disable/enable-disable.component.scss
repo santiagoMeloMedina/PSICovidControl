@@ -1,0 +1,175 @@
+
+.box {
+    position: absolute;
+    width: 100%;
+    height: 700px;
+    font-family: 'Ubuntu';
+    font-size: 13px;
+}
+
+.filter {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    top: 30px;
+    height: 30px;
+}
+
+.filter input {
+    position: absolute;
+    left: 10px;
+    width: 70%;
+    height: 100%;
+    padding-left: 10px;
+    -webkit-appearance: none;
+    border: 1px solid black;
+}
+
+.filter select {
+    position: absolute;
+    right: 10px;
+    width: 20%;
+    height: 100%;
+    -webkit-appearance: none;
+    border: 1px solid black;
+}
+
+.columns {
+    position: relative;
+    display: inline-grid;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin-top: 80px;
+    grid-template-columns: repeat(8, 1fr);
+    background-color: #F2F4F4;
+    width: 90%;
+}
+
+.columns .column {
+    position: relative;
+    height: 50px;
+}
+
+.columns .column span {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+}
+
+.table {
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: 90%;
+    min-width: 300px;
+    max-height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.table::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
+}
+
+.table .rows {
+    position: relative;
+    width: 100%;
+}
+
+.table .rows .row {
+    position: relative;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.table .rows .row:hover {
+    background-color: rgba($color: #BACCFF, $alpha: 0.3);
+}
+
+.table .rows .row .detail {
+    position: relative;
+    top: 0;
+    margin-top: 0;
+    height: 50px;
+    background-color: rgba($color: #F2F4F4, $alpha: 0.3);
+}
+
+.table .rows .row .detail span {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+.table .rows .row .action {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    margin-top: 0;
+    height: 50px;
+    display: inline-grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 5px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.table .rows .row .action button {
+    position: relative;
+    border: 0;
+    font-size: 100%;
+    background-color: #17202F;
+    color: white;
+}
+
+.table .rows .row .action button:hover {
+    background-color: #17204e;
+}
+
+.table .rows .row .action button:active {
+    background-color: #17354e;
+}
+
+.table .rows .row .action button:disabled {
+    background-color: gray;
+}
+
+@media (max-width: 700px) {
+
+    .box {
+        font-size: 10px;
+    }
+
+    .filter input {
+        font-size: 11px;
+    }
+
+    .filter select {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .box {
+        font-size: 8px;
+    }
+
+    .filter input {
+        font-size: 9px;
+    }
+
+    .filter select {
+        font-size: 9px;
+    }
+}
