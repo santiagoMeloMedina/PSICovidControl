@@ -614,7 +614,7 @@ def getExamsByHealthEntityAndDocNumCi(db,docNumCi,docNumHe):
     exams,ans = list(db.healthEntity.find_one({'docNum':docNumHe})['examsReg']),list()
     q = db.entry.find({'_id':{'$in':exams},'docNumCi':docNumCi})
     for doc in q:
-        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result'],'date':doc['date'],'time':doc['time']})
     return ans
 
 def getExamsByHealthEntityAndCitizenName(db,citizensName,docNumHe):
