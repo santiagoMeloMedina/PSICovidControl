@@ -431,9 +431,8 @@ def setPasswordUser(db,username,newPassword):# igual para todos los usuarios
 
 
 
-def getDate(s):#string s in format "dd-mm-yy"
+def getDate(s):#string s in format "yy-mm-dd"
     return [int(i) for i in s.split("-")]
-
 
 
 
@@ -781,7 +780,15 @@ def makeExamsDB(client):
         'docNumHe':'',
         'citizensName': '',
         'citizensLastNames':'',
-        'result':''
+        'result':'',
+        'date': '',
+        'time': ''
+    })
+
+    col = db['citizen']
+    col.insert_one({
+        'docNum':'',
+        'entriesReg':[]
     })
 
 
