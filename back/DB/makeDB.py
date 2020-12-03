@@ -322,7 +322,7 @@ def getAllDocTypes(db):
 def getAllExams(db):
     q,ans = db.exam.find({}),list()
     for doc in q:
-        ans.append({"docNumCi":doc['docNumCi'],"docNumHe":doc['docNumHe'],"citizensName":doc['citizensName'],"result":doc['result']})
+        ans.append({"docNumCi":doc['docNumCi'],"docNumHe":doc['docNumHe'],"citizensName":doc['citizensName'],"result":doc['result'],'date':doc['date'],'time':['time']})
     return ans
 
 def getAllEntries(db):#Mostrar el nombre de la persona y el del establecimiento ? 
