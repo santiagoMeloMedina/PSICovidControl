@@ -647,8 +647,8 @@ def updateHealthEntity(db,_id,docNum):
         db.healthEntity.insert_one({'docNum':docNum,'examsReg':[_id]})
 
 
-def registerExam(db,docNumCi,docNumHe,citizensName,result):
-    _id = db.exam.insert_one({'docNumCi':docNumCi,'docNumHe':docNumHe,'citizensname':citizensName,'result':result}).inserted_id
+def registerExam(db,docNumCi,docNumHe,citizensName,result,date,time):
+    _id = db.exam.insert_one({'docNumCi':docNumCi,'docNumHe':docNumHe,'citizensname':citizensName,'result':result,'date':date,'time':time}).inserted_id
     updateHealthEntity(db,_id,docNumHe)
 
 
