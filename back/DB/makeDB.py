@@ -509,6 +509,26 @@ def setNeighHoodEstablishment(db,username,newNeighHood):
 def setCategoryEstablishment(db,username,newCategory):
     db.establishment.update_one({'username':username},{'$set':{'category':newCategory}},upsert = False)
 
+
+def getExamById(db,_id):
+    return db.exam.find_one({'_id':_id})
+
+def getMaxExam(db,docNum):
+    res = db.citizen.find({'docNum':docNum})
+    date = list()
+    ans = {}
+    if res != None:
+        date = [-1,-1,-1]
+        res = list(res['entriesReg'])
+        for i in range(len(res)):
+            doc = getExamById(db,res[i])
+            nDate = getDate(doc['date'])
+            if((nDate[0] > date[0]) or (nDate[0] == date[0] and nDate[1] > date[1]) or (nDate[0] == date[0] and nDate[1] == date[1] and nDate[2] > date[2])):
+                date = list(nDate)
+                ans = {'result':doc['result'],'date':doc['date']} 
+    return ans
+
+
 def getGenderById(db,_id):
     return db.citizen.find_one({'_id':_id})['gender']
 
@@ -555,6 +575,9 @@ def getEntriesByEstablishmentAndDate(dbEntry,docNumEs,initialDate,finalDate):
             'date':doc['date'],'time':doc['time'],'mask':doc['mask'],'ans':doc['ans'],'description':doc['description'],'category':getCategoryById(dbUsers,doc['idEs'])})
     return ans
  
+
+#^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])\s*(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+
 
 def updateCitizenEntry(db,_id,docNum):
     doc = db.citizen.find_one({'docNum':docNum})
