@@ -357,7 +357,7 @@ def getExamsByCitizenDocNum(db,docNum):#numero de documento del CIUDADANO
 def getExamsByCitizenName(db,name):
     q,ans = db.exam.find({'citizensName':name}),list()
     for doc in q:
-        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result']})
+        ans.append({'docNumCi':doc['docNumCi'],'docNumHe':doc['docNumHe'],'citizensName':doc['citizensName'],'result':doc['result'],'date':doc['date'],'time':doc['time']})
     return ans
     
 
