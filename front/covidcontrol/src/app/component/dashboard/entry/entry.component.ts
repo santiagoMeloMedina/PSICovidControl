@@ -9,6 +9,8 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
 import { NoticeService } from 'src/app/service/notice/notice.service';
 import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
 import { Quarantine } from 'src/app/model/parameters/quarantine.model';
+import { ExamHistory } from 'src/app/model/exam-history.model';
+import { ExamService } from 'src/app/service/service/exam/exam.service';
 
 
 @Component({
@@ -30,7 +32,8 @@ export class EntryComponent implements OnInit {
               private userService: UserService, 
               private authenticationService: AuthenticationService, 
               private noticeService: NoticeService, 
-              private parameterService: ParameterService) {
+              private parameterService: ParameterService, 
+              private examService: ExamService) {
       this.entryForm = this.formBuilder.group({
         citizenDocNum: ['',Validators.required], 
         temperature:['',Validators.required],
@@ -91,7 +94,6 @@ export class EntryComponent implements OnInit {
 
   public arrangeValues(values: Object): Object {
     values['epDocNum'] = this.user.getDocNum();
-    values['exam'] = {'date': '2020-11-9', 'result': 'A'};
     values['quarantine'] = this.quarantine.getDays();
     if (this.registryType == environment.VALUE.ENTRY.REGISTRY.TYPE.AUTOMATIC) {
       delete values['date'];
@@ -102,13 +104,19 @@ export class EntryComponent implements OnInit {
 
   public registerEntry(): void {
     let values: Object = JSON.parse(JSON.stringify(this.entryForm.value));
-    values = this.arrangeValues(values);
-    this.entryService.registerEntry(values).then(result => {
-      if (result) {
-        this.noticeService.alertMessageRestart(environment.VALUE.MESSAGE.ENTRY.ADITTION.SUCCESS);
-      } else {
-        this.noticeService.alertMessage(environment.VALUE.MESSAGE.ENTRY.ADITTION.ERROR);
+    values['exam'] = {"result": "N", "date": "2020-1-1"};
+    this.examService.getExamByCitizen(values['citizenDocNum']).then(result => {
+      if (typeof result['date'] !== "undefined") {
+        values['exam'] = Object(result);
       }
+      values = this.arrangeValues(values);
+      this.entryService.registerEntry(values).then(result => {
+        if (result) {
+          this.noticeService.alertMessageRestart(environment.VALUE.MESSAGE.ENTRY.ADITTION.SUCCESS);
+        } else {
+          this.noticeService.alertMessage(environment.VALUE.MESSAGE.ENTRY.ADITTION.ERROR);
+        }
+      });
     });
   }
 

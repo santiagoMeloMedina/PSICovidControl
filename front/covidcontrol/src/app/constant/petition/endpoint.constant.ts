@@ -105,5 +105,28 @@ export const CONSTANTS = {
                 URL: "/parameter/quarantine"
             }
         }
+    },
+    EXAM: {
+        POST: {
+            ES_HISTORY: {
+                URL: (start: number, limit: number) => {return `/exam/history/es/${start}/${limit}`}
+            },
+            REGISTER: {
+                URL: "/exam/add"
+            },
+            CITIZEN_EXAM: {
+                URL: "/exam/citizen"
+            }
+        },
+        GET: {
+            ALL_HISTORY: {
+                URL: (start: number, limit: number) => {return `/exam/history/${start}/${limit}`}
+            }
+        },
+        PUT: {
+            RESULT: {
+                URL: "/exam/history"
+            }
+        }
     }
 }

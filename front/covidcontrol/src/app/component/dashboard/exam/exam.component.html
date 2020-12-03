@@ -8,17 +8,26 @@
                         <input type="text" formControlName="name" placeholder="Nombres">
                         <input type="text" formControlName="lastname" placeholder="Apellidos">
                         <select type="text" formControlName="docType" placeholder="Tipo de documento">
-                            <option value="" disabled selected>Seleccione tipo de documento</option>
-                            <option value="1">
-                                opt1
-                            </option>
-                            <option value="2">
-                                opt2
+                            <option value="" selected disabled>Seleccione tipo de documento</option>
+                            <option value="{{ document.getId() }}" *ngFor="let document of getDocumentTypes()">
+                                {{ document.getName() }}
                             </option>
                         </select>
-                        <input type="text" formControlName="docNum" placeholder="Número de documento">
+                        <input type="text" formControlName="citizenDocNum" placeholder="Número de documento">
                         <input type="date" formControlName="date" placeholder="Fecha">
-                        <input type="time" formControlName="time" placeholder="Hora">        
+                        <input type="time" formControlName="time" placeholder="Hora">
+                        <select type="text" formControlName="result" placeholder="Resultado">
+                            <option value="" disabled selected>Seleccione resultado</option>
+                            <option value="N">
+                                Sin respuesta
+                            </option>
+                            <option value="A">
+                                Positivo
+                            </option>
+                            <option value="I">
+                                Negativo
+                            </option>
+                        </select>
                     </div>
                 </form>
                 <button class="btn" [disabled]="!(getExamForm().valid)" (click)="registerExam()"><span>Registrar</span></button> 

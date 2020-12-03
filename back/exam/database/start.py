@@ -8,18 +8,19 @@ client = MongoClient(host=os.environ['HOST'],
                         password=os.environ['MONGO_INITDB_ROOT_PASSWORD'])
 
 def make(database):
-    col = database['healthEntity']
-    col.insert_one({
-        'docNum':'',
-        'examsReg':[]
-    })
-    col = database['exam']
-    col.insert_one({
-        'docNumCi':'',
-        'docNumHe':'',
-        'citizensName': '',
-        'citizensLastNames':'',
-        'result':''
-    })
+    # col = database['healthEntity']
+    # col.insert_one({
+    #     'docNum':'',
+    #     'exams':[]
+    # })
+    # col = database['exam']
+    # col.insert_one({
+    #     'docNumCi':'',
+    #     'docNumHe':'',
+    #     'citizensName': '',
+    #     'citizensLastNames':'',
+    #     'result':''
+    # })
+    pass
 
 make(client[os.environ['MONGO_INITDB_DATABASE']])

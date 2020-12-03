@@ -54,5 +54,15 @@ export const CONSTANTS = {
                 ERROR: "Periodo de cuarentena NO pudo ser actualizado"
             }
         }
+    },
+    EXAM: {
+        ADDITION: {
+            SUCCESS: "Examen agregado con exito",
+            ERROR: "Examen NO pudo ser agregado"
+        },
+        UPDATE: {
+            SUCCESS: "Examen actualizado con exito",
+            ERROR: "Examen NO pudo ser actualizado"
+        }
     }
 }

@@ -11,22 +11,36 @@
             </select>
         </form>
         <div class = "columns">
-            <div *ngFor = "let col of getCols()" class ="column">
+            <div *ngFor = "let col of getCols()" class="column">
                 <span>{{ col }}</span>
+            </div>
+            <div class="column">
+                <span>Actualizar</span>
             </div>
         </div>
         <div class = "table">
             <div class="rows">
                 <div *ngFor="let exam of getRows()" class="row">
-                    <div class="detail"><span>{{ exam.getIdCitizen() }}</span></div>
+                    <div class="detail"><span>{{ exam.getCitizenDocNum() }}</span></div>
                     <div class="detail"><span>{{ exam.getName() }}</span></div>
-                    <div class="detail"><span>{{ exam.getLastname() }}</span></div>
                     <div class="detail"><span>{{ exam.getDate() }}</span></div>
                     <div class="detail"><span>{{ exam.getTime() }}</span></div>
                     <div class="detail"><span>{{ exam.getResult() }}</span></div>
+                    <div class="detail">
+                        <div class="options">
+                            <button (click)="updateExamResult(exam.getId(), 'A')">Positivo</button>
+                            <button (click)="updateExamResult(exam.getId(), 'I')">Negativo</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="page">
+            <button (click)="lastPage()" [disabled]="!canLastPage()">Atras</button>
+            <button (click)="nextPage()" [disabled]="!canNextPage()">Siguiente</button>
+        </div>
+        <button class="pdf" (click)="getPdfHistory()">Descargar PDF</button>
+        <button class="excel" (click)="getExcelHistory()">Descargar Excel</button>
     </div>
 
 </div>
