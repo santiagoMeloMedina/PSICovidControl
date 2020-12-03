@@ -514,12 +514,12 @@ def getExamById(db,_id):
     return db.exam.find_one({'_id':_id})
 
 def getMaxExam(db,docNum):
-    res = db.citizen.find({'docNum':docNum})
+    res = db.citizen.find_one({'docNum':docNum})
     date = list()
     ans = {}
     if res != None:
         date = [-1,-1,-1]
-        res = list(res['entriesReg'])
+        res = list(res['examsReg'])
         for i in range(len(res)):
             doc = getExamById(db,res[i])
             nDate = getDate(doc['date'])
@@ -827,7 +827,7 @@ def makeExamsDB(client):
     col = db['citizen']
     col.insert_one({
         'docNum':'',
-        'entriesReg':[]
+        'examsReg':[]
     })
 
 
