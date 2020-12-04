@@ -112,7 +112,7 @@ export class EntryComponent implements OnInit {
       values = this.arrangeValues(values);
       this.entryService.registerEntry(values).then(result => {
         if (result) {
-          this.noticeService.alertMessageRestart(environment.VALUE.MESSAGE.ENTRY.ADITTION.SUCCESS);
+          this.noticeService.alertMessageRestart(result.getResponse());
         } else {
           this.noticeService.alertMessage(environment.VALUE.MESSAGE.ENTRY.ADITTION.ERROR);
         }
