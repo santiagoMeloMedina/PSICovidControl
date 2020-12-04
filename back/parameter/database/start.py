@@ -59,11 +59,12 @@ def make(database):
     #     'name':'',
     #     'cityId':''
     # })
-    # col = database['quarantine']
-    # col.insert_one({
-    #     'days':'',
-    #     'state':''
-    # })
+    col = database['quarantine']
+    col.insert_one({
+        'days':'1',
+        'state':'A',
+        'date':'2020-11-28'
+    })
     initializeCountryParams(database, os.environ['DATA'])
 
 make(client[os.environ['MONGO_INITDB_DATABASE']])
