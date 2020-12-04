@@ -9,7 +9,7 @@ client = MongoClient(host=os.environ['HOST'],
 
 def make(database):
     col = database['user']
-    col.insert_one({'email':'crack@gmail.com','password':'crack','username':'crack','rol':'Admin'})
+    col.insert_one({'email':'crack@gmail.com','password':'$pbkdf2-sha256$30000$RShFKCVkLMW4N8bYey/l3A$3mLUARNdlBu2gIMqNQtlgKiygHlAl/7vA.LLvfO2GnA','username':'crack','rol':'Admin'})
     col = database['administrator']
     col.insert_one({'docType':'CC','docNum':12341341,'username':'crack','name':'Crack','lastname':'Cracked'})
 

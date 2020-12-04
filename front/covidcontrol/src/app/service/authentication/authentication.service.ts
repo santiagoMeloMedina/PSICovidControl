@@ -72,7 +72,7 @@ export class AuthenticationService {
   }
 
   public logOut(): void {
-    this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER);
+    this.cookieService.delete(environment.AUTHENTICATION.COOKIE.USER, '/');
   }
 
   public isLogged(): boolean {

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { RoutingService } from 'src/app/service/routing/routing.service';
 import { environment } from 'src/environments/environment';
+import { NoticeService } from 'src/app/service/notice/notice.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
-              private authenticateService: AuthenticationService) {
+              private authenticateService: AuthenticationService, 
+              private noticeService: NoticeService) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -35,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.authenticateService.authenticate(values['username'], values['password']).then(result => {
       if (result) {
         window.location.reload();
+      } {
+        this.noticeService.alertMessage(environment.VALUE.MESSAGE.LOGIN.ERROR);
       }
     });
   }

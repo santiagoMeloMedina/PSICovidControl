@@ -9,6 +9,7 @@ import { Neighborhood } from 'src/app/model/parameters/neighborhood.model';
 import { ParameterService } from 'src/app/service/service/parameters/parameter.service';
 import { DocumentType } from 'src/app/model/parameters/document.model';
 import { Category } from 'src/app/model/parameters/category.model';
+import { NoticeService } from 'src/app/service/notice/notice.service';
 
 @Component({
   selector: 'app-register-detail',
@@ -37,7 +38,8 @@ export class RegisterDetailComponent implements OnInit {
   constructor(public routing: RoutingService, 
               private formBuilder: FormBuilder, 
               private authenticationService: AuthenticationService, 
-              private parameterService: ParameterService) {
+              private parameterService: ParameterService, 
+              private noticeService: NoticeService) {
      
       this.citizenForm = this.formBuilder.group({
         docType:['',Validators.required],
@@ -191,9 +193,10 @@ export class RegisterDetailComponent implements OnInit {
     values['rol'] = this.role;
     this.authenticationService.register(values).then(result => {
       if (result) {
+        this.noticeService.alertMessage(environment.VALUE.MESSAGE.REGISTER.SUCESS);
         this.routing.absoluteRoute("login");
       } else {
-        alert("No pudo registrar");
+        this.noticeService.alertMessage(environment.VALUE.MESSAGE.REGISTER.ERROR);
       }
     });
   }

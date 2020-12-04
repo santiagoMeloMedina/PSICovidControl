@@ -10,13 +10,20 @@ import src.constant.token as TOKEN
 import src.constant.response as RESPONSE
 import src.constant.role as ROLE
 import src.constant.value as VALUE
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(
+        schemes=["pbkdf2_sha256"],
+        default="pbkdf2_sha256",
+        pbkdf2_sha256__default_rounds=30000
+)
 
 def authenticate():
     result = RESPONSE.EMPTY.copy()
     data = eval(request.data.decode("utf-8"))
     username, password = data["username"], data["password"]
-    response = UserRepository.authenticate(username, password)
-    if response != None:
+    response = UserRepository.authenticate(username)
+    if response != None and pwd_context.verify(data["password"], response["password"]):
         id = str(response['_id'])
         role = response['rol']
         token = jwt.encode(generatePayload(id, username, role), TOKEN.SECRET_KEY, algorithm="HS256").decode('utf-8')
@@ -60,6 +67,7 @@ def register():
     setStateByRol(data)
     repository = getRoleRepository(data)
     if not UserRepository.checkRegistration(data['username'], data['email']):
+        data['password'] = pwd_context.encrypt(data['password'])
         user = UserRepository.register(data)
         profile = repository.register(data)
         user['_id'], profile['_id'] = str(user['_id']), str(profile['_id'])

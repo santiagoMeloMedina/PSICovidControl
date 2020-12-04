@@ -7,11 +7,13 @@ import src.repository.es as ESRepository
 import src.constant.role as ROLE
 
 
-def authenticate(username, password):
+def authenticate(username):
     result = None
-    check = database.user.find_one({'username':username,'password':password})
+    check = database.user.find_one({'username':username})
     if check != None:
-        result = check
+        user = getUser(check['username'])
+        if "state" not in user or user["state"] == "A":
+            result = check
     return result
 
 def checkUsername(username):

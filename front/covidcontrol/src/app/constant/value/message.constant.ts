@@ -64,5 +64,8 @@ export const CONSTANTS = {
             SUCCESS: "Examen actualizado con exito",
             ERROR: "Examen NO pudo ser actualizado"
         }
+    },
+    LOGIN: {
+        ERROR: "Credenciales no validas o Usuario esta inactivo"
     }
 }
