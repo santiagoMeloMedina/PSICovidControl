@@ -1,0 +1,5 @@
+
+IP COVID CONTROL: 18.222.168.12
+Admin Credenciales:
+	username: crack
+	password: crack
