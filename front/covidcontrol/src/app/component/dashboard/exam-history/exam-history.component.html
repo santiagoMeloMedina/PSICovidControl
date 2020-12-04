@@ -27,7 +27,7 @@
                     <div class="detail"><span>{{ exam.getTime() }}</span></div>
                     <div class="detail"><span>{{ exam.getResult() }}</span></div>
                     <div class="detail">
-                        <div class="options">
+                        <div [ngClass]="isAdmin() ? 'hide':'options'">
                             <button (click)="updateExamResult(exam.getId(), 'A')">Positivo</button>
                             <button (click)="updateExamResult(exam.getId(), 'I')">Negativo</button>
                         </div>

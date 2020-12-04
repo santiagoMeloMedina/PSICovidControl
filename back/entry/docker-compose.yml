@@ -11,6 +11,8 @@ services:
       - '3000'
     networks:
       - psi
+    volumes:
+      - /etc/localtime:/etc/localtime
 
   entry_nginx:
     build: ./service/proxy

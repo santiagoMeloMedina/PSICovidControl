@@ -84,6 +84,12 @@ export class ExamHistoryComponent implements OnInit {
     }
   }
 
+  public isAdmin(): boolean {
+    let user: Object = this.authenticationService.getUser();
+    let result: boolean = user[environment.AUTHENTICATION.ATTR.ROL] == environment.AUTHENTICATION.ROLES.ADMIN;
+    return result;
+  }
+
   public updateExamResult(id: string, result: string): void {
     this.examService.updateExam(id, result).then(info => {
       if (info) {
